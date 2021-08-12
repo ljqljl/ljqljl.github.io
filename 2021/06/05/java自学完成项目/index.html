@@ -16,7 +16,7 @@
 <meta property="og:description" content="Java自学完成项目">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-05T01:57:52.000Z">
-<meta property="article:modified_time" content="2021-07-20T05:49:09.893Z">
+<meta property="article:modified_time" content="2021-08-04T14:17:53.640Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
   
@@ -331,99 +331,111 @@ public void exit() &#123;
 <p>import com.ljq.house.domain.House;<br>import com.ljq.house.service.HouseService;<br>import com.ljq.house.utils.Utility;</p>
 <p>/**</p>
 <ul>
-<li><p>1.显示主菜单</p>
-</li>
-<li><p>2.提供用户输入</p>
-</li>
-<li><p>3.调用HouseService实现各种操作</p>
-</li>
-<li><p>/<br>public class HouseView {</p>
-<p>  //显示主菜单的变量<br>  private boolean loop = true;//控制主菜单循环<br>  private char key = ‘ ‘;//用户输入<br>  //房屋列表变量<br>  private HouseService houseService = new HouseService(10);//设置数组大小</p>
-<p>  //根据id查找对象，并进行修改<br>  public void updateHouse() {</p>
-<pre><code>  System.out.println(&quot;============修改房屋信息============&quot;);
-  System.out.print(&quot;请输入你要修改的房屋id（-1表示退出）&quot;);
-  int updateId = Utility.readInt();
-  if (updateId == -1) &#123;
-      System.out.println(&quot;===========放弃修改房屋信息===========&quot;);
-      return;
-  &#125;
-  House house = houseService.lookup(updateId);
-  if (house != null) &#123;
-      System.out.print(&quot;姓名（&quot; + house.getName() + &quot;）：&quot;);
-      //如果用户不修改，直接回车，默认&quot;&quot;，下面同理
-      String name = Utility.readString(6, &quot;&quot;);
-      if (!&quot;&quot;.equals(name)) &#123;//name不是默认，进行修改,下面同理
-          house.setName(name);
-      &#125;
-      System.out.print(&quot;电话（&quot; + house.getPhone() + &quot;）：&quot;);
-      String phone = Utility.readString(16, &quot;&quot;);
-      if (!&quot;&quot;.equals(phone)) &#123;
-          house.setPhone(phone);
-      &#125;
-      System.out.print(&quot;地址（&quot; + house.getAddress() + &quot;）：&quot;);
-      String address = Utility.readString(24, &quot;&quot;);
-      if (!&quot;&quot;.equals(address)) &#123;
-          house.setAddress(address);
-      &#125;
-      System.out.print(&quot;租金（&quot; + house.getMonthly() + &quot;）：&quot;);
-      String monthly = Utility.readString(10, &quot;&quot;);
-      if (!&quot;&quot;.equals(monthly)) &#123;
-          house.setMonthly(monthly);
-      &#125;
-      System.out.print(&quot;状态（未出租/已出租）（&quot; + house.getState() + &quot;）：&quot;);
-      String state = Utility.readString(5, &quot;&quot;);
-      if (!&quot;&quot;.equals(state)) &#123;
-          house.setState(state);
-      &#125;
-      System.out.println(&quot;==============修改成功=============&quot;);
-  &#125; else &#123;
-      System.out.println(&quot;===========修改的房屋不存在===========&quot;);
-  &#125;
-</code></pre>
-<p>  }</p>
-<p>  //编写lookupId方法，接收输入id，调用lookup方法查找<br>  public void lookupId() {</p>
-<pre><code>  System.out.println(&quot;=============查找房屋=============&quot;);
-  System.out.print(&quot;请输入你要查找的id&quot;);
-  int lookupId = Utility.readInt();
-  if (houseService.lookup(lookupId) != null) &#123;
-      System.out.println(&quot;=============查找成功=============&quot;);
-  &#125; else &#123;
-      System.out.println(&quot;=============查找失败=============&quot;);
-  &#125;
-</code></pre>
-<p>  }</p>
-<p>  //实现退出确认<br>  public void exit() {</p>
-<pre><code>  //利用工具类
-  char c = Utility.readConfirmSelection();
-  if (c == &#39;Y&#39;) &#123;
-      loop = false;
-  &#125;
-</code></pre>
-<p>  }</p>
-<p>  //编写delHouse方法，接受要输入的id，调用Service中的del方法<br>  public void delHouse() {</p>
-<pre><code>  System.out.println(&quot;=============删除房屋=============&quot;);
-  System.out.print(&quot;请输入需要删除房屋的编号（-1退出）：&quot;);
-  int delId = Utility.readInt();
-  if (delId == -1) &#123;
-      System.out.println(&quot;==========你退出了房屋删除==========&quot;);
-      return;
-  &#125;
-  //该方法有循环判断的逻辑，不输入Y或N出不来
-  char choice = Utility.readConfirmSelection();
-  if (choice == &#39;Y&#39;) &#123;//真的删除，调用del方法
-      if (houseService.del(delId)) &#123;
-          System.out.println(&quot;==========删除房屋成功==========&quot;);
-      &#125; else &#123;
-          System.out.println(&quot;=======删除失败，房屋不存在=======&quot;);
-      &#125;
-  &#125; else &#123;
-      System.out.println(&quot;==========你退出了房屋删除==========&quot;);
-  &#125;
-</code></pre>
-<p>  }</p>
-</li>
+<li>1.显示主菜单</li>
+<li>2.提供用户输入</li>
+<li>3.调用HouseService实现各种操作</li>
 </ul>
-<pre><code>//编写addHouse，接收输入，创建新对象，调用add方法
+<p>*/</p>
+<p>public class HouseView {</p>
+<pre><code>//显示主菜单的变量
+private boolean loop = true;//控制主菜单循环
+private char key = &#39; &#39;;//用户输入
+//房屋列表变量
+private HouseService houseService = new HouseService(10);//设置数组大小
+
+//根据id查找对象，并进行修改
+public void updateHouse() &#123;
+
+    System.out.println(&quot;============修改房屋信息============&quot;);
+    System.out.print(&quot;请输入你要修改的房屋id（-1表示退出）&quot;);
+    int updateId = Utility.readInt();
+    if (updateId == -1) &#123;
+        System.out.println(&quot;===========放弃修改房屋信息===========&quot;);
+        return;
+    &#125;
+    House house = houseService.lookup(updateId);
+    if (house != null) &#123;
+        System.out.print(&quot;姓名（&quot; + house.getName() + &quot;）：&quot;);
+        //如果用户不修改，直接回车，默认&quot;&quot;，下面同理
+        String name = Utility.readString(6, &quot;&quot;);
+        if (!&quot;&quot;.equals(name)) &#123;//name不是默认，进行修改,下面同理
+            house.setName(name);
+        &#125;
+        System.out.print(&quot;电话（&quot; + house.getPhone() + &quot;）：&quot;);
+        String phone = Utility.readString(16, &quot;&quot;);
+        if (!&quot;&quot;.equals(phone)) &#123;
+            house.setPhone(phone);
+        &#125;
+        System.out.print(&quot;地址（&quot; + house.getAddress() + &quot;）：&quot;);
+        String address = Utility.readString(24, &quot;&quot;);
+        if (!&quot;&quot;.equals(address)) &#123;
+            house.setAddress(address);
+        &#125;
+        System.out.print(&quot;租金（&quot; + house.getMonthly() + &quot;）：&quot;);
+        String monthly = Utility.readString(10, &quot;&quot;);
+        if (!&quot;&quot;.equals(monthly)) &#123;
+            house.setMonthly(monthly);
+        &#125;
+        System.out.print(&quot;状态（未出租/已出租）（&quot; + house.getState() + &quot;）：&quot;);
+        String state = Utility.readString(5, &quot;&quot;);
+        if (!&quot;&quot;.equals(state)) &#123;
+            house.setState(state);
+        &#125;
+        System.out.println(&quot;==============修改成功=============&quot;);
+    &#125; else &#123;
+        System.out.println(&quot;===========修改的房屋不存在===========&quot;);
+    &#125;
+
+&#125;
+
+//编写lookupId方法，接收输入id，调用lookup方法查找
+public void lookupId() &#123;
+
+    System.out.println(&quot;=============查找房屋=============&quot;);
+    System.out.print(&quot;请输入你要查找的id&quot;);
+    int lookupId = Utility.readInt();
+    if (houseService.lookup(lookupId) != null) &#123;
+        System.out.println(&quot;=============查找成功=============&quot;);
+    &#125; else &#123;
+        System.out.println(&quot;=============查找失败=============&quot;);
+    &#125;
+&#125;
+
+//实现退出确认
+public void exit() &#123;
+
+    //利用工具类
+    char c = Utility.readConfirmSelection();
+    if (c == &#39;Y&#39;) &#123;
+        loop = false;
+    &#125;
+&#125;
+
+//编写delHouse方法，接受要输入的id，调用Service中的del方法
+public void delHouse() &#123;
+
+    System.out.println(&quot;=============删除房屋=============&quot;);
+    System.out.print(&quot;请输入需要删除房屋的编号（-1退出）：&quot;);
+    int delId = Utility.readInt();
+    if (delId == -1) &#123;
+        System.out.println(&quot;==========你退出了房屋删除==========&quot;);
+        return;
+    &#125;
+    //该方法有循环判断的逻辑，不输入Y或N出不来
+    char choice = Utility.readConfirmSelection();
+    if (choice == &#39;Y&#39;) &#123;//真的删除，调用del方法
+        if (houseService.del(delId)) &#123;
+            System.out.println(&quot;==========删除房屋成功==========&quot;);
+        &#125; else &#123;
+            System.out.println(&quot;=======删除失败，房屋不存在=======&quot;);
+        &#125;
+    &#125; else &#123;
+        System.out.println(&quot;==========你退出了房屋删除==========&quot;);
+    &#125;
+&#125;
+
+
+//编写addHouse，接收输入，创建新对象，调用add方法
 public void addHouse() &#123;
 
     System.out.println(&quot;\n=============添加房屋=============&quot;);
@@ -575,8 +587,9 @@ public House[] list() &#123;
 <p>/**</p>
 <ul>
 <li>House表示一个房屋信息</li>
-<li>/<br>public class House {</li>
 </ul>
+<p>*/</p>
+<p>public class House {</p>
 <pre><code>//编号 房主 电话 地址 月租 状态(未出租/已出租
 
 private int id;
@@ -670,6 +683,1002 @@ public String getState() &#123;
 public void setState(String state) &#123;
 
     this.state = state;
+&#125;
+</code></pre>
+<p>}</p>
+<h2 id="坦克大战"><a href="#坦克大战" class="headerlink" title="坦克大战"></a>坦克大战</h2><p>package com.ljq.tank03;</p>
+<p>import jdk.nashorn.internal.ir.CallNode;</p>
+<p>import javax.swing.*;<br>import java.awt.event.WindowAdapter;<br>import java.awt.event.WindowEvent;<br>import java.util.Scanner;</p>
+<p>/**</p>
+<ul>
+<li>@author 6+7</li>
+<li>@version 1.0</li>
+<li>窗口</li>
+</ul>
+<p>*/</p>
+<p>public class LjqTankGame03 extends JFrame {</p>
+<pre><code>MyPanel mp =null;//定义面板属性
+static Scanner scanner = new Scanner(System.in);
+public static void main(String[] args) &#123;
+
+    LjqTankGame03 ljqTankGame01 = new LjqTankGame03();
+&#125;
+
+public LjqTankGame03()&#123;
+    System.out.println(&quot;请输入你的选择：1，开始新的游戏/2，继续上局游戏&quot;);
+    String key = scanner.next();
+    mp = new MyPanel(key);//面板
+    new Thread(mp).start();
+    this.add(mp);//添加画板到窗口
+    this.setSize(1350,750);//窗口大小
+    this.addKeyListener(mp);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//退出
+    this.setVisible(true);//可视化
+    //在JFrame中增加相应的关闭窗口的处理
+    this.addWindowListener(new WindowAdapter() &#123;
+        @Override
+        public void windowClosing(WindowEvent e) &#123;
+            Recorder.keepRecorder();
+            System.exit(0);
+        &#125;
+    &#125;);
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class Tank {</p>
+<pre><code>boolean isLive = true;
+private int x;
+private int y;
+private int direction = 0;//方向《上下左右=0123》
+private int speed = 3;//速度，默认为1
+
+public Tank(int x, int y) &#123;
+    this.x = x;
+    this.y = y;
+&#125;
+public void moveUp()&#123;
+    y-=speed;
+&#125;
+
+public void moveDown()&#123;
+    y+=speed;
+&#125;
+
+public void moveLeft()&#123;
+    x-=speed;
+&#125;
+
+public void moveRight()&#123;
+    x+=speed;
+&#125;
+
+public int getDirection() &#123;
+    return direction;
+&#125;
+
+public void setDirection(int direction) &#123;
+    this.direction = direction;
+&#125;
+
+public int getSpeed() &#123;
+    return speed;
+&#125;
+
+public void setSpeed(int speed) &#123;
+    this.speed = speed;
+&#125;
+
+public int getX() &#123;
+    return x;
+&#125;
+
+public void setX(int x) &#123;
+    this.x = x;
+&#125;
+
+public int getY() &#123;
+    return y;
+&#125;
+
+public void setY(int y) &#123;
+    this.y = y;
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class MyTank extends Tank{</p>
+<pre><code>Shot shot = null;
+//可以发射多颗子弹（集合）
+Vector&lt;Shot&gt; shots = new Vector&lt;&gt;();
+public MyTank(int x, int y) &#123;
+    super(x, y);
+&#125;
+//因为是我放坦克的子弹，所以放在这
+//向敌人发射子弹的方法
+public void shotEnemyTank()&#123;
+    //控制一下，每次最多五枚子弹
+    if(shots.size() &gt; 5)&#123;
+        return;
+    &#125;
+    //射向敌人时方向不同
+    switch (getDirection()) &#123;
+        case 0://车身向上
+            shot = new Shot(getX() + 18, getY() - 5, 0);
+
+            break;
+        case 1://车身向右
+            shot = new Shot(getX() + 55, getY() + 28, 1);
+
+            break;
+        case 2://车身向下
+            shot = new Shot(getX() + 18, getY() + 65, 2);
+
+            break;
+        case 3://车身向左
+            shot = new Shot(getX() - 15, getY() + 28, 3);
+
+            break;
+    &#125;
+    //把新建的shot放到shots中
+    shots.add(shot);
+    //启动线程
+    new Thread(shot).start();
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class EnemyTank extends Tank implements Runnable{</p>
+<pre><code>boolean isLive = true;
+//敌人的子弹
+Vector&lt;Shot&gt; shots = new Vector&lt;&gt;();
+//增加成员，可以得到敌人坦克的Vector
+Vector&lt;EnemyTank&gt; enemyTanks = new Vector&lt;&gt;();
+public EnemyTank(int x, int y) &#123;
+    super(x, y);
+&#125;
+
+//这里提供一个方法，可以将MyPanel中的敌人坦克集合拿过来
+public void setEnemyTanks(Vector&lt;EnemyTank&gt; enemyTanks) &#123;
+    this.enemyTanks = enemyTanks;
+&#125;
+public boolean isCollision()&#123;
+    switch(this.getDirection())&#123;
+        case 0://上
+            //让当前坦克和所有坦克比较（循环）
+            for (int i = 0; i &lt; enemyTanks.size(); i++) &#123;
+                //取出一个
+                EnemyTank enemyTank = enemyTanks.get(i);
+                //不能和自己比较
+                if(this != enemyTank)&#123;
+                    //如果敌人坦克是上/下
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 40]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 60]
+                    if(enemyTank.getDirection() == 0 || enemyTank.getDirection() == 2)&#123;
+                        //左上角坐标 [this.getX()   this.getY()]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                        //右上角坐标 [this.getX() + 40   this.getY()]
+                        if(this.getX() + 40 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 40 &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                    //如果敌人坦克是左/右
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 50]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 50]
+                    if(enemyTank.getDirection() == 1 || enemyTank.getDirection() == 3)&#123;
+                        //左上角坐标 [this.getX()   this.getY()]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                        //右上角坐标 [this.getX() + 40   this.getY()]
+                        if(this.getX() + 40 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 40 &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                &#125;
+            &#125;
+            break;
+        case 1://右
+            //让当前坦克和所有坦克比较（循环）
+            for (int i = 0; i &lt; enemyTanks.size(); i++) &#123;
+                //取出一个
+                EnemyTank enemyTank = enemyTanks.get(i);
+                //不能和自己比较
+                if(this != enemyTank)&#123;
+                    //如果敌人坦克是上/下
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 40]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 60]
+                    if(enemyTank.getDirection() == 0 || enemyTank.getDirection() == 2)&#123;
+                        //右上角坐标 [this.getX() + 50   this.getY()]
+                        if(this.getX() + 50 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 50 &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                        //右下角坐标 [this.getX() + 50   this.getY() + 50]
+                        if(this.getX() + 50 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 50 &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() + 50 &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 50 &lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                    //如果敌人坦克是左/右
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 50]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 50]
+                    if(enemyTank.getDirection() == 1 || enemyTank.getDirection() == 3)&#123;
+                        //右上角坐标 [this.getX() + 50   this.getY()]
+                        if(this.getX() + 50 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 50 &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                        //右下角坐标 [this.getX() + 50   this.getY() + 50]
+                        if(this.getX() + 50 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 50 &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() + 50 &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 50 &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                &#125;
+            &#125;
+            break;
+        case 2://下
+            //让当前坦克和所有坦克比较（循环）
+            for (int i = 0; i &lt; enemyTanks.size(); i++) &#123;
+                //取出一个
+                EnemyTank enemyTank = enemyTanks.get(i);
+                //不能和自己比较
+                if(this != enemyTank)&#123;
+                    //如果敌人坦克是上/下
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 40]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 60]
+                    if(enemyTank.getDirection() == 0 || enemyTank.getDirection() == 2)&#123;
+                        //左下角坐标 [this.getX()   this.getY() + 60]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() + 60 &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 60 &lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                        //右下角坐标 [this.getX() + 40   this.getY() + 60]
+                        if(this.getX() + 40 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 40 &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() + 60&gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 60&lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                    //如果敌人坦克是左/右
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 50]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 50]
+                    if(enemyTank.getDirection() == 1 || enemyTank.getDirection() == 3)&#123;
+                        //左下角坐标 [this.getX()   this.getY() + 50]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() + 50 &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 50 &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                        //右下角坐标 [this.getX() + 50   this.getY() + 50]
+                        if(this.getX() + 50 &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() + 50 &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() + 50 &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 50 &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                &#125;
+            &#125;
+            break;
+        case 3://左
+            //让当前坦克和所有坦克比较（循环）
+            for (int i = 0; i &lt; enemyTanks.size(); i++) &#123;
+                //取出一个
+                EnemyTank enemyTank = enemyTanks.get(i);
+                //不能和自己比较
+                if(this != enemyTank)&#123;
+                    //如果敌人坦克是上/下
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 40]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 60]
+                    if(enemyTank.getDirection() == 0 || enemyTank.getDirection() == 2)&#123;
+                        //左上角坐标 [this.getX()   this.getY()]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                        //左下角坐标 [this.getX()   this.getY() + 40]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 40
+                                &amp;&amp; this.getY() + 40 &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 40 &lt;= enemyTank.getY() + 60)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                    //如果敌人坦克是左/右
+                    //敌方坦克的取值范围x[enemyTank.getX()   enemyTank.getX() + 50]
+                    //               y[enemyTank.getY()   enemyTank.getY() + 50]
+                    if(enemyTank.getDirection() == 1 || enemyTank.getDirection() == 3)&#123;
+                        //左上角坐标 [this.getX()   this.getY()]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                        //左下角坐标 [this.getX()   this.getY() + 50]
+                        if(this.getX() &gt;= enemyTank.getX()
+                                &amp;&amp; this.getX() &lt;= enemyTank.getX() + 50
+                                &amp;&amp; this.getY() + 50 &gt;= enemyTank.getY()
+                                &amp;&amp; this.getY() + 50 &lt;= enemyTank.getY() + 50)&#123;
+                            return true;
+                        &#125;
+                    &#125;
+                &#125;
+            &#125;
+            break;
+    &#125;
+    return false;
+&#125;
+
+@Override
+public void run() &#123;
+
+
+    while(true)&#123;
+        //如果shots.size为零，则证明没有子弹了
+        //坦克不存在就不能发射
+        if(isLive &amp;&amp; shots.size() &lt; 1)&#123;
+            Shot shot = null;
+            switch (getDirection())&#123;
+                case 0://车身向上
+                    shot = new Shot(getX() + 18, getY() - 5, 0);
+
+                    break;
+                case 1://车身向右
+                    shot = new Shot(getX() + 55, getY() + 28, 1);
+
+                    break;
+                case 2://车身向下
+                    shot = new Shot(getX() + 18, getY() + 65, 2);
+
+                    break;
+                case 3://车身向左
+                    shot = new Shot(getX() - 15, getY() + 28, 3);
+
+                    break;
+            &#125;
+            //加子弹
+            shots.add(shot);
+            //启动线程
+            new Thread(shot).start();
+        &#125;
+
+        //让坦克根据方向移动
+        switch (getDirection())&#123;
+            case 0://向上
+                //走三十步
+                for (int i = 0; i &lt; 30; i++) &#123;
+                    //加一个控制条件，不扔让他跑出活动范围,下面同理
+                    if(getY() &gt; 0 &amp;&amp; !isCollision()) &#123;
+                        //父类的移动方法
+                        moveUp();
+                    &#125;
+                    //休眠50毫秒，不然会闪现的
+                    sleep50();
+                &#125;
+                break;
+            case 1://向右
+                //走三十步
+                for (int i = 0; i &lt; 30; i++) &#123;
+                    if (getX() + 70 &lt; 1000 &amp;&amp; !isCollision()) &#123;
+                        //父类的移动方法
+                        moveRight();
+                    &#125;
+                        //休眠50毫秒，不然会闪现的
+                    sleep50();
+                &#125;
+                break;
+            case 2://向下
+                //走三十步
+                for (int i = 0; i &lt; 30; i++) &#123;
+                    if(getY() + 110 &lt; 750 &amp;&amp; !isCollision()) &#123;
+                        //父类的移动方法
+                        moveDown();
+                    &#125;
+                        //休眠50毫秒，不然会闪现的
+                        sleep50();
+                &#125;
+                break;
+            case 3://向左
+                //走三十步
+                for (int i = 0; i &lt; 30; i++) &#123;
+                    if(getX() &gt; 10 &amp;&amp; !isCollision()) &#123;
+                        //父类的移动方法
+                        moveLeft();
+                    &#125;
+                    //休眠50毫秒，不然会闪现的
+                    sleep50();
+                &#125;
+                break;
+        &#125;
+        //随机改变坦克的方向
+        setDirection((int)(Math.random()*4));
+        //老师对我的提醒：写一个并发程序，一定要考虑线程何时结束
+        if (!(isLive))&#123;
+            break;
+        &#125;
+    &#125;
+&#125;
+public void sleep50()&#123;
+    try &#123;
+        Thread.sleep(50);
+    &#125; catch (InterruptedException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class Shot implements Runnable {</p>
+<pre><code>int x;//子弹的横坐标
+int y;//子弹的纵坐标
+int direction;//子弹的方向(0,1,2,3)
+int shotSpeed = 10;//子弹于行的速度
+boolean isLive = true;//线程的状态
+
+public Shot(int x, int y, int direction) &#123;
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
+&#125;
+
+@Override
+public void run() &#123;
+    while (true)&#123;
+        //子弹方向
+        switch (direction)&#123;
+            case 0://向上
+                y -= shotSpeed;
+                break;
+            case 1://向右
+                x += shotSpeed;
+                break;
+            case 2://向下
+                y += shotSpeed;
+                break;
+            case 3://向左
+                x -= shotSpeed;
+
+        &#125;
+        //休眠五十毫秒
+        try &#123;
+            Thread.sleep(50);
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+        //撞到边界结束进程（销毁子弹）
+        //碰到敌人坦克也应当销毁
+        if(!(y &gt;= 0 &amp;&amp; y &lt;= 750 &amp;&amp; x &gt;= 0 &amp;&amp; x &lt;= 1000 &amp;&amp; isLive)) &#123;
+            isLive = false;
+            break;
+        &#125;
+        //System.out.println(x + &quot; &quot; + y);
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class Node {</p>
+<pre><code>private int x;
+private int y;
+private int direction;
+
+public Node(int x, int y, int direction) &#123;
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
+&#125;
+
+public int getX() &#123;
+    return x;
+&#125;
+
+public void setX(int x) &#123;
+    this.x = x;
+&#125;
+
+public int getY() &#123;
+    return y;
+&#125;
+
+public void setY(int y) &#123;
+    this.y = y;
+&#125;
+
+public int getDirection() &#123;
+    return direction;
+&#125;
+
+public void setDirection(int direction) &#123;
+    this.direction = direction;
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class Bomb {</p>
+<pre><code>int x,y;//爆炸的坐标
+boolean isLive = true;//爆炸是否存活
+int life = 9;//炸弹的生命值（用于判断什么时候，用何种惨烈的图片）
+
+
+public Bomb(int x, int y) &#123;
+    this.x = x;
+    this.y = y;
+&#125;
+//写个方法，减少炸弹的生命值
+public void lifeDown()&#123;//配合出现爆炸效果
+    if(life &gt; 0)&#123;
+        life--;
+    &#125;else&#123;
+        isLive = false;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class MyPanel extends JPanel implements KeyListener, Runnable {</p>
+<pre><code>//获得爆炸图片
+Image image1 = null;
+Image image2 = null;
+Image image3 = null;
+MyTank mt = null;
+//爆炸，初始化一个集合
+//说明：当子弹接触到坦克时，则加入一个bomb对象到bombs中去
+Vector&lt;Bomb&gt; bombs = new Vector&lt;&gt;();
+//敌人的坦克，未来有很多，所以用集合，多线程，所以用Vector
+Vector&lt;EnemyTank&gt; enemyTanks = new Vector&lt;&gt;();
+//定义一个存放node的Vector，用于回复敌人坦克的位置和方向
+Vector&lt;Node&gt; nodes = new Vector&lt;&gt;();
+int enemyTanksSize = 6;//敌人的个数（3）
+
+public MyPanel(String key) &#123;
+    //判断文件是否存在
+    //如果存在正常执行，如果不存在，提示，且key = 1
+    File file = new File(Recorder.getRecordFile());
+    if(file.exists()) &#123;
+        nodes = Recorder.getNodesAndEnemyTankRec();
+    &#125;else&#123;
+        System.out.println(&quot;文件不存在，只能开启新的游戏&quot;);
+        key = &quot;1&quot;;
+    &#125;
+    //将MyPanel类的enemyTanks 传给Recorder的enemyTanks
+    Recorder.setEnemyTanks(enemyTanks);
+    mt = new MyTank(500, 630);//初始化自己的坦克
+    switch(key)&#123;
+        case &quot;1&quot;:
+            //敌人坦克
+            for(int i = 0;i &lt; enemyTanksSize; i++)&#123;
+                //初始化敌人的坦克
+                EnemyTank enemyTank = new EnemyTank(150 * (i + 1), 0);
+                //enemyTanks集合放入敌人坦克类的集合中
+                enemyTank.setEnemyTanks(enemyTanks);
+                //敌人的方向
+                enemyTank.setDirection(2);
+                //开始敌人坦克的线程，让他能动
+                new Thread(enemyTank).start();
+                //给enemyTank加一子弹
+                Shot shot = new Shot(enemyTank.getX() + 18,enemyTank.getY() + 65,enemyTank.getDirection());
+                //加入到enemyTank的shots中去
+                enemyTank.shots.add(shot);
+                //启动shot线程
+                new Thread(shot).start();
+                enemyTanks.add(enemyTank);
+            &#125;
+            break;
+        case &quot;2&quot;://继续上局游戏
+            //敌人坦克
+            for(int i = 0;i &lt; nodes.size(); i++)&#123;
+                Node node = nodes.get(i);
+                //初始化敌人的坦克
+                EnemyTank enemyTank = new EnemyTank(node.getX(), node.getY());
+                //enemyTanks集合放入敌人坦克类的集合中
+                enemyTank.setEnemyTanks(enemyTanks);
+                //敌人的方向
+                enemyTank.setDirection(node.getDirection());
+                //开始敌人坦克的线程，让他能动
+                new Thread(enemyTank).start();
+                //给enemyTank加一子弹
+                Shot shot = new Shot(enemyTank.getX() + 18,enemyTank.getY() + 65,enemyTank.getDirection());
+                //加入到enemyTank的shots中去
+                enemyTank.shots.add(shot);
+                //启动shot线程
+                new Thread(shot).start();
+                enemyTanks.add(enemyTank);
+            &#125;
+            break;
+        default:
+            System.out.println(&quot;你的输入有误&quot;);
+            break;
+    &#125;
+
+    image1 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource(&quot;/bomb_1.gif&quot;));
+    image2 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource(&quot;/bomb_2.gif&quot;));
+    image3 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource(&quot;/bomb_3.gif&quot;));
+    new AePlayWave(&quot;src\\111.wav&quot;).start();
+&#125;
+public void showInfo(Graphics g)&#123;
+    //更改画笔颜色
+    g.setColor(Color.BLACK);
+    Font font = new Font(&quot;宋体&quot;, Font.BOLD, 25);
+    //更改字体
+    g.setFont(font);
+    g.drawString(&quot;您累计击毁敌方坦克：&quot;,1020,30);
+    drawTank(1020,60,g,0,1);
+    g.setColor(Color.BLACK);
+    g.drawString(Recorder.allEnemyTankNum + &quot;&quot;,1080,100);
+&#125;
+
+
+@Override
+public void paint(Graphics g) &#123;
+    super.paint(g);
+    //背景
+    g.fillRect(0, 0, 1000, 750);
+    showInfo(g);
+    //判断我方坦克是否存活
+    if(mt != null &amp;&amp; mt.isLive ) &#123;
+        //画坦克--封装
+        this.drawTank(mt.getX(), mt.getY(), g, mt.getDirection(), 0);
+    &#125;
+    //画我的子弹--封装(老师写的没封装，可能这块太简单吧=。=)
+    //发射多颗子弹
+
+    for(int i = 0; i &lt; mt.shots.size(); i++)&#123;
+        Shot shot = mt.shots.get(i);
+        if (shot != null &amp;&amp; shot.isLive)&#123;
+            this.drawShot(shot.x,shot.y,g);
+        &#125;else&#123;
+            mt.shots.remove(shot);
+        &#125;
+    &#125;
+    //画敌人的坦克
+    for(int i = 0; i &lt; enemyTanks.size();i++)&#123;
+        EnemyTank enemyTank = enemyTanks.get(i);
+        if(enemyTank.isLive ) &#123;//判断当前坦克是否还存活
+            this.drawTank(enemyTank.getX(), enemyTank.getY(), g, enemyTank.getDirection(), 1);
+            //画敌人的子弹（我也不封装了，麻烦=。=）
+            //遍历shots集合，画子弹；
+            for (int j = 0; j &lt; enemyTank.shots.size(); j++) &#123;
+                //得到集合中的shot
+                Shot shot = enemyTank.shots.get(j);
+                //画敌人子弹
+                if (shot.isLive) &#123;
+                    g.fill3DRect(shot.x, shot.y, 4, 4, false);
+                &#125; else &#123;
+                    enemyTank.shots.remove(shot);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    //画爆炸（如果集合中有，就画出来）
+    for (int i = 0;i &lt; bombs.size(); i++)&#123;
+        //取出炸弹
+        Bomb bomb = bombs.get(i);
+        //根据life，画出不同的爆炸效果
+        if(bomb.life &gt; 6) &#123;
+            g.drawImage(image1, bomb.x, bomb.y, 60, 60, this);
+        &#125;else if(bomb.life &gt; 3)&#123;
+            g.drawImage(image2, bomb.x, bomb.y, 60, 60, this);
+        &#125;else if(bomb.life &gt; 0)&#123;
+            g.drawImage(image3, bomb.x, bomb.y, 60, 60, this);
+        &#125;
+        //让炸弹的生命值减少
+        bomb.lifeDown();
+        //如果爆炸不存在，就删除这个对象
+        if(bomb.life == 0)&#123;
+            bombs.remove(bomb);
+        &#125;
+    &#125;
+&#125;
+
+/**
+ * @param x         坦克的横坐标
+ * @param y         坦克的纵坐标
+ * @param g         画笔
+ * @param direction 坦克的方向
+ * @param type      坦克的类型
+ */
+public void drawTank(int x, int y, Graphics g, int direction, int type) &#123;
+    //类型不同
+    switch (type) &#123;
+        case 0://我们的坦克（粉红战神）
+            g.setColor(Color.pink);
+            break;
+        case 1://敌人的坦克（绿油油怪）
+            g.setColor(Color.GREEN);
+            break;
+    &#125;
+    //方向不同
+    switch (direction) &#123;
+        case 0://向上
+            g.fill3DRect(x, y, 10, 60, false);//左边轮子
+            g.fill3DRect(x + 30, y, 10, 60, false);//右边轮子
+            g.fill3DRect(x + 10, y + 15, 20, 30, false);//车身
+            g.fillOval(x + 10, y + 20, 20, 20);//车盖
+            g.fill3DRect(x + 19, y - 5, 2, 35, false);//炮筒
+            break;
+        case 1://向右
+            //我把坦克调成中心旋转的，老师的不是（强迫症），下同理
+            x = x - 10;
+            y = y + 10;
+            g.fill3DRect(x, y, 60, 10, false);//左边轮子
+            g.fill3DRect(x, y + 30, 60, 10, false);//右边轮子
+            g.fill3DRect(x + 15, y + 10, 30, 20, false);//车身
+            g.fillOval(x + 20, y + 10, 20, 20);//车盖
+            g.fill3DRect(x + 30, y + 19, 35, 2, false);//炮筒
+            break;
+        case 2://向下
+            g.fill3DRect(x, y, 10, 60, false);//左边轮子
+            g.fill3DRect(x + 30, y, 10, 60, false);//右边轮子
+            g.fill3DRect(x + 10, y + 15, 20, 30, false);//车身
+            g.fillOval(x + 10, y + 20, 20, 20);//车盖
+            g.fill3DRect(x + 19, y + 30, 2, 35, false);//炮筒
+            break;
+        case 3://向左
+            x = x - 10;
+            y = y + 10;
+            g.fill3DRect(x, y, 60, 10, false);//左边轮子
+            g.fill3DRect(x, y + 30, 60, 10, false);//右边轮子
+            g.fill3DRect(x + 15, y + 10, 30, 20, false);//车身
+            g.fillOval(x + 20, y + 10, 20, 20);//车盖
+            g.fill3DRect(x - 5, y + 19, 35, 2, false);//炮筒
+            break;
+    &#125;
+
+&#125;
+public void drawShot(int x,int y,Graphics g)&#123;
+    g.setColor(Color.white);
+    g.fill3DRect(x,y,4,4,false);
+&#125;
+
+//从敌方坦克的集合中取出子弹（此处处理和老师的不一样）
+public void hitMyTank(MyTank mt)&#123;
+    //先取出敌方坦克
+    for (int i = 0; i &lt; enemyTanks.size(); i++)&#123;
+        EnemyTank enemyTank = enemyTanks.get(i);
+        //再取出敌方坦克中的shots集合中的shot对象
+        for(int j = 0; j &lt; enemyTank.shots.size(); j++)&#123;
+            Shot shot = enemyTank.shots.get(j);
+            //只有在我方坦克存活且敌方子弹存活才进行判断
+            if(mt.isLive &amp;&amp; shot.isLive) &#123;
+                hitTank(shot, mt);
+            &#125;
+        &#125;
+
+    &#125;
+&#125;
+
+//我再建一个方法
+
+//从我的坦克子弹集合取出子弹（此处处理和老师的不一样）
+public void hitEnemyTank(EnemyTank enemyTank)&#123;
+    for (int i = 0; i &lt; mt.shots.size(); i++)&#123;
+        Shot shot = mt.shots.get(i);
+        hitTank(shot,enemyTank);
+    &#125;
+&#125;
+//编写一个方法，判断我方子弹是否击中敌方坦克
+//这个方法在MyPanel线程run中判断最合理
+public void hitTank(Shot shot,Tank tank)&#123;
+    switch (tank.getDirection())&#123;
+        case 0:
+        case 2:
+            if(shot.x &gt; tank.getX() &amp;&amp; shot.x &lt; tank.getX() + 40
+            &amp;&amp; shot.y &gt;tank.getY() &amp;&amp; shot.y &lt; tank.getY() + 60)&#123;
+                shot.isLive = false;
+                tank.isLive = false;
+                //创建bomb对象，加入到bombs集合中
+                Bomb bomb = new Bomb(tank.getX(), tank.getY());
+                bombs.add(bomb);
+                //被击中了，要在集合中去掉这个坦克。
+                enemyTanks.remove(tank);
+                //坦克被击中了，就让allEnemyTankNum++
+                //因为，这里有自己坦克被击毁也会++
+                //所以，加一个判断
+                if(tank instanceof EnemyTank)&#123;
+                    Recorder.addAllEnemyTankNum();
+                &#125;
+
+            &#125;
+            break;
+        case 1:
+        case 3:
+            if(shot.x &gt; tank.getX()-10 &amp;&amp; shot.x &lt; tank.getX() + 50
+            &amp;&amp; shot.y &gt; tank.getY() + 10 &amp;&amp; shot.y &lt; tank.getY() + 50)&#123;
+                shot.isLive = false;
+                tank.isLive = false;
+                //创建bomb对象，加入到bombs集合中
+                Bomb bomb = new Bomb(tank.getX(), tank.getY());
+                bombs.add(bomb);
+                //被击中了，要在集合中去掉这个坦克。
+                enemyTanks.remove(tank);
+                //坦克被击中了，就让allEnemyTankNum++
+                //因为，这里有自己坦克被击毁也会++
+                //所以，加一个判断
+                if(tank instanceof EnemyTank)&#123;
+                    Recorder.addAllEnemyTankNum();
+                &#125;
+            &#125;
+    &#125;
+&#125;
+
+@Override
+public void keyTyped(KeyEvent e) &#123;
+
+&#125;
+
+@Override
+public void keyPressed(KeyEvent e) &#123;
+    if (e.getKeyCode() == KeyEvent.VK_W) &#123;//按下w
+        mt.setDirection(0);
+        //限制条件，不让自己的坦克跑出范围，下同理
+        if(mt.getY() &gt; 0)&#123;
+            mt.moveUp();
+        &#125;
+    &#125; else if (e.getKeyCode() == KeyEvent.VK_D) &#123;//按下d
+        mt.setDirection(1);
+        if(mt.getX() + 70 &lt; 1000) &#123;
+            mt.moveRight();
+        &#125;
+    &#125; else if (e.getKeyCode() == KeyEvent.VK_S) &#123;//按下s
+        mt.setDirection(2);
+        if(mt.getY() + 110 &lt; 750) &#123;
+            mt.moveDown();
+        &#125;
+    &#125; else if (e.getKeyCode() == KeyEvent.VK_A) &#123;//按下a
+        mt.setDirection(3);
+        if (mt.getX() &gt; 10) &#123;
+            mt.moveLeft();
+        &#125;
+    &#125;
+    //如果按下J键，
+    if(e.getKeyCode() == KeyEvent.VK_J)&#123;
+</code></pre>
+<p>//            //一颗子弹销毁后，才可以发射下一颗子弹，（加一个条件）<br>//            if(mt.shot == null || !(mt.shot.isLive)) {<br>//                //调用我方发射子弹的方法<br>//                mt.shotEnemyTank();<br>//<br>//            }<br>            mt.shotEnemyTank();</p>
+<pre><code>    &#125;
+    this.repaint();
+&#125;
+
+@Override
+public void keyReleased(KeyEvent e) &#123;
+
+&#125;
+
+@Override
+public void run() &#123;
+    while (true)&#123;
+        //调用方法，判断是否有敌方坦克被击中
+        if(mt.shot !=null &amp;&amp; mt.shot.isLive)&#123;//如果自己的子弹还存活就判断
+            for (int i = 0; i &lt; enemyTanks.size();i++)&#123;
+                EnemyTank enemyTank = enemyTanks.get(i);//取出一个敌方坦克
+                hitEnemyTank(enemyTank);
+            &#125;
+
+        &#125;
+        //调用方法，判断是否有己方坦克被击中
+        hitMyTank(mt);
+        //让这个面板没过100毫秒刷新一次
+        try &#123;
+            Thread.sleep(100);
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+        this.repaint();
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>public class Recorder {</p>
+<pre><code>//定义变量，纪录被销毁敌人坦克的数量
+public static int allEnemyTankNum = 0;
+//定义io流对象，准备写入信息到文件
+public static BufferedWriter bw = null;
+public static BufferedReader br = null;
+public static String recordFile = &quot;src\\myRecord.txt&quot;;
+//写一个属性，用于接收敌人坦克
+public static Vector&lt;EnemyTank&gt; enemyTanks = null;
+//定义一个Node的Vector，用于保存敌人的node
+private static Vector&lt;Node&gt; nodes = new Vector&lt;&gt;();
+public static void setEnemyTanks(Vector&lt;EnemyTank&gt; enemyTanks) &#123;
+    Recorder.enemyTanks = enemyTanks;
+&#125;
+//返回记录游戏的目录
+public static String getRecordFile()&#123;
+    return recordFile;
+&#125;
+//写一个方法，由于读取recordFile文件
+//该方法在继续上局游戏的时候启动
+public static Vector&lt;Node&gt; getNodesAndEnemyTankRec()&#123;
+    try &#123;
+        br = new BufferedReader(new FileReader(recordFile));
+        //读取一下上轮击毁坦克的数量
+        allEnemyTankNum = Integer.parseInt(br.readLine());
+        //循环读取，创建nodes集合
+        String readLin = &quot;&quot; ;
+        while ((readLin = br.readLine()) != null)&#123;
+            String[] xyd = readLin.split(&quot; &quot;);
+            Node node = new Node(Integer.parseInt(xyd[0]), Integer.parseInt(xyd[1]), Integer.parseInt(xyd[2]));
+            nodes.add(node);
+        &#125;
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125; finally &#123;
+        try &#123;
+            if(br != null)&#123;
+                br.close();
+            &#125;
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    return nodes;
+&#125;
+
+//写一个方法，在退出时保存
+public static void keepRecorder()&#123;
+    try &#123;
+        bw = new BufferedWriter(new FileWriter(recordFile));
+        bw.write(allEnemyTankNum + &quot;\r\n&quot;);
+        //遍历敌人坦克的Vector,然后根据情况保存就行
+        //OOP,定义一个属性，通过set方法,得到敌人坦克的集合
+        for (int i = 0; i &lt; enemyTanks.size(); i++) &#123;
+            //取出坦克
+            EnemyTank enemyTank = enemyTanks.get(i);
+            if(enemyTank.isLive)&#123;//建议判断（理论可以不用）
+                //需要保存到
+                String record = enemyTank.getX() + &quot; &quot; + enemyTank.getY() + &quot; &quot; + enemyTank.getDirection();
+                //保存
+                bw.write(record + &quot;\r\n&quot;);
+            &#125;
+        &#125;
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125; finally &#123;
+        if(bw != null)&#123;
+            try &#123;
+                bw.close();
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+
+public static int getAllEnemyTankNum() &#123;
+    return allEnemyTankNum;
+&#125;
+
+public static void setAllEnemyTankNum(int allEnemyTankNum) &#123;
+    Recorder.allEnemyTankNum = allEnemyTankNum;
+&#125;
+//当我们击毁一个坦克的时候，allEnemyTankNum++
+public static void addAllEnemyTankNum()&#123;
+    Recorder.allEnemyTankNum++;
 &#125;
 </code></pre>
 <p>}</p>
@@ -823,7 +1832,7 @@ public void setState(String state) &#123;
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E8%87%AA%E5%AD%A6%E5%AE%8C%E6%88%90%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">Java自学完成项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E9%92%B1%E9%80%9A%EF%BC%88oop%E7%89%88%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">零钱通（oop版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%BF%E5%B1%8B%E5%87%BA%E7%A7%9F%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%B7%A5%E5%85%B7%E7%B1%BBUtility%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">房屋出租系统（工具类Utility）</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E8%87%AA%E5%AD%A6%E5%AE%8C%E6%88%90%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">Java自学完成项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E9%92%B1%E9%80%9A%EF%BC%88oop%E7%89%88%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">零钱通（oop版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%BF%E5%B1%8B%E5%87%BA%E7%A7%9F%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%B7%A5%E5%85%B7%E7%B1%BBUtility%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">房屋出租系统（工具类Utility）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98"><span class="toc-number">2.3.</span> <span class="toc-text">坦克大战</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
