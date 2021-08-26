@@ -16,7 +16,7 @@
 <meta property="og:description" content="Java自学完成项目">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-05T01:57:52.000Z">
-<meta property="article:modified_time" content="2021-08-04T14:17:53.640Z">
+<meta property="article:modified_time" content="2021-08-23T10:22:25.104Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
   
@@ -1682,6 +1682,1005 @@ public static void addAllEnemyTankNum()&#123;
 &#125;
 </code></pre>
 <p>}</p>
+<h2 id="多用户通讯系统（简化界面版）"><a href="#多用户通讯系统（简化界面版）" class="headerlink" title="多用户通讯系统（简化界面版）"></a>多用户通讯系统（简化界面版）</h2><h3 id="common"><a href="#common" class="headerlink" title="common"></a>common</h3><p>package com.ljq.qqcommon;</p>
+<p>import java.io.Serializable;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>表示客户端和服务端通信时候的消息对象</li>
+<li>/</li>
+</ul>
+<p>public class Message implements Serializable {</p>
+<pre><code>private static final long serialVersionUID = 1L;//保障序列化兼容性
+private String sender;//消息发送者
+private String getter;//消息接收者
+private String content;//消息发送内容
+private String sendTime;//发送时间
+private String mesType;//消息类型
+
+//扩展，文件相关
+private byte[] fileBytes;//文件字节数组
+private int fileLen = 0;
+private String src;//来源
+private String dest;//去哪
+
+public byte[] getFileBytes() &#123;
+    return fileBytes;
+&#125;
+
+public void setFileBytes(byte[] fileBytes) &#123;
+    this.fileBytes = fileBytes;
+&#125;
+
+public int getFileLen() &#123;
+    return fileLen;
+&#125;
+
+public void setFileLen(int fileLen) &#123;
+    this.fileLen = fileLen;
+&#125;
+
+public String getSrc() &#123;
+    return src;
+&#125;
+
+public void setSrc(String src) &#123;
+    this.src = src;
+&#125;
+
+public String getDest() &#123;
+    return dest;
+&#125;
+
+public void setDest(String dest) &#123;
+    this.dest = dest;
+&#125;
+
+public String getSender() &#123;
+    return sender;
+&#125;
+
+public void setSender(String sender) &#123;
+    this.sender = sender;
+&#125;
+
+public String getGetter() &#123;
+    return getter;
+&#125;
+
+public void setGetter(String getter) &#123;
+    this.getter = getter;
+&#125;
+
+public String getContent() &#123;
+    return content;
+&#125;
+
+public void setContent(String content) &#123;
+    this.content = content;
+&#125;
+
+public String getSendTime() &#123;
+    return sendTime;
+&#125;
+
+public void setSendTime(String sendTime) &#123;
+    this.sendTime = sendTime;
+&#125;
+
+public String getMesType() &#123;
+    return mesType;
+&#125;
+
+public void setMesType(String mesType) &#123;
+    this.mesType = mesType;
+&#125;
+</code></pre>
+<p>}</p>
+<p>public interface MessageType {</p>
+<pre><code>//定义一些常量
+//常量的值不同，代表的消息类型不同
+String MESSAGE_LOGIN_SUCCEED = &quot;1&quot;;//表示登陆成功
+String MESSAGE_LOGIN_FAIL = &quot;2&quot;;//表示登陆失败
+String MESSAGE_COMM_MES = &quot;3&quot;;//表示普通信息
+String MESSAGE_GET_ONLINE_FRIEND = &quot;4&quot;;//要求返回用户在线列表
+String MESSAGE_RET_ONLINE_FRIEND = &quot;5&quot;;//返回用户在线列表
+String MESSAGE_CLIENT_EXIT = &quot;6&quot;;//客户端请求退出
+String MESSAGE_TO_ALL_MES = &quot;7&quot;;//群发消息
+String MESSAGE_FILE_MES = &quot;8&quot;;//文件消息
+</code></pre>
+<p>}</p>
+<p>public class User implements Serializable {</p>
+<pre><code>private static final long serialVersionUID = 1L;//保障序列化兼容性
+private String userId;//用户名
+private String passwd;//用户密码
+
+public User() &#123;
+&#125;
+
+public User(String userId, String passwd) &#123;
+    this.userId = userId;
+    this.passwd = passwd;
+&#125;
+
+public String getUserId() &#123;
+    return userId;
+&#125;
+
+public void setUserId(String userId) &#123;
+    this.userId = userId;
+&#125;
+
+public String getPasswd() &#123;
+    return passwd;
+&#125;
+
+public void setPasswd(String passwd) &#123;
+    this.passwd = passwd;
+&#125;
+</code></pre>
+<p>}</p>
+<h3 id="qqclient"><a href="#qqclient" class="headerlink" title="qqclient"></a>qqclient</h3><h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>package com.ljq.qqclient.view;</p>
+<p>import com.ljq.qqclient.service.FileClientService;<br>import com.ljq.qqclient.service.MessageClientService;<br>import com.ljq.qqclient.service.UserClientService;<br>import com.ljq.qqclient.utils.Utility;</p>
+<p>import java.io.FileInputStream;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>该类为菜单</li>
+<li>/</li>
+</ul>
+<p>public class QQView {</p>
+<pre><code>private boolean loop = true;//控制菜单退出
+private String key = &quot;&quot;;//接收用户输入
+private UserClientService userClientService = new UserClientService();//用户的登录注册服务
+private MessageClientService messageClientService = new MessageClientService();//用户的私聊群聊等等
+private FileClientService fileClientService = new FileClientService();//用于文件传输
+
+public static void main(String[] args) &#123;
+    new QQView().mainMenu();
+    System.out.println(&quot;客户端退出&quot;);
+&#125;
+
+//菜单方法
+private void mainMenu()&#123;
+    while(loop)&#123;
+        System.out.println(&quot;===========欢迎登陆网络通信系统============&quot;);
+        System.out.println(&quot;\t\t1、登陆系统&quot;);
+        System.out.println(&quot;\t\t9、退出系统&quot;);
+        System.out.print(&quot;请输入你的选择： &quot;);
+        key = Utility.readString(1);
+        switch(key)&#123;
+            case &quot;1&quot;:
+                System.out.print(&quot;请输入用户号： &quot;);
+                String userid = Utility.readString(50);
+                System.out.print(&quot;请输入密  码： &quot;);
+                String passwd = Utility.readString(50);
+                //这里有好多代码，需要验证用户是否合法
+                //我们编写一个类UserClientService，用于服务【登录和注册】
+                if(userClientService.check(userid,passwd))&#123;//还没有写完 。。。先把逻辑打通
+                    System.out.println(&quot;=====欢迎用户&quot; + userid + &quot;登录成功=====&quot;);
+                    //进入二级菜单
+                    while(loop) &#123;
+                        System.out.println(&quot;\n===============网络通信系统二级菜单（用户：&quot; + userid + &quot;）===============&quot;);
+                        System.out.println(&quot;\t\t\t1、显示在线用户列表&quot;);
+                        System.out.println(&quot;\t\t\t2、群发消息&quot;);
+                        System.out.println(&quot;\t\t\t3、私聊消息&quot;);
+                        System.out.println(&quot;\t\t\t4、发送文件&quot;);
+                        System.out.println(&quot;\t\t\t9、退出系统&quot;);
+                        System.out.print(&quot;请输入你的选择： &quot;);
+                        key = Utility.readString(1);
+                        switch (key)&#123;
+                            case &quot;1&quot;:
+                                //写一个方法，获得用户来列表，写在UserClientService中
+                                userClientService.getOnlineFriendList();
+                                //System.out.println(&quot;显示在线用户列表&quot;);
+                                break;
+                            case &quot;2&quot;:
+                                System.out.println(&quot;输入群发内容：&quot;);
+                                String s = Utility.readString(100);
+                                //写一个方法，创建一个群发的message消息，发送给服务端
+                                messageClientService.sendMessageToAll(userid,s);
+                                break;
+                            case &quot;3&quot;:
+                                System.out.print(&quot;请输入想要聊天的用户（在线）：&quot;);
+                                String getterId  = Utility.readString(50);
+                                System.out.print(&quot;请输入你要输入的话：&quot;);
+                                String content = Utility.readString(100);
+                                //编写一个方法，将消息发给服务端(再开一个类，写消息服务)
+                                messageClientService.sendMessageToOne(userid,getterId,content);
+                                break;
+                            case &quot;4&quot;:
+                                System.out.print(&quot;请输入你要发送给的用户（在线）：&quot;);
+                                String s1 = Utility.readString(50);
+                                System.out.print(&quot;请输入你要发送的文件目录（例如：d:\\\\xxx.txt）:&quot;);
+                                String s2 = Utility.readString(100);
+                                System.out.print(&quot;请输入你要发送到对方电脑文件目录（例如：d:\\\\xxx.txt）:&quot;);
+                                String s3 = Utility.readString(100);
+                                fileClientService.sendFileToOne(userid,s1,s2,s3);
+                                break;
+                            case &quot;9&quot;:
+                                //调用方法，给服务器发送一个退出系统的message
+                                userClientService.logout();
+                                loop = false;
+                                break;
+                        &#125;
+                    &#125;
+                &#125;else&#123;
+                    System.out.println(&quot;=========登陆失败=========&quot;);
+                &#125;
+                break;
+            case &quot;9&quot;:
+                loop = false;
+                break;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<h4 id="service"><a href="#service" class="headerlink" title="service"></a>service</h4><p>package com.ljq.qqclient.service;</p>
+<p>import com.ljq.qqcommon.Message;<br>import com.ljq.qqcommon.MessageType;</p>
+<p>import java.io.FileOutputStream;<br>import java.io.IOException;<br>import java.io.ObjectInputStream;<br>import java.net.Socket;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>线程服务类（与服务器保持联系）</li>
+<li>/</li>
+</ul>
+<p>public class ClientConnectServerThread extends Thread {</p>
+<pre><code>private Socket socket;//该线程需要持有socket
+
+//构造器，得到一个socket
+public ClientConnectServerThread(Socket socket) &#123;
+    this.socket = socket;
+&#125;
+
+@Override
+public void run() &#123;
+    //因为Thread需要在后台和服务器通讯，所以用while循环
+    while (true) &#123;
+        System.out.println(&quot;客户端线程等待读取，从服务端发送的消息&quot;);
+        try &#123;
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            //如果服务器没有发送消息，线程就会阻塞在这里
+            Message ms = (Message) ois.readObject();
+            //判断ms的类型，并作出相应的业务处理
+            //判断读取到的是：服务器返回在线列表
+            if (ms.getMesType().equals(MessageType.MESSAGE_RET_ONLINE_FRIEND)) &#123;
+                //得到返回的列表数据
+                //规定，用空格分隔
+                String[] onlineFriend = ms.getContent().split(&quot; &quot;);
+                System.out.println(&quot;\n===========当前在线用户============&quot;);
+                for (int i = 0; i &lt; onlineFriend.length; i++) &#123;
+                    System.out.println(&quot;用户： &quot; + onlineFriend[i]);
+                &#125;
+            &#125; else if (ms.getMesType().equals(MessageType.MESSAGE_COMM_MES)) &#123;
+                //收到私聊消息输出
+                System.out.println(&quot;\n&quot; + ms.getSender() + &quot; 对 &quot; + ms.getGetter() + &quot; 说： &quot; + ms.getContent());
+            &#125; else if (ms.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES)) &#123;
+                System.out.println(&quot;\n&quot; + ms.getSender() + &quot; 对大家说： &quot; + ms.getContent());
+            &#125; else if (ms.getMesType().equals(MessageType.MESSAGE_FILE_MES)) &#123;
+                System.out.println(&quot;\n&quot; + ms.getSender() + &quot;给&quot; + ms.getGetter() + &quot;发送文件：&quot;
+                        + ms.getSrc() + &quot;到我的电脑目录&quot; + ms.getDest());
+                FileOutputStream fileOutputStream = new FileOutputStream(ms.getDest());
+                fileOutputStream.write(ms.getFileBytes());
+                fileOutputStream.close();
+                System.out.println(&quot;保存文件成功~&quot;);
+            &#125; else &#123;
+                System.out.println(&quot;是其他类型暂时先不处理&quot;);
+            &#125;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+
+    &#125;
+&#125;
+
+public Socket getSocket() &#123;
+    return socket;
+&#125;
+</code></pre>
+<p>}</p>
+<p>package com.ljq.qqclient.service;</p>
+<p>import com.ljq.qqcommon.Message;<br>import com.ljq.qqcommon.MessageType;</p>
+<p>import java.io.*;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>该类用于文件传输服务</li>
+<li>/</li>
+</ul>
+<p>public class FileClientService {</p>
+<pre><code>/**
+ *
+ * @param senderId 发送者
+ * @param getterId 接收者
+ * @param src 来源
+ * @param dest 去哪
+ */
+//发送文件的方法
+public void sendFileToOne(String senderId,String getterId,String src,String dest)&#123;
+    Message message = new Message();
+    message.setSender(senderId);
+    message.setGetter(getterId);
+    message.setMesType(MessageType.MESSAGE_FILE_MES);
+    message.setSrc(src);
+    message.setDest(dest);
+
+    //将文件读入到客户端
+    FileInputStream fileInputStream = null;
+    byte[] fileBytes = new byte[(int) new File(src).length()];
+    try &#123;
+        fileInputStream = new FileInputStream(src);
+        fileInputStream.read(fileBytes);//将文件读入到准备好的数组中
+        //将文件对应的字节数组设置到消息里
+        message.setFileBytes(fileBytes);
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125; finally &#123;
+        if(fileInputStream != null)&#123;
+            try &#123;
+                fileInputStream.close();
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+
+    //提示信息
+    System.out.println(&quot;\n&quot; + senderId + &quot;给&quot; + getterId + &quot;发送文件：&quot; + src + &quot;到对方电脑目录&quot; + dest);
+
+    //将message发送给客户端
+    try &#123;
+        ObjectOutputStream oos =
+                new ObjectOutputStream(
+                        ManageClientConnectServerThread.getClientConnectServerThread(senderId)
+                                .getSocket().getOutputStream());
+        oos.writeObject(message);
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>package com.ljq.qqclient.service;</p>
+<p>import java.util.HashMap;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>该类负责管理ClientConnectServerThread线程</li>
+<li>/</li>
+</ul>
+<p>public class ManageClientConnectServerThread {</p>
+<pre><code>//我们把多个线程放到一个hashmap中，key代表用户id，value代表线程
+private static HashMap&lt;String,ClientConnectServerThread&gt; hm = new HashMap&lt;&gt;();
+
+//将某个线程加入到集合
+public static void addClientConnectServerThread(String userid,ClientConnectServerThread clientConnectServerThread)&#123;
+    hm.put(userid,clientConnectServerThread);
+&#125;
+
+//通过userId得到这个线程
+public static ClientConnectServerThread getClientConnectServerThread(String userId)&#123;
+    return hm.get(userId);
+&#125;
+</code></pre>
+<p>}</p>
+<p>package com.ljq.qqclient.service;</p>
+<p>import com.ljq.qqcommon.Message;<br>import com.ljq.qqcommon.MessageType;</p>
+<p>import java.io.IOException;<br>import java.io.ObjectOutputStream;<br>import java.util.Date;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>该类提供和消息相关的方法</li>
+<li>/</li>
+</ul>
+<p>public class MessageClientService {</p>
+<pre><code>/**
+ *
+ * @param sendId 发送者
+ * @param content 内容
+ */
+//群聊方法实现
+public void sendMessageToAll(String sendId, String content)&#123;
+    //建立一个消息对象
+    Message message = new Message();
+    message.setMesType(MessageType.MESSAGE_TO_ALL_MES);
+    message.setSender(sendId);
+    message.setContent(content);
+    message.setSendTime(new Date().toString());//将发送时间设置到消息里
+    System.out.println( sendId + &quot; 对大家说 &quot; + content);
+
+    //发送给服务端
+    try &#123;
+        ObjectOutputStream oos = new ObjectOutputStream
+                (ManageClientConnectServerThread.getClientConnectServerThread(sendId).getSocket().getOutputStream());
+        oos.writeObject(message);
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;
+/**
+ *
+ * @param sendId 发送者
+ * @param getterId 接收者
+ * @param content 内容
+ */
+//私聊的方法实现
+public void sendMessageToOne(String sendId,String getterId,String content)&#123;
+    //建立一个消息对象
+    Message message = new Message();
+    message.setMesType(MessageType.MESSAGE_COMM_MES);
+    message.setSender(sendId);
+    message.setGetter(getterId);
+    message.setContent(content);
+    message.setSendTime(new Date().toString());//将发送时间设置到消息里
+    System.out.println( sendId + &quot; 对 &quot; + getterId + &quot; 说 &quot; + content);
+
+    //发送给服务端
+    try &#123;
+        ObjectOutputStream oos = new ObjectOutputStream
+                (ManageClientConnectServerThread.getClientConnectServerThread(sendId).getSocket().getOutputStream());
+        oos.writeObject(message);
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+
+&#125;
+</code></pre>
+<p>}</p>
+<p>package com.ljq.qqclient.service;</p>
+<p>import com.ljq.qqcommon.Message;<br>import com.ljq.qqcommon.MessageType;<br>import com.ljq.qqcommon.User;</p>
+<p>import java.io.IOException;<br>import java.io.ObjectInputStream;<br>import java.io.ObjectOutputStream;<br>import java.net.InetAddress;<br>import java.net.Socket;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>该类用于完成用户登陆验证和用户注册等等功能</li>
+<li>/</li>
+</ul>
+<p>public class UserClientService {</p>
+<pre><code>private User u = new User();//可能在其他地方使用user信息
+private Socket socket;
+//根据userId和pwd到服务端去验证用户是否合法
+public boolean check(String userId,String pwd)&#123;
+    boolean b = false;
+    u.setUserId(userId);
+    u.setPasswd(pwd);
+    //连接服务器，发送u
+    try &#123;
+        Socket socket = new Socket(InetAddress.getByName(&quot;127.0.0.1&quot;), 9999);
+        //得到ObjectOutputStream对象，发送u对象
+        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+        oos.writeObject(u);
+        //读取服务器回的Message对象
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        Message message = (Message) ois.readObject();
+        if(message.getMesType().equals(MessageType.MESSAGE_LOGIN_SUCCEED))&#123;//登录ok
+
+            //创建一个和服务器保持联系的线程-》创建一个线程类ClientConnectServerThread
+            ClientConnectServerThread clientConnectServerThread = new ClientConnectServerThread(socket);
+            //启动线程
+            clientConnectServerThread.start();
+            //为了后面客户端的扩展，我们将线程放到一个集合中管理（ManageClientConnectServerThread）
+            ManageClientConnectServerThread.addClientConnectServerThread(userId,clientConnectServerThread);
+            b = true;
+        &#125;else&#123;
+            //没有登陆成功
+            socket.close();
+        &#125;
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+    return b;
+&#125;
+
+public void getOnlineFriendList()&#123;
+    //发送一个message对象，类型为MESSAGE_GET_ONLINE_FRIEND = &quot;4&quot;（要求返回用户在线列表）
+    Message message = new Message();
+    message.setMesType(MessageType.MESSAGE_GET_ONLINE_FRIEND);
+    message.setSender(u.getUserId());
+
+    //发送给服务器
+    try &#123;
+        //先从管理线程的类中得到这个线程，再得到线程的socket对象，在得到字节输出流，转为对象输出流
+        ObjectOutputStream oos = new ObjectOutputStream(
+                (ManageClientConnectServerThread.getClientConnectServerThread(u.getUserId())
+                        .getSocket().getOutputStream()));
+        oos.writeObject(message);//发送message，要求服务端返回用户在线列表
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;
+
+//退出客户端，并发送个服务端一个退出系统的message
+public void logout()&#123;
+
+    //给服务端发送message退出
+    Message message = new Message();
+    message.setMesType(MessageType.MESSAGE_CLIENT_EXIT);
+    message.setSender(u.getUserId());//一定要指出我是哪个客户端
+
+    try &#123;
+        ObjectOutputStream oos = new ObjectOutputStream(
+                ManageClientConnectServerThread.getClientConnectServerThread(
+                        u.getUserId()).getSocket().getOutputStream());
+        oos.writeObject(message);
+        System.out.println(u.getUserId() + &quot;退出系统&quot;);
+        System.exit(0);//退出
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+
+
+&#125;
+</code></pre>
+<p>}</p>
+<h3 id="QQserver"><a href="#QQserver" class="headerlink" title="QQserver"></a>QQserver</h3><h4 id="QQFrame"><a href="#QQFrame" class="headerlink" title="QQFrame"></a>QQFrame</h4><p>package com.ljq.qqframe;</p>
+<p>import com.ljq.qqserver.service.QQServer;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>该类创建QQServer，启动后台的服务</li>
+<li>/</li>
+</ul>
+<p>public class QQFrame_ {</p>
+<pre><code>public static void main(String[] args) &#123;
+    new QQServer();
+&#125;
+</code></pre>
+<p>}</p>
+<h4 id="service-1"><a href="#service-1" class="headerlink" title="service"></a>service</h4><p>package com.ljq.qqserver.service;</p>
+<p>import java.util.HashMap;<br>import java.util.Iterator;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>/</li>
+</ul>
+<p>public class ManageClientThreads {</p>
+<pre><code>//我们把多个线程放到一个hashmap中，key代表用户id，value代表线程
+private static HashMap&lt;String, ServerConnectClientThread&gt; hm = new HashMap&lt;&gt;();
+
+//得到集合的方法
+public static HashMap&lt;String, ServerConnectClientThread&gt; getHm()&#123;
+    return hm;
+&#125;
+
+//增加到集合的方法
+public static void addClientThreads(String userId,ServerConnectClientThread serverConnectClientThread)&#123;
+    hm.put(userId,serverConnectClientThread);
+&#125;
+
+//一处一个线程的方法
+public static void removeServerConnectClientThread(String userId)&#123;
+    hm.remove(userId);
+&#125;
+
+//得到集合中线程方法
+public static ServerConnectClientThread getServerConnectClientThread(String userId)&#123;
+    return hm.get(userId);
+&#125;
+
+//编写方法，用于返回在线列表
+public static String getOnlineFriends()&#123;
+    //拿到hm集合的key集合
+    //遍历
+    Iterator&lt;String&gt; iterator = hm.keySet().iterator();
+    String onlineFriendList = &quot;&quot;;//要返回的列表
+    while (iterator.hasNext()) &#123;
+        onlineFriendList += iterator.next() + &quot; &quot;;
+
+    &#125;
+    return onlineFriendList;
+&#125;
+</code></pre>
+<p>}</p>
+<p>package com.ljq.qqserver.service;</p>
+<p>import com.ljq.qqcommon.Message;<br>import com.ljq.qqcommon.MessageType;<br>import com.ljq.qqcommon.User;</p>
+<p>import java.io.IOException;<br>import java.io.ObjectInputStream;<br>import java.io.ObjectOutputStream;<br>import java.io.Serializable;<br>import java.net.ServerSocket;<br>import java.net.Socket;<br>import java.util.HashMap;<br>import java.util.concurrent.ConcurrentHashMap;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>这是服务器，在监听9999，等待客户端连接。并保持通讯</li>
+<li>/</li>
+</ul>
+<p>public class QQServer {</p>
+<pre><code>private ServerSocket ss = null;
+//创建一个集合，存放多个用户，如果用这些用户登录，就认为这是合法的
+//可以用ConcurrentHashMap，他是线程安全的，可以处理并发集合，多线程是安全的
+//HashMap多线程是线程不安全的，没有处理线程安全
+private static ConcurrentHashMap&lt;String,User&gt; validUser = new ConcurrentHashMap&lt;&gt;();
+//使用静态代码块初始话用户集合
+static &#123;
+    validUser.put(&quot;100&quot;,new User(&quot;100&quot;,&quot;123456&quot;));
+    validUser.put(&quot;200&quot;,new User(&quot;200&quot;,&quot;123456&quot;));
+    validUser.put(&quot;300&quot;,new User(&quot;300&quot;,&quot;123456&quot;));
+    validUser.put(&quot;令狐冲&quot;,new User(&quot;令狐冲&quot;,&quot;123456&quot;));
+    validUser.put(&quot;任盈盈&quot;,new User(&quot;任盈盈&quot;,&quot;123456&quot;));
+    validUser.put(&quot;东方不败&quot;,new User(&quot;东方不败&quot;,&quot;123456&quot;));
+&#125;
+
+//验证用户是否有效的方法
+public boolean checkUser(String userId, String passwd)&#123;
+    //得到一个用户对象
+    User user = validUser.get(userId);
+    if (user == null)&#123;//如果集合里不存在用户。则返回一定是空
+        return false;
+    &#125;
+    if(! user.getPasswd().equals(passwd))&#123;//如果密码不正确
+        return false;
+    &#125;
+    //过关斩将，返回真
+    return true;
+&#125;
+
+public QQServer() &#123;
+    try &#123;
+        System.out.println(&quot;服务器在9999端口监听&quot;);
+        //启动新闻推送的线程
+        new Thread(new SendNewsToAllService()).start();
+        ss = new ServerSocket(9999);
+        //在某个客户端连接后需要一直等待接收
+        while (true) &#123;
+            Socket socket = ss.accept();//如果没有客户端监听，就会阻塞在这里
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            //第一个传输的一定是登录用户
+            User u = (User) ois.readObject();
+            //得到socket的对象输出流
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            //定义一个message对象用于回复客户端
+            Message message = new Message();
+            //验证登陆用户
+            if (checkUser(u.getUserId(), u.getPasswd()))&#123;//合法
+                //更改消息类型
+                message.setMesType(MessageType.MESSAGE_LOGIN_SUCCEED);
+                //写入到通道
+                oos.writeObject(message);
+                //创建一个线程，和客户端保持通讯，该线程需要持有socket
+                ServerConnectClientThread serverConnectClientThread =
+                        new ServerConnectClientThread(socket, u.getUserId());
+                serverConnectClientThread.start();
+                //吧该线程放到一个集合中便于管理
+                ManageClientThreads.addClientThreads(u.getUserId(), serverConnectClientThread);
+
+            &#125;else&#123;//登陆失败
+                System.out.println(&quot;用户:&quot; + u.getUserId()+ &quot;密码： &quot;+ u.getPasswd() + &quot;登陆失败&quot;);
+                message.setMesType(MessageType.MESSAGE_LOGIN_FAIL);//修改消息类型
+                //写入到通道
+                oos.writeObject(message);
+                //关闭socket（socket没有意义了）
+                socket.close();
+            &#125;
+        &#125;
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125; finally &#123;
+        //如果服务器退出while循环，证明不在监听，关闭资源
+        try &#123;
+            ss.close();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>package com.ljq.qqserver.service;</p>
+<p>import com.ljq.qqcommon.Message;<br>import com.ljq.qqcommon.MessageType;<br>import com.ljq.utils.Utility;</p>
+<p>import java.io.IOException;<br>import java.io.ObjectOutputStream;<br>import java.util.Date;<br>import java.util.HashMap;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>/</li>
+</ul>
+<p>public class SendNewsToAllService implements Runnable{</p>
+<pre><code>@Override
+public void run() &#123;
+    while (true)&#123;
+        System.out.println(&quot;请输入你要发送的新闻（输入exit退出新闻推送服务）：&quot;);
+        String news = Utility.readString(100);
+        if (&quot;exit&quot;.equals(news))&#123;//退出服务
+            break;
+        &#125;
+        //设立一个消息
+        Message message = new Message();
+        message.setSender(&quot;服务器&quot;);
+        message.setMesType(MessageType.MESSAGE_TO_ALL_MES);
+        message.setContent(news);
+        message.setSendTime(new Date().toString());
+        System.out.println(&quot;服务器给大家推送新闻：&quot; + news);
+
+        //得到所有在线用户，发送
+        HashMap&lt;String, ServerConnectClientThread&gt; hm = ManageClientThreads.getHm();
+        for (String userid : hm.keySet()) &#123;
+            try &#123;
+                ObjectOutputStream oos =
+                        new ObjectOutputStream(hm.get(userid).getSocket().getOutputStream());
+                oos.writeObject(message);
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>package com.ljq.qqserver.service;</p>
+<p>import com.ljq.qqcommon.Message;<br>import com.ljq.qqcommon.MessageType;<br>import com.sun.org.apache.bcel.internal.generic.NEW;</p>
+<p>import java.io.IOException;<br>import java.io.ObjectInputStream;<br>import java.io.ObjectOutputStream;<br>import java.net.Socket;<br>import java.util.HashMap;<br>import java.util.Iterator;</p>
+<p>/**</p>
+<ul>
+<li>@author 刘嘉祺~</li>
+<li>@version 1.0</li>
+<li>该类对应的对象和某个客户端通讯</li>
+<li>/</li>
+</ul>
+<p>public class ServerConnectClientThread extends Thread {</p>
+<pre><code>//线程需要持有socket
+private Socket socket;
+private String userId;//链接到服务端的id
+
+public ServerConnectClientThread(Socket socket, String userId) &#123;
+    this.socket = socket;
+    this.userId = userId;
+&#125;
+
+public Socket getSocket() &#123;
+    return socket;
+&#125;
+
+@Override
+public void run() &#123;//可以发送和接收客户端
+    while (true) &#123;
+        try &#123;
+            System.out.println(&quot;服务端和客户端&quot; + userId + &quot;保持通讯，读取数据。。&quot;);//服务端和客户端保持通讯，读取数据。。
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            Message message = (Message) ois.readObject();
+            //ms后面使用。。根据ms类型提供相应的业务服务
+            if (message.getMesType().equals(MessageType.MESSAGE_GET_ONLINE_FRIEND)) &#123;
+                //客户要求要在线列表信息
+            /*
+             用户列表格式为“100 200 令狐冲”以空格隔开
+            */
+                System.out.println(message.getSender() + &quot;要在线用户列表&quot;);
+                //得到在线用户列表
+                String onlineFriends = ManageClientThreads.getOnlineFriends();
+                //创建一个message，返回
+                Message message1 = new Message();
+                message1.setMesType(MessageType.MESSAGE_RET_ONLINE_FRIEND);
+                message1.setContent(onlineFriends);
+                message1.setGetter(message.getSender());
+                //返回给客户端
+                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                oos.writeObject(message1);
+            &#125; else if (message.getMesType().equals(MessageType.MESSAGE_CLIENT_EXIT)) &#123;//客户端退出
+                System.out.println(message.getSender() + &quot;退出&quot;);
+                //把该线程从管理线程的集合中移除
+                ManageClientThreads.removeServerConnectClientThread(message.getSender());
+                //关闭socket通道
+                socket.close();
+                //退出该线程
+                break;
+            &#125; else if (message.getMesType().equals(MessageType.MESSAGE_COMM_MES)) &#123;//私聊
+                //根据getter 的 id 得到接受者的线程 的通道
+                ServerConnectClientThread serverConnectClientThread =
+                        ManageClientThreads.getServerConnectClientThread(message.getGetter());
+                //得到对应的输出流，将message发送给对应的客户端
+                ObjectOutputStream oos =
+                        new ObjectOutputStream(serverConnectClientThread.getSocket().getOutputStream());
+                oos.writeObject(message);//提示“如果不在线可以把消息保存到数据库，实现离线留言
+            &#125; else if (message.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES)) &#123;
+                //遍历管理线程的集合
+                HashMap&lt;String, ServerConnectClientThread&gt; hm = ManageClientThreads.getHm();
+                Iterator&lt;String&gt; iterator = hm.keySet().iterator();
+                while (iterator.hasNext()) &#123;
+                    String onlineFriend = iterator.next();
+                    if (!onlineFriend.equals(message.getSender())) &#123;//排除掉发送者
+                        //发送给不同的线程通道
+                        ObjectOutputStream oos =
+                                new ObjectOutputStream(hm.get(onlineFriend).getSocket().getOutputStream());
+                        oos.writeObject(message);
+                    &#125;
+                &#125;
+            &#125; else if (message.getMesType().equals(MessageType.MESSAGE_FILE_MES)) &#123;
+                //得到接收者线程，转发
+                ObjectOutputStream oos =
+                        new ObjectOutputStream(ManageClientThreads.getServerConnectClientThread(message.getGetter()).getSocket().getOutputStream());
+                oos.writeObject(message);
+            &#125; else &#123;
+                System.out.println(&quot;其他类型。。暂不处理&quot;);
+            &#125;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<p>}</p>
+<h3 id="utils-别人写好的工具类"><a href="#utils-别人写好的工具类" class="headerlink" title="utils(别人写好的工具类)"></a>utils(别人写好的工具类)</h3><p>package com.ljq.utils;</p>
+<p>/**<br>    工具类的作用:</p>
+<pre><code>处理各种情况的用户输入，并且能够按照程序员的需求，得
+到用户的控制台输入。
+</code></pre>
+<p>*/</p>
+<p>import java.util.Scanner;</p>
+<p>/**</p>
+<p>*/<br>public class Utility {</p>
+<pre><code>//静态属性。。。
+private static Scanner scanner = new Scanner(System.in);
+
+
+/**
+ * 功能：读取键盘输入的一个菜单选项，值：1——5的范围
+ * @return 1——5
+ */
+public static char readMenuSelection() &#123;
+    char c;
+    for (; ; ) &#123;
+        String str = readKeyBoard(1, false);//包含一个字符的字符串
+        c = str.charAt(0);//将字符串转换成字符char类型
+        if (c != &#39;1&#39; &amp;&amp; c != &#39;2&#39; &amp;&amp; 
+            c != &#39;3&#39; &amp;&amp; c != &#39;4&#39; &amp;&amp; c != &#39;5&#39;) &#123;
+            System.out.print(&quot;选择错误，请重新输入：&quot;);
+        &#125; else break;
+    &#125;
+    return c;
+&#125;
+
+/**
+ * 功能：读取键盘输入的一个字符
+ * @return 一个字符
+ */
+public static char readChar() &#123;
+    String str = readKeyBoard(1, false);//就是一个字符
+    return str.charAt(0);
+&#125;
+/**
+ * 功能：读取键盘输入的一个字符，如果直接按回车，则返回指定的默认值；否则返回输入的那个字符
+ * @param defaultValue 指定的默认值
+ * @return 默认值或输入的字符
+ */
+
+public static char readChar(char defaultValue) &#123;
+    String str = readKeyBoard(1, true);//要么是空字符串，要么是一个字符
+    return (str.length() == 0) ? defaultValue : str.charAt(0);
+&#125;
+
+/**
+ * 功能：读取键盘输入的整型，长度小于2位
+ * @return 整数
+ */
+public static int readInt() &#123;
+    int n;
+    for (; ; ) &#123;
+        String str = readKeyBoard(10, false);//一个整数，长度&lt;=2位
+        try &#123;
+            n = Integer.parseInt(str);//将字符串转换成整数
+            break;
+        &#125; catch (NumberFormatException e) &#123;
+            System.out.print(&quot;数字输入错误，请重新输入：&quot;);
+        &#125;
+    &#125;
+    return n;
+&#125;
+/**
+ * 功能：读取键盘输入的 整数或默认值，如果直接回车，则返回默认值，否则返回输入的整数
+ * @param defaultValue 指定的默认值
+ * @return 整数或默认值
+ */
+public static int readInt(int defaultValue) &#123;
+    int n;
+    for (; ; ) &#123;
+        String str = readKeyBoard(10, true);
+        if (str.equals(&quot;&quot;)) &#123;
+            return defaultValue;
+        &#125;
+        
+        //异常处理...
+        try &#123;
+            n = Integer.parseInt(str);
+            break;
+        &#125; catch (NumberFormatException e) &#123;
+            System.out.print(&quot;数字输入错误，请重新输入：&quot;);
+        &#125;
+    &#125;
+    return n;
+&#125;
+
+/**
+ * 功能：读取键盘输入的指定长度的字符串
+ * @param limit 限制的长度
+ * @return 指定长度的字符串
+ */
+
+public static String readString(int limit) &#123;
+    return readKeyBoard(limit, false);
+&#125;
+
+/**
+ * 功能：读取键盘输入的指定长度的字符串或默认值，如果直接回车，返回默认值，否则返回字符串
+ * @param limit 限制的长度
+ * @param defaultValue 指定的默认值
+ * @return 指定长度的字符串
+ */
+
+public static String readString(int limit, String defaultValue) &#123;
+    String str = readKeyBoard(limit, true);
+    return str.equals(&quot;&quot;)? defaultValue : str;
+&#125;
+
+
+/**
+ * 功能：读取键盘输入的确认选项，Y或N
+ * 将小的功能，封装到一个方法中.
+ * @return Y或N
+ */
+public static char readConfirmSelection() &#123;
+    System.out.println(&quot;请输入你的选择(Y/N),请小心选择&quot;);
+    char c;
+    for (; ; ) &#123;//无限循环
+        //在这里，将接受到字符，转成了大写字母
+        //y =&gt; Y n=&gt;N
+        String str = readKeyBoard(1, false).toUpperCase();
+        c = str.charAt(0);
+        if (c == &#39;Y&#39; || c == &#39;N&#39;) &#123;
+            break;
+        &#125; else &#123;
+            System.out.print(&quot;选择错误，请重新输入：&quot;);
+        &#125;
+    &#125;
+    return c;
+&#125;
+
+/**
+ * 功能： 读取一个字符串
+ * @param limit 读取的长度
+ * @param blankReturn 如果为true ,表示 可以读空字符串。 
+ *                       如果为false表示 不能读空字符串。
+ *             
+ *    如果输入为空，或者输入大于limit的长度，就会提示重新输入。
+ * @return
+ */
+private static String readKeyBoard(int limit, boolean blankReturn) &#123;
+    
+    //定义了字符串
+    String line = &quot;&quot;;
+
+    //scanner.hasNextLine() 判断有没有下一行
+    while (scanner.hasNextLine()) &#123;
+        line = scanner.nextLine();//读取这一行
+       
+        //如果line.length=0, 即用户没有输入任何内容，直接回车
+        if (line.length() == 0) &#123;
+            if (blankReturn) return line;//如果blankReturn=true,可以返回空串
+            else continue; //如果blankReturn=false,不接受空串，必须输入内容
+        &#125;
+
+        //如果用户输入的内容大于了 limit，就提示重写输入  
+        //如果用户如的内容 &gt;0 &lt;= limit ,我就接受
+        if (line.length() &lt; 1 || line.length() &gt; limit) &#123;
+            System.out.print(&quot;输入长度（不能大于&quot; + limit + &quot;）错误，请重新输入：&quot;);
+            continue;
+        &#125;
+        break;
+    &#125;
+
+    return line;
+&#125;
+</code></pre>
+<p>}</p>
 
       
       
@@ -1832,7 +2831,7 @@ public static void addAllEnemyTankNum()&#123;
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E8%87%AA%E5%AD%A6%E5%AE%8C%E6%88%90%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">Java自学完成项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E9%92%B1%E9%80%9A%EF%BC%88oop%E7%89%88%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">零钱通（oop版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%BF%E5%B1%8B%E5%87%BA%E7%A7%9F%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%B7%A5%E5%85%B7%E7%B1%BBUtility%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">房屋出租系统（工具类Utility）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98"><span class="toc-number">2.3.</span> <span class="toc-text">坦克大战</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E8%87%AA%E5%AD%A6%E5%AE%8C%E6%88%90%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">Java自学完成项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E9%92%B1%E9%80%9A%EF%BC%88oop%E7%89%88%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">零钱通（oop版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%BF%E5%B1%8B%E5%87%BA%E7%A7%9F%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%B7%A5%E5%85%B7%E7%B1%BBUtility%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">房屋出租系统（工具类Utility）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98"><span class="toc-number">2.3.</span> <span class="toc-text">坦克大战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F%EF%BC%88%E7%AE%80%E5%8C%96%E7%95%8C%E9%9D%A2%E7%89%88%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">多用户通讯系统（简化界面版）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#common"><span class="toc-number">2.4.1.</span> <span class="toc-text">common</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qqclient"><span class="toc-number">2.4.2.</span> <span class="toc-text">qqclient</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#view"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">view</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#service"><span class="toc-number">2.4.2.2.</span> <span class="toc-text">service</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QQserver"><span class="toc-number">2.4.3.</span> <span class="toc-text">QQserver</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#QQFrame"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">QQFrame</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#service-1"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">service</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#utils-%E5%88%AB%E4%BA%BA%E5%86%99%E5%A5%BD%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">2.4.4.</span> <span class="toc-text">utils(别人写好的工具类)</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
