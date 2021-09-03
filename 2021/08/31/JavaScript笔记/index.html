@@ -15,10 +15,13 @@
 <meta property="og:site_name" content="6 + 7">
 <meta property="og:description" content="JavaScript笔记">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/517e4f5c1de563ef.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/337dede967653303.png">
 <meta property="article:published_time" content="2021-08-31T09:42:57.000Z">
-<meta property="article:modified_time" content="2021-08-31T09:43:35.271Z">
+<meta property="article:modified_time" content="2021-09-02T11:30:07.158Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2021/09/517e4f5c1de563ef.png">
   
     <link rel="alternative" href="/atom.xml" title="6 + 7" type="application/atom+xml">
   
@@ -202,7 +205,516 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="JavaScript笔记"><a href="#JavaScript笔记" class="headerlink" title="JavaScript笔记"></a>JavaScript笔记</h1><span id="more"></span>
-<h1 id="《《文章很长，目录在右下角》》"><a href="#《《文章很长，目录在右下角》》" class="headerlink" title="《《文章很长，目录在右下角》》"></a>《《文章很长，目录在右下角》》</h1>
+<h1 id="《《文章很长，目录在右下角》》"><a href="#《《文章很长，目录在右下角》》" class="headerlink" title="《《文章很长，目录在右下角》》"></a>《《文章很长，目录在右下角》》</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><ul>
+<li><p>JavaScript是一种弱类型的语言：变量的类型可以随着赋值的类型不同而发生变化</p>
+</li>
+<li><p>强类型的语言：一个变量一旦声明为某种类型，该变量的数据类型就不可再变</p>
+</li>
+<li><p>JavaScript是解释型的语言</p>
+</li>
+<li><p>动态的语言：可以在程序运行的过程中，给对象增加或删除成员（属性、方法）</p>
+<h2 id="使用JavaScript的三种形式"><a href="#使用JavaScript的三种形式" class="headerlink" title="使用JavaScript的三种形式"></a>使用JavaScript的三种形式</h2>  <!DOCTYPE html>
+  <html>
+      <head>
+          <meta charset="utf-8">
+          <title>使用js的三种形式</title>
+          <!-- 
+          使用JavaScript的三种形式
+              1、行内：事件的属性上使用JavaScript代码
+              2、内嵌：script标签内写JavaScript代码
+              3、外部：先创建js文件，在js文件中编写js代码，然后通过script标签引入外部的js文件
+                  src：指定外部js文件的地址
+                  引入js文件的script标签内部不能写js代码
+                  引入js文件的script标签虽然内容为空，但也不能使用自封形式
+                  js文件中，直接写js代码即可，不需要script标签
+          -->
+          <script type="text/javascript">
+          function inner_m(){
+              alert('我被鼠标击中了...');
+          }
+          </script>
+          <script type="text/javascript" src="./js/index.js"></script>
+      </head>
+      <body>
+          <input type="button" value="点我试一试（行内）" onclick="alert('我被鼠标击中了...');">
+          <input type="button" value="点我试一试（内嵌）" onclick="inner_m();">
+          <input type="button" value="点我试一试（外部）" onclick="outer_m();">
+      </body>
+  </html>
+## 注释
+// 单行注释</li>
+</ul>
+<p>/* 多行注释 */</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="https://s3.bmp.ovh/imgs/2021/09/517e4f5c1de563ef.png"></p>
+<h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;声明变量&lt;/title&gt;
+        &lt;script&gt;
+        // 声明变量并赋值： var 变量名 = 值;
+        // 声明常量并赋值： const 变量名 = 值;
+        var i = 1;
+        // 等价于java中的System.out.println();
+        console.log(i);
+        // 获取变量的类型: typeof 变量名; // 该表达式的返回值，就是变量的数据类型名称
+        var t = typeof i;
+        console.log(&quot;变量i的数据类型：&quot; + t);
+        console.log(&quot;变量t的数据类型：&quot; + typeof t);
+        
+        // 修改变量i的数据类型
+        i = &quot;1&quot;;
+        console.log(&quot;变量i的数据类型：&quot; + typeof i);
+        i = true;
+        console.log(&quot;变量i的数据类型：&quot; + typeof i);
+        i = null;
+        console.log(&quot;变量i的数据类型：&quot; + typeof i);
+        i = new XMLHttpRequest();
+        console.log(&quot;变量i的数据类型：&quot; + typeof i);
+        i = undefined;
+        console.log(&quot;变量i的数据类型：&quot; + typeof i);
+        
+        // instanceof不要用于原始类型
+        i = new XMLHttpRequest();
+        console.log(&quot;判断变量i是否输入Object类型：&quot; + (i instanceof Object));
+        
+        
+        var und;
+        console.log(und);
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="关键字typeof"><a href="#关键字typeof" class="headerlink" title="关键字typeof"></a>关键字typeof</h2><p><img src="https://s3.bmp.ovh/imgs/2021/09/337dede967653303.png"></p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;演示JavaScript中的String类型的使用&lt;/title&gt;
+        &lt;script&gt;
+        var str = &quot;abcdefgh,ijklmn   &quot;;
+        console.log(&quot;原始字符串：&quot; + str);
+        // length属性获取字符串的长度
+        console.log(&quot;字符串的长度：&quot; + str.length);
+        
+        // 截取字符串 参数1：开始下标  参数2：结束下标
+        console.log(&quot;截取的开始下标为3，结束下标为5：&quot; + str.substring(3,5));
+        // 截取字符串 参数1：开始下标  参数2：截取的字符个数（长度）
+        console.log(&quot;从下标3开始截取5个字符：&quot; + str.substr(3,5));
+        
+        // 删除两头的空格
+        console.log(&quot;trim():删除两端空格：&quot; + str.trim());
+        // 删除左侧的空格
+        console.log(&quot;trimLeft():删除两端空格：&quot; + str.trimLeft());
+        // 删除右侧的空格
+        console.log(&quot;trimRight():删除两端空格：&quot; + str.trimRight());
+        
+        // 拆分字符串
+        var arr = str.split(&quot;,&quot;);
+        console.log(&quot;以逗号拆分字符串：&quot; + arr[0]);
+        console.log(&quot;以逗号拆分字符串：&quot; + arr[1]);
+        
+        // 替换字符
+        console.log(&quot;mn替换成xyz：&quot; + str.replace(&quot;mn&quot;,&quot;xyz&quot;));
+        
+        // 查找指定字符串的下标
+        console.log(&quot;indexOf:查找abc的下标：&quot; + str.indexOf(&quot;abc&quot;));
+        // 查找指定字符串的下标
+        console.log(&quot;lastIndexOf:查找abc的下标：&quot; + str.lastIndexOf(&quot;abc&quot;));
+        // 是否包含指定的字符串
+        // console.log(&quot;contains:是否包含abc：&quot; + str.contains(&quot;abc&quot;,0));
+        // 判断是否指定的字符串开头
+        console.log(&quot;startsWith:判断字符串是否以abc开头：&quot; + str.startsWith(&quot;abc&quot;));
+        // 判断是否指定的字符串结尾
+        console.log(&quot;endsWith:判断字符串是否以abc结尾：&quot; + str.endsWith(&quot;abc&quot;));
+        // 连接字符串
+        console.log(&quot;concat:连接字符串：&quot; + str.concat(&quot;oooo&quot;));
+        console.log(&quot;+:连接字符串：&quot; + str + &quot;oooo&quot;);
+        
+        
+        
+        
+        // 将字符串转换成大写
+        console.log(&quot;大写：&quot; + str.toUpperCase());
+        console.log(&quot;原变量str的值不变：&quot; + str);
+        str = &quot;ABC&quot;;
+        // 将字符串转换成小写
+        console.log(&quot;小写：&quot; + str.toLowerCase());
+        
+        
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;类型转换&lt;/title&gt;
+        &lt;script&gt;
+        var i = 1;
+        // 将Number类型的变量i转换为String类型
+        var str = i.toString();
+        console.log(&quot;转换后的数据类型：&quot; + typeof str);
+        console.log(&quot;转换后原变量i的数据类型：&quot; + typeof i);
+        
+        // 第二种转换形式（只要是通过new出来的对象，数据类型都是Object类型）
+        i = 1;
+        str = new String(i);
+        console.log(&quot;转换后的数据类型：&quot; + typeof str);
+        console.log(&quot;转换后的数据类型：&quot; + str);
+        
+        i = 10;
+        // 基模式：根据指定的进制将Number类型的值，转换成字符串
+        console.log(&quot;将10转换为2进制的字符串：&quot; + i.toString(2));
+        console.log(&quot;将10转换为8进制的字符串：&quot; + i.toString(8));
+        console.log(&quot;将10转换为16进制的字符串：&quot; + i.toString(16));
+        
+        
+        // 字符串转换成数字
+        var s = &quot;123&quot;;
+        // 将字符串转换为整型值
+        var int_ = parseInt(s);
+        console.log(&quot;将\&quot;123\&quot;转为整型数据：&quot; + typeof int_);
+        console.log(&quot;将\&quot;123\&quot;转为整型数据：&quot; + int_);
+        
+        // 如果参数是小数，小数部分会被丢弃
+        console.log(&quot;将\&quot;123.123\&quot;转为整型数据：&quot; + typeof parseInt(&quot;123.123&quot;));
+        console.log(&quot;将\&quot;123.123\&quot;转为整型数据：&quot; + parseInt(&quot;123.123&quot;));
+        
+        // 如果字符串是以数字开头的就可以转换成功，直到第一个不为数字的字符，其后所有字符都被丢弃
+        console.log(&quot;将\&quot;123abc\&quot;转为整型数据：&quot; + typeof parseInt(&quot;123abc123&quot;));
+        console.log(&quot;将\&quot;123abc\&quot;转为整型数据：&quot; + parseInt(&quot;123abc123&quot;));
+        
+        // 如果字符串是不是以数字开头的，也可以转换成功，转换后的值是NaN（Not a Number）
+        console.log(&quot;将\&quot;abc123\&quot;转为整型数据：&quot; + typeof parseInt(&quot;abc123&quot;));
+        console.log(&quot;将\&quot;abc123\&quot;转为整型数据：&quot; + parseInt(&quot;abc123&quot;));
+        
+        
+        // 将字符串转换为浮点型值
+        console.log(&quot;将\&quot;123.123\&quot;转为浮点型数据：&quot; + typeof parseFloat(&quot;123.123&quot;));
+        console.log(&quot;将\&quot;123.123\&quot;转为浮点型数据：&quot; + parseFloat(&quot;123.123&quot;));
+        
+        // 如果字符串是以数字开头的就可以转换成功，直到第一个不为数字或小数点的字符，其后所有字符都被丢弃
+        console.log(&quot;将\&quot;123.1abc\&quot;转为浮点型数据：&quot; + typeof parseFloat(&quot;123.1abc123&quot;));
+        console.log(&quot;将\&quot;123.1abc\&quot;转为浮点型数据：&quot; + parseFloat(&quot;123.1abc123&quot;));
+        
+        // 如果字符串是不是以数字开头的，也可以转换成功，转换后的值是NaN（Not a Number）
+        console.log(&quot;将\&quot;abc123.1\&quot;转为浮点型数据：&quot; + typeof parseFloat(&quot;abc123.1&quot;));
+        console.log(&quot;将\&quot;abc123.1\&quot;转为浮点型数据：&quot; + parseFloat(&quot;abc123.1&quot;));
+        
+        // parseInt(&quot;123abc&quot;)转换的结果：123;
+        // new Number(&quot;123abc&quot;)转换的结果：NaN;
+        var num = new Number(&quot;123abc&quot;);
+        console.log(&quot;将\&quot;123\&quot;转为Number类型的数据：&quot; + typeof num);
+        console.log(&quot;将\&quot;123\&quot;转为Number类型的数据：&quot; + (num + 1));
+        // NaN:自己都不等于自己，所以不能用双等号来判断一个变量是否是NaN
+        console.log(&quot;判断num的值是否是NaN：&quot; + (NaN == NaN));
+        console.log(&quot;判断num的值是否是NaN：&quot; + (num == NaN));
+        console.log(&quot;isNaN判断num的值是否是NaN：&quot; + isNaN(num));
+        
+        // 其他的数据类型转换成布尔类型
+        num = 0;
+        var bool = new Boolean(num);
+        console.log(&quot;将数字转换为boolean类型：&quot; + typeof bool);
+        console.log(&quot;将数字转换为boolean类型：&quot; + bool);
+        // javascript中的流程控制和java中的一样（if、if-else、while、do-while、for）
+        // 当其他类型用作布尔表达式时，js会自动将数据转换成boolean类型
+        if(num)&#123;
+            
+        &#125;else&#123;
+            console.log(&quot;0会被转换为false&quot;);
+        &#125;
+        // 0、null、undefined、空字符串 会被转换为false，其余的值都会被转换为true
+        console.log(&quot;将0转换为boolean类型：&quot; + new Boolean(0));
+        console.log(&quot;将null转换为boolean类型：&quot; + new Boolean(null));
+        console.log(&quot;将undefined转换为boolean类型：&quot; + new Boolean(undefined));
+        console.log(&quot;将空字符串转换为boolean类型：&quot; + new Boolean(&quot;&quot;));
+        console.log(&quot;将\&quot;false\&quot;转换为boolean类型：&quot; + new Boolean(&quot;false&quot;));
+        if(0 &amp;&amp; null)&#123;
+            
+        &#125;else&#123;
+            console.log(&quot;0会被转换为false&quot;);
+        &#125;
+        
+        
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;运算符&lt;/title&gt;
+        &lt;script&gt;
+        var i = 1;
+        var str = &quot;1&quot;;
+        var i2 = 2;
+        var str2 = &quot;2&quot;;
+        var i3 = 3;
+        var i4 = 3;
+        
+        // ==：只比较值（内容），不比较数据类型；只要内容相同，就返回true；否则返回false
+        // 相当于 内容1 == 内容2 || 数据类型1 == 数据类型2
+        console.log( i == str );
+        // ===：即比较值（内容），也比较数据类型；数据类型和内容都相同时，结果为true；否则结果为false
+        // 相当于  内容1 == 内容2 &amp;&amp; 数据类型1 == 数据类型2
+        console.log( i === str );
+        // !=：内容和数据类型，都不相同时，返回true；否则返回false
+        // 相当于  内容1 != 内容2 &amp;&amp; 数据类型1 != 数据类型2
+        console.log( i2 != str2 );
+        // !==：内容和数据类型，只要有一项不同，就返回true；否则返回false
+        // 相当于  内容1 != 内容2 || 数据类型1 != 数据类型2
+        console.log( i2 !== str2 );
+        console.log( i3 !== str2 );
+        console.log( i3 !== i4 );
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;script&gt;
+        var arr = [1,2,3,4,5,6];
+        for(var i=0;i&lt;arr.length;i++)&#123;
+            console.log(arr[i]);
+        &#125;
+        // index：每循环一次，index就会获取数组arr的一个下标
+        // for(var prop : 对象)&#123;&#125; ：每循环一次，prop就会获取对象的一个属性（用于遍历对象上的属性，如果将一个对象看做map集合的话，遍历的就是map的key）
+        for(var index in arr)&#123;
+            console.log(arr[index]);
+        &#125;
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;数组&lt;/title&gt;
+        &lt;script&gt;
+        // 声明数组，并创建数组对象赋值
+        // 数组常量：[值1,值2,...,值n]
+        var arr1 = [1,2,3];
+        console.log(arr1[4]);
+        // 创建数组对象：new Array(长度); 默认的元素值都是undefined
+        var arr2 = new Array(3);
+        for(var i = 0; i &lt; arr2.length; i++)&#123;
+            console.log(arr2[i]);
+        &#125;
+        
+        // js没有数组和collection集合之分的
+        var arr3 = new Array();
+        arr3[0] = 10;
+        arr3[3] = 10;
+        console.log(arr3.length);
+        console.log(arr3[0]);
+        console.log(arr3[1]);
+        console.log(arr3[2]);
+        console.log(arr3[3]);
+        console.log(arr3[4]);
+        
+        
+        var arr4 = new Array(1,4,5,67,8,2);
+        console.log(arr4[0]);
+        console.log(arr4[1]);
+        console.log(arr4[2]);
+        console.log(arr4[3]);
+        console.log(arr4[4]);
+        
+        // forEach(方法名);  循环执行参数方法
+        arr4.forEach(loop);
+        // 参数一：获取数组中的元素值   参数二：获取数组的下标
+        function loop(value,index)&#123;
+            console.log(value + &quot;-&quot; + index);
+        &#125;
+        
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;函数&lt;/title&gt;
+        &lt;script&gt;
+        // 声明函数  function 函数名(变量名1,...,变量名n)&#123; [return [返回值];] &#125;
+        // 注意：参数直接参数名即可，一定不能使用var进行声明
+        function add(a,b)&#123;
+            console.log(&quot;a=&quot; + a);
+            console.log(&quot;b=&quot; + b);
+            return a + b;
+        &#125;
+        // 调用方法
+        var result = add(1,2);
+        console.log(&quot;result=&quot;+result);
+        
+        // function(变量名1,...,变量名n)&#123;&#125; 声明一个匿名方法
+        // 函数的声明方式二：var 方法名 = function(变量名1,...,变量名n)&#123;&#125;
+        var m1 = function(a)&#123;
+            console.log(&quot;a=&quot;+a);
+        &#125;
+        // 调用方法
+        m1(100);
+        var m3 = m1;
+        // 调用方法
+        m3(200);
+        
+        function m4(m5)&#123;
+            m5(500);
+        &#125;
+        m4(m3);
+        
+        // 获取方法参数的个数
+        console.log(&quot;获取参数的个数：&quot; + m1.length);
+        // 获取方法的源代码
+        console.log(m1);
+        console.log(m1.valueOf());
+        console.log(m1.toString());
+        
+        m1.name = &quot;m1方法&quot;;
+        // 遍历m1上的属性
+        // for(var property in m1)&#123;
+        //     console.log(&quot;property = &quot; + property);
+        // &#125;
+        
+        // 类型是Function
+        console.log(typeof m1);
+        
+        
+        // 函数的声明方式三：var 方法名 = new Function([&quot;参数列表&quot;],[&quot;方法体&quot;]);
+        var m2 = new Function(&quot;a&quot;,&quot;console.log(a)&quot;);
+        // 调用方法
+        m2(10);
+        
+        
+        // 方法重载
+        function f()&#123;
+            console.log(&quot;没有参数的方法&quot;);
+            var result = 0;
+            // arguments:获取方法的参数（实参）列表（数组）
+            for(var index in arguments)&#123;
+                // 如果参数的数据类型是function，则调用该方法
+                // if(typeof arguments[index] == &quot;function&quot;)&#123;
+                if(arguments[index] instanceof Function)&#123;
+                    // 调用传入的方法
+                    arguments[index]();
+                &#125; else &#123;
+                    console.log(&quot;参数：&quot; + arguments[index]);
+                    result += arguments[index];
+                &#125;
+            &#125;
+            return result;
+        &#125;
+        // function f(a)&#123;
+        //     console.log(&quot;有一个参数的方法&quot;);
+        // &#125;
+        var sum = f(1,2,3,4,5,6,7,8,9,10,function()&#123;
+            console.log(&quot;参数传入的匿名方法&quot;);
+        &#125;);
+        console.log(sum);
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;对象&lt;/title&gt;
+        &lt;script&gt;
+        // 创建对象：new Object();
+        var obj1 = new Object();
+        // 给对象添加一个name属性：对象名.属性名 = 值;
+        obj1.name = &quot;张三&quot;;
+        obj1.age = 18;
+        // 给对象添加方法
+        obj1.print = function()&#123;
+            // this指向当前对象的引用
+            console.log(&quot;姓名：&quot; + this.name + &quot; 年龄：&quot; + this.age);
+        &#125;;
+        // 删除指定对象的属性：delete 对象名.属性名;
+        delete obj1.age;
+        console.log(obj1);
+        console.log(obj1.name);
+        console.log(obj1.age);
+        // 调用print方法
+        obj1.print();
+        
+        // 方式二：创建对象  &#123;&quot;属性1&quot;:值1,...,&quot;属性n&quot;:值n&#125;
+        var user = &#123;&quot;name&quot;:&quot;李四&quot;,&quot;age&quot;:20,&quot;sex&quot;:&quot;男&quot;,
+                    &quot;print&quot;:function()&#123;
+                        console.log(&quot;user&quot;);
+                    &#125;&#125;;
+        // 访问属性：对象.属性名     对象[&quot;属性名&quot;]
+        console.log(user.name);
+        console.log(user.age);
+        console.log(user.sex);
+        user.print();
+        var name = &quot;name&quot;;
+        console.log(user[name]);
+        console.log(user[&quot;age&quot;]);
+        console.log(user[&quot;sex&quot;]);
+        
+        // 遍历对象的属性
+        for(var property in user)&#123;
+            console.log(&quot;属性：&quot; + property + &quot; - 值：&quot; + user[property]);
+        &#125;
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;异常&lt;/title&gt;
+        &lt;script&gt;
+        function div(a,b)&#123;
+            var result = 0;
+            try&#123;
+                // result = a/b;
+                // 抛出一个异常
+                throw new RangeException();
+            &#125; catch(e)&#123;
+                console.log(&quot;异常：&quot; + e);
+            &#125; finally &#123;
+                console.log(&quot;finally&quot;);
+            &#125;
+            return result;
+        &#125;
+        // js中除0的结果是：无穷大
+        var result = div(10,0);
+        console.log(result);
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
       
       
     
@@ -314,6 +826,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2021/09/02/DOM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DOM
+        
+      </div>
+    </a>
+  
   
     <a href="/2021/08/28/html%E5%92%8Ccss%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">HTML和CSS笔记</div>
@@ -343,7 +864,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">JavaScript笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">JavaScript笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8JavaScript%E7%9A%84%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">使用JavaScript的三种形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F"><span class="toc-number">2.4.</span> <span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97typeof"><span class="toc-number">2.5.</span> <span class="toc-text">关键字typeof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">2.6.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.7.</span> <span class="toc-text">数据类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">2.8.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.9.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">2.10.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">2.11.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.12.</span> <span class="toc-text">对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-number">2.13.</span> <span class="toc-text">异常</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
