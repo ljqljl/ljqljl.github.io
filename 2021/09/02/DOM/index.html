@@ -8,20 +8,17 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>DOM | 6 + 7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DOM">
+  <meta name="description" content="6 + 7 的博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DOM">
 <meta property="og:url" content="http://example.com/2021/09/02/DOM/index.html">
 <meta property="og:site_name" content="6 + 7">
-<meta property="og:description" content="DOM">
+<meta property="og:description" content="6 + 7 的博客">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/4e4ec0d5ddcd67eb.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/3b5e7dbc790368b5.png">
 <meta property="article:published_time" content="2021-09-02T11:32:00.000Z">
-<meta property="article:modified_time" content="2021-09-03T00:38:13.957Z">
+<meta property="article:modified_time" content="2021-09-05T02:02:18.454Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2021/09/4e4ec0d5ddcd67eb.png">
   
     <link rel="alternative" href="/atom.xml" title="6 + 7" type="application/atom+xml">
   
@@ -204,150 +201,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><span id="more"></span>
-<h1 id="《《文章很长，目录在右下角》》"><a href="#《《文章很长，目录在右下角》》" class="headerlink" title="《《文章很长，目录在右下角》》"></a>《《文章很长，目录在右下角》》</h1><h2 id="获取文档中的元素对象"><a href="#获取文档中的元素对象" class="headerlink" title="获取文档中的元素对象"></a>获取文档中的元素对象</h2><p><img src="https://s3.bmp.ovh/imgs/2021/09/4e4ec0d5ddcd67eb.png"><br>获取元素对象</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;获取元素对象&lt;/title&gt;
-        &lt;script&gt;
-        // 整个的HTML文档会被转换成一个 document 的对象
-        // 声明获取元素对象的方法
-        function getEle()&#123;
-            // getElementById(id值):根据ID获取元素对象，如果有多个相同id的元素，getElementById方法只会获取第一个id值和参数相同的元素
-            // 获取id=p1的p元素
-            // js中遵守了HTML规范，元素id的唯一性
-            var p = document.getElementById(&quot;p1&quot;);
-            // 注意：浏览器解析HTML文档，是自上而下解析的；
-            // 如果获取元素对象的js代码，在要获取的元素被解析之前执行，则无法获取元素对象
-            // 解决方式有两种
-            // 1、将获取元素对象的js代码，放到被获取的元素之后
-            // 2、在body的onload事件中执行获取元素对象的js代码
-            console.log(p);
-        &#125;
-        // 调用获取元素对象的方法
-        getEle();
-        &lt;/script&gt;
-    &lt;/head&gt;
-    &lt;!-- onload事件：在文档解析完成之后，才会触发该事件 --&gt;
-    &lt;body onload=&quot;getEle()&quot;&gt;
-        &lt;p id=&quot;p1&quot;&gt; 段落内容-1 &lt;/p&gt;
-        &lt;p id=&quot;p1&quot;&gt; 段落内容-2 &lt;/p&gt;
-        &lt;input id=&quot;username&quot; value=&quot;admin&quot; type=&quot;text&quot; /&gt;
-    &lt;/body&gt;
-    
-    &lt;!-- &lt;script&gt;
-    // 整个的HTML文档会被转换成一个 document 的对象
-    // 声明获取元素对象的方法
-    function getEle()&#123;
-        // 根据ID获取元素对象
-        // 获取id=p1的p元素
-        var p = document.getElementById(&quot;p1&quot;);
-        // 注意：浏览器解析HTML文档，是自上而下解析的；
-        // 如果获取元素对象的js代码，在要获取的元素被解析之前执行，则无法获取元素对象
-        // 解决方式有两种
-        // 1、将获取元素对象的js代码，放到被获取的元素之后
-        console.log(p);
-    &#125;
-    // 调用获取元素对象的方法
-    getEle();
-    &lt;/script&gt; --&gt;
-&lt;/html&gt;
-</code></pre>
-<p>获取多个元素对象</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;p id=&quot;p1&quot; class=&quot;p1&quot; name=&quot;n1&quot;&gt; 段落内容-1 &lt;/p&gt;
-        &lt;p id=&quot;p1&quot; class=&quot;p1 p2&quot; name=&quot;n1&quot;&gt; 段落内容-2 &lt;/p&gt;
-        &lt;input id=&quot;username&quot; class=&quot;p2&quot; name=&quot;n2&quot; value=&quot;admin&quot; type=&quot;text&quot; /&gt;
-    &lt;/body&gt;
-    &lt;script&gt;
-    function getEles()&#123;
-        // 获取多个元素
-        // getElementsByClassName(class属性值)：获取所有class属性含有参数值的元素对象
-        // 注意：IE浏览器不支持getElementsByClassName方法
-        var arr = document.getElementsByClassName(&quot;p1&quot;);
-        console.log(arr);
-        console.log(arr[0]);
-        console.log(arr[1]);
-        // getElementsByName(name属性值):获取所有name属性和参数值相同的元素对象
-        var arrByName = document.getElementsByName(&quot;n1&quot;);
-        console.log(arrByName);
         
-        // getElementsByTagName(标签名):根据标签的名称获取元素对象
-        var arrByTagName = document.getElementsByTagName(&quot;p&quot;);
-        console.log(arrByTagName);
-        console.log(arrByTagName[0]);
-        console.log(arrByTagName[1]);
-        console.log(arrByTagName[&quot;n1&quot;]);
-        console.log(arrByTagName[&quot;p1&quot;]);
-        console.log(arrByTagName.n1);
-        console.log(arrByTagName.p1);
-        
-    &#125;
-    getEles();
-    &lt;/script&gt;
-&lt;/html&gt;
-</code></pre>
-<h2 id="获取元素内容"><a href="#获取元素内容" class="headerlink" title="获取元素内容"></a>获取元素内容</h2><p><img src="https://s3.bmp.ovh/imgs/2021/09/3b5e7dbc790368b5.png"></p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;获取和设置元素的内容&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;p id=&quot;p1&quot;&gt; 段落内容-1 &lt;/p&gt;
-        &lt;p id=&quot;p2&quot;&gt; pre --- &lt;span&gt;段落内容-2&lt;/span&gt; --- next &lt;/p&gt;
-        
-        &lt;p id=&quot;p3&quot;&gt;&lt;/p&gt;
-        &lt;p id=&quot;p4&quot;&gt;&lt;/p&gt;
-        &lt;p id=&quot;p5&quot;&gt;&lt;/p&gt;
-        &lt;p id=&quot;p6&quot;&gt;&lt;/p&gt;
-        &lt;script&gt;
-        // 获取元素的内容
-        function getContent()&#123;
-            // 1、获取元素
-            var p = document.getElementById(&quot;p1&quot;);
-            // 2、获取元素的内容
-            console.log(&quot;innerHTML获取元素内容：&quot; + p.innerHTML);
-            console.log(&quot;innerText获取元素内容：&quot; + p.innerText);
-            // IE浏览器不支持textContent
-            console.log(&quot;textContent获取元素内容：&quot; + p.textContent);
-            
-            
-            var p2 = document.getElementById(&quot;p2&quot;);
-            // 如果元素内容中包含HTML标签，则innerHTML获取的内容是含HTML标签的，而innerText和textContent获取的内容是不含HTML标签的（只获取文本内容）
-            console.log(&quot;innerHTML获取元素内容：&quot; + p2.innerHTML);
-            console.log(&quot;innerText获取元素内容：&quot; + p2.innerText);
-            console.log(&quot;textContent获取元素内容：&quot; + p2.textContent);
-            
-            
-            var p3 = document.getElementById(&quot;p3&quot;);
-            p3.innerHTML = &quot;abc&quot;;
-            var p4 = document.getElementById(&quot;p4&quot;);
-            p4.innerText = &quot;abc&quot;;
-            var p5 = document.getElementById(&quot;p5&quot;);
-            // 如果设置的元素内容中包含HTML标签
-            // 使用innerHTML设置，则会解析HTML标签
-            // 使用innerText设置，不会解析HTML标签，而是将HTML标签作为字符串（文本）显示在页面上
-            p5.innerHTML = &quot;&lt;font color=&#39;red&#39;&gt; abc &lt;/font&gt;&quot;;
-            var p6 = document.getElementById(&quot;p6&quot;);
-            p6.innerText = &quot;&lt;font color=&#39;red&#39;&gt; abc &lt;/font&gt;&quot;;
-            
-        &#125;
-        getContent();
-        &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
       
       
     
@@ -488,7 +342,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM"><span class="toc-number">1.</span> <span class="toc-text">DOM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%96%87%E6%A1%A3%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text">获取文档中的元素对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.</span> <span class="toc-text">获取元素内容</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
