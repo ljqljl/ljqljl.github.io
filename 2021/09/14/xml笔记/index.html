@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | 6 + 7</title>
+  <title>xml笔记 | 6 + 7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6 + 7 的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="6 + 7">
-<meta property="og:url" content="http://example.com/archives/2021/page/3/index.html">
+  <meta name="description" content="xml笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xml笔记">
+<meta property="og:url" content="http://example.com/2021/09/14/xml%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="6 + 7">
-<meta property="og:description" content="6 + 7 的博客">
+<meta property="og:description" content="xml笔记">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-14T06:58:00.000Z">
+<meta property="article:modified_time" content="2021-09-14T07:02:48.182Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
   
@@ -154,133 +156,532 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
+            <header class="article-header">
+  
+  
+    <h1 class="article-title" itemprop="name">
+      xml笔记
+    </h1>
+  
+
+  
+  <a href="/2021/09/14/xml%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-09-14T06:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-14</time>
+</a>
+  
+
+
+  
+    <span class="archive-article-date">
+        阅读量 <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+
+
+</header>
+
+<article id="post-xml笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      xml笔记
+    </h1>
+  
+
+        
+        
+        <a href="/2021/09/14/xml%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-09-14T06:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="xml笔记"><a href="#xml笔记" class="headerlink" title="xml笔记"></a>xml笔记</h1><span id="more"></span>
+<h1 id="《《文章很长，目录在右下角》》"><a href="#《《文章很长，目录在右下角》》" class="headerlink" title="《《文章很长，目录在右下角》》"></a>《《文章很长，目录在右下角》》</h1><h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><pre><code>package com.util;
+
+import java.io.File;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import com.sun.org.apache.xerces.internal.dom.DeferredElementImpl;
+import com.sun.org.apache.xerces.internal.dom.DeferredNotationImpl;
+
+/*
+* 解析xml的两种方式
+*     DOM（Document Object Model）方式：
+*         首先将整个xml文档加载到内存中，并将文档转换成文档对象，文档中的元素也会被分别转换成对象
+*         优点：读写方便，查找元素对象也更加的方便快捷
+*         缺点：太消耗内存，只适合小文件，不适合大文件
+*     SAX方法：
+*         事件驱动的方式进行文档的解析
+*         优点：消耗内存很少，适合处理大文件
+*         缺点：读写查找元素没有DOM方式快捷方便
+* 
+* JDK提供了DOM和SAX方式
+* 常用第三方提供的xml解析的类库：JDOM、DOM4J、XPath
+* 
+*/
+public class DomParseXML &#123;
+    public static void main(String[] args) &#123;
+        try &#123;
+            /******************** JDK提供的DOM方式解析XML的实现 **********************/
+            // 1、常见DOM方式解析XML的工厂类的对象
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            // 2、创建文档对象的建造者对象（建造者模式）
+            DocumentBuilder docBuilder = factory.newDocumentBuilder();
             
-  
-  
+            // 创建文件对象
+            File xml = new File(&quot;config/users.xml&quot;);
+            System.out.println(xml.exists());
+            // 3、通过文档建造者创建文档对象
+            Document doc = docBuilder.parse(xml);
+            
+            // 4、通过文档对象获取元素对象或属性值或元素内容。。。
+            // 必须在xml的验证文件(DTD/XSD)中，将id属性设置为ID
+            Element userElement = doc.getElementById(&quot;id1&quot;);
+            System.out.println(&quot;class = &quot; + userElement.getAttribute(&quot;class&quot;));
+            // 根据标签的名称获取节点对象的集合
+            NodeList userList = doc.getElementsByTagName(&quot;user&quot;);
+            
+            for (int i = 0; i &lt; userList.getLength(); i++) &#123;
+                Node user = userList.item(i);
+                // Node.getAttributes()：获取所有属性的集合
+                NamedNodeMap attrs = user.getAttributes();
+                // 根据属性的名称，获取属性的节点对象
+                Node attrClass = attrs.getNamedItem(&quot;class&quot;);
+                // 获取属性的值
+                String classValue = attrClass.getNodeValue();
+                System.out.println(classValue);
+                // 获取属性id的值
+                System.out.println(attrs.getNamedItem(&quot;id&quot;).getNodeValue());
+                
+                // 获取所有子元素的集合
+                NodeList childNodes = user.getChildNodes();
+                for (int j = 0; j &lt; childNodes.getLength(); j++) &#123;
+                    Node child = childNodes.item(j);
+                    // 判断节点的类型，筛选出需要的元素对象（文本节点不是我们需要的）
+                    // 元素对象的类型：DeferredElementImpl
+                    // 文本节点的类型：DeferredTextImpl
+                    if (child instanceof DeferredElementImpl) &#123;
+//                        child.getAttributes().getNamedItem(&quot;value&quot;).getNodeValue();
+                        // 获取元素的内容
+                        String textContent = child.getTextContent();
+                        System.out.println(textContent);
+                    &#125;
+                &#125;
+            &#125;
+            
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="SAX"><a href="#SAX" class="headerlink" title="SAX"></a>SAX</h2><pre><code>package com.util;
+
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+public class SaxParseXML &#123;
+    public static void main(String[] args) &#123;
+        try &#123;
+            // 1、创建SAX解析工厂
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            // 2、创建SAX解析器的对象
+            SAXParser parser = factory.newSAXParser();
+            // 创建xml文件对象
+            File xml = new File(&quot;config/users.xml&quot;);
+            // 通过自定义Handler类，创建handler对象
+//            SaxParseXMLHandler handler = new SaxParseXMLHandler();
+            // 通过匿名内部类的方式，创建Handler对象
+            DefaultHandler handler = new DefaultHandler() &#123;
+                @Override
+                public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException &#123;
+                    // 如果开始标签的名称是user
+                    if (&quot;user&quot;.equals(qName)) &#123;
+                        // 根据属性的名称，获取属性的值
+                        String classValue = attributes.getValue(&quot;class&quot;);
+                        System.out.println(classValue);
+                    &#125; else if (&quot;id&quot;.equals(qName)) &#123;
+                        // 输出id标签中value属性的值
+                        System.out.println(attributes.getValue(&quot;value&quot;));
+                    &#125;
+                &#125;
+                
+                // 读取到元素内容时，调用此方法
+                @Override
+                public void characters(char[] ch, int start, int length) throws SAXException &#123;
+                    System.out.println(new String(ch,start,length).trim());
+                &#125;
+            
+            &#125;;
+            // 解析xml
+            parser.parse(xml, handler);
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+package com.util;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+public class SaxParseXMLHandler extends DefaultHandler &#123;
+    // 读取文档开始标签，会调用该方法
+    @Override
+    public void startDocument() throws SAXException &#123;
+    &#125;
+    // 读取文档结束标签，会调用该方法
+    @Override
+    public void endDocument() throws SAXException &#123;
+    &#125;
+    
+    // 读取到一个元素的开始标签，会调用该方法
+    @Override
+    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException &#123;
+        // 如果开始标签的名称是user
+        if (&quot;user&quot;.equals(qName)) &#123;
+            // 根据属性的名称，获取属性的值
+            String classValue = attributes.getValue(&quot;class&quot;);
+            System.out.println(classValue);
+        &#125;
+    &#125;
+
+    // 读取到元素内容时，调用此方法
+    // 参数一：是整个文档的内容（不含&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;）
+    // 参数二：当前读取的内容的偏移量（起始下标）
+    // 参数三：内容的长度
+    @Override
+    public void characters(char[] ch, int start, int length) throws SAXException &#123;
+        
+    &#125;
+    
+    // 读取到一个元素的结束标签，会调用该方法
+    @Override
+    public void endElement(String uri, String localName, String qName) throws SAXException &#123;
+        
+    &#125;
+    
+&#125;
+</code></pre>
+<h2 id="JDOM"><a href="#JDOM" class="headerlink" title="JDOM"></a>JDOM</h2><pre><code>package com.util;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.DOMBuilder;
+import org.jdom2.input.SAXBuilder;
+import org.w3c.dom.Attr;
+import org.w3c.dom.CDATASection;
+import org.w3c.dom.Comment;
+import org.w3c.dom.DOMConfiguration;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.DocumentType;
+import org.w3c.dom.EntityReference;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.ProcessingInstruction;
+import org.w3c.dom.Text;
+import org.w3c.dom.UserDataHandler;
+
+public class JDomParseXML &#123;
+
+    public static void main(String[] args) &#123;
+        try &#123;
+            SAXBuilder builder = new SAXBuilder();
+            Document doc = builder.build(new File(&quot;config/users.xml&quot;));
+            // 获取根元素（users）
+            Element root = doc.getRootElement();
+            // 根据标签名获取子元素
+            Element user = root.getChild(&quot;user&quot;);
+            // 根据属性名，获取属性值
+            System.out.println(user.getAttributeValue(&quot;class&quot;));
+            // 获取所有子元素的集合
+            List&lt;Element&gt; children = user.getChildren();
+            for (Element element : children) &#123;
+                // 获取元素的内容
+                System.out.println(element.getText());
+            &#125;
+            
+        &#125; catch (JDOMException e) &#123;
+            e.printStackTrace();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<h2 id="DOM4J"><a href="#DOM4J" class="headerlink" title="DOM4J"></a>DOM4J</h2><pre><code>package com.util;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
+
+public class DOM4jParseXML &#123;
+
+    public static void main(String[] args) &#123;
+        try &#123;
+            // 创建读取文件的阅读器对象
+            SAXReader reader = new SAXReader();
+            // 读取xml文件
+            Document doc = reader.read(new File(&quot;config/users.xml&quot;));
+            
+            // 通过XPath查找username元素对象
+            Node node = doc.selectSingleNode(&quot;/users/user/username&quot;);
+            System.out.println(node);
+            System.out.println(node.getName());
+            System.out.println(node.getText());
+            
+            
+            
+            // 获取根元素
+            Element root = doc.getRootElement();
+            
+            // 根据元素的ID属性获取元素对象（要求ID必须大写）
+//            Element user = root.elementByID(&quot;1&quot;);
+//            System.out.println(user);
+            
+            // 获取所有标签为user的子元素（获取所有指定标签名的子元素）
+            List&lt;Element&gt; childrens = root.elements(&quot;user&quot;);
+            for (Element child : childrens) &#123;
+                // getParent():获取父元素对象
+                System.out.println(child.getParent().getName());
+                // 根据属性名称，获取属性对象
+//                Attribute attr = child.attribute(&quot;class&quot;);
+//                // Attribute.getStringValue()：获取属性值
+//                System.out.println(attr.getStringValue());
+//                System.out.println(attr.getValue());
+                
+                // 获取属性值
+                System.out.println(child.attributeValue(&quot;class&quot;));
+                
+                // 获取user元素下的所有子元素
+                List&lt;Element&gt; userChildrens = child.elements();
+                for (Element ele : userChildrens) &#123;
+                    // Element.getStringValue()：获取元素的内容
+                    System.out.println(ele.getStringValue());
+                    System.out.println(ele.getText());
+                    System.out.println(ele.getTextTrim());
+                &#125;
+            &#125;
+            
+            /********************* 生成xml文件 **********************/
+            // 追加一个属性
+            root.addAttribute(&quot;class&quot;, &quot;com.entity.User&quot;);
+            // 新建一个Element对象
+            Element user = root.addElement(&quot;user&quot;);
+            Element id = user.addElement(&quot;id&quot;);
+            Element username = user.addElement(&quot;username&quot;);
+            Element password = user.addElement(&quot;password&quot;);
+            id.addText(&quot;2&quot;);
+            username.addText(&quot;李四&quot;);
+            password.addText(&quot;abc&quot;);
+            // 新建一个文件输出流
+            FileWriter writer = new FileWriter(&quot;E:/user.xml&quot;);
+            // 写出到新的xml文件中
+            root.write(writer);
+            writer.close();
+            
+        &#125; catch (DocumentException e) &#123;
+            e.printStackTrace();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125; 
+    &#125;
+
+&#125;
+</code></pre>
+
+      
+      
+    
+      <div class="declare" hidden="hidden"></div>
     
     
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃猫粮<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/27/javap%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-05-27T01:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/27/javap%E7%9A%84%E4%BD%BF%E7%94%A8/">javap的使用</a>
-    </h1>
-  
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/09/14/xml%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/06/Java%20APV%E6%96%87%E6%A1%A3/" class="archive-article-date">
-  	<time datetime="2021-05-06T07:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/02/DOM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DOM</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/06/Java%20APV%E6%96%87%E6%A1%A3/">Java APV</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#xml%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">xml笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM"><span class="toc-number">2.1.</span> <span class="toc-text">DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAX"><span class="toc-number">2.2.</span> <span class="toc-text">SAX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDOM"><span class="toc-number">2.3.</span> <span class="toc-text">JDOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM4J"><span class="toc-number">2.4.</span> <span class="toc-text">DOM4J</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/29/java%E8%87%AA%E5%AD%A6%E4%BD%9C%E5%93%81/" class="archive-article-date">
-  	<time datetime="2021-04-29T09:37:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/29/java%E8%87%AA%E5%AD%A6%E4%BD%9C%E5%93%81/">Java自学练习及作业</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/27/java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0-0/" class="archive-article-date">
-  	<time datetime="2021-04-27T09:27:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/27/java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0-0/">JavaSE自学笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
   
 
 
@@ -319,8 +720,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
