@@ -8,17 +8,24 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>servlet和jsp笔记 | 6 + 7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6 + 7 的博客">
+  <meta name="description" content="servlet和jsp笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="servlet和jsp笔记">
 <meta property="og:url" content="http://example.com/2021/09/14/servlet%E5%92%8Cjsp%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="6 + 7">
-<meta property="og:description" content="6 + 7 的博客">
+<meta property="og:description" content="servlet和jsp笔记">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/898dbdb996412b9a.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/9a937530ed18959a.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/2c91521ff1d13b29.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/efda014c0b5ef62b.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/78c9b8ce551c28bd.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/7070a34d5cde1559.png">
 <meta property="article:published_time" content="2021-09-14T07:07:00.000Z">
-<meta property="article:modified_time" content="2021-09-14T07:06:32.683Z">
+<meta property="article:modified_time" content="2021-09-14T12:44:10.341Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2021/09/898dbdb996412b9a.png">
   
     <link rel="alternative" href="/atom.xml" title="6 + 7" type="application/atom+xml">
   
@@ -201,7 +208,260 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <h1 id="servlet和jsp笔记"><a href="#servlet和jsp笔记" class="headerlink" title="servlet和jsp笔记"></a>servlet和jsp笔记</h1><span id="more"></span>
+<h1 id="《《文章很长，目录在右下角》》"><a href="#《《文章很长，目录在右下角》》" class="headerlink" title="《《文章很长，目录在右下角》》"></a>《《文章很长，目录在右下角》》</h1><h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="应用程序分层开发（MVC）"><a href="#应用程序分层开发（MVC）" class="headerlink" title="应用程序分层开发（MVC）"></a>应用程序分层开发（MVC）</h3><p><img src="https://s3.bmp.ovh/imgs/2021/09/898dbdb996412b9a.png"></p>
+<h3 id="Servlet简介"><a href="#Servlet简介" class="headerlink" title="Servlet简介"></a>Servlet简介</h3><p>server  applet（服务端应用小程序）<br><img src="https://s3.bmp.ovh/imgs/2021/09/9a937530ed18959a.png"></p>
+<h3 id="Eclipse中创建服务器-略"><a href="#Eclipse中创建服务器-略" class="headerlink" title="Eclipse中创建服务器(略)"></a>Eclipse中创建服务器(略)</h3><h3 id="Eclipse创建Web项目（略）"><a href="#Eclipse创建Web项目（略）" class="headerlink" title="Eclipse创建Web项目（略）"></a>Eclipse创建Web项目（略）</h3><h3 id="使用Servlet基本步骤"><a href="#使用Servlet基本步骤" class="headerlink" title="使用Servlet基本步骤"></a>使用Servlet基本步骤</h3><ol>
+<li>创建一个类，并继承HttpServlet类</li>
+<li>重写HttpServlet类中的二个方法doPost()和doGet()，并在其中编写处理请求的代码</li>
+<li>配置项目WEB-INF\web.xml  a、servlet元素中的servlet-name和servlet-mapping中的servlet-name的内容一致 b、url-pattern的内容要和页面form元素的action属性的值一致（不含斜杠）<br><img src="https://s3.bmp.ovh/imgs/2021/09/2c91521ff1d13b29.png"></li>
+<li>创建JSP页面，编写form表单</li>
+<li>部署项目：将web项目部署到Tomcat服务器上<br><img src="https://s3.bmp.ovh/imgs/2021/09/efda014c0b5ef62b.png"><h3 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h3><h3 id="访问：http-127-0-0-1-8080-项目名-页面-html"><a href="#访问：http-127-0-0-1-8080-项目名-页面-html" class="headerlink" title="访问：http://127.0.0.1:8080/项目名/页面.html"></a>访问：<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/%E9%A1%B9%E7%9B%AE%E5%90%8D/%E9%A1%B5%E9%9D%A2.html">http://127.0.0.1:8080/项目名/页面.html</a></h3><h3 id="GET和POST方式请求的区别"><a href="#GET和POST方式请求的区别" class="headerlink" title="GET和POST方式请求的区别"></a>GET和POST方式请求的区别</h3>携带数据的方式 GET： URL（网址）?key=value&amp;key=value<pre><code> 会将数据以键值对的方式拼接在URL之后（会显示在地址栏中），并且是将所有数据一次性提交到后台，对数据长度有限制
+ 缺点：不安全（如果包含敏感数据，如密码，都会显示在地址栏中），很难实现文件上传
+</code></pre>
+ POST：将数据以数据包的形式提交到后台（至少是一个数据包），理论上对数据长度无限制<h3 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h3></li>
+</ol>
+<ul>
+<li>生命周期的三个阶段</li>
+</ul>
+<p>创建对象并初始化、为项目提供服务、销毁</p>
+<ol>
+<li>服务器（Tomcat）启动时，不会创建Servlet对象</li>
+<li>当请求Servlet时，Servlet对象才被创建</li>
+<li>一个生命周期中，init方法只会被执行一次</li>
+<li>默认情况下，Servlet是单例模式的</li>
+<li>由于Servlet对象可能会被多线程同时访问，所以Servlet是线程不安全的</li>
+<li>Servlet对象销毁时会调用destroy()方法（回收资源），但调用destroy()方法不会销毁Servlet对象</li>
+</ol>
+<ul>
+<li>生命周期中的三个方法</li>
+</ul>
+<ol>
+<li>初始化方法：init</li>
+<li>提供服务的方法：service</li>
+<li>销毁的方法：destroy</li>
+</ol>
+<ul>
+<li><p>提供服务的三个方法<br><img src="https://s3.bmp.ovh/imgs/2021/09/78c9b8ce551c28bd.png"></p>
+<h3 id="通配符映射"><a href="#通配符映射" class="headerlink" title="通配符映射"></a>通配符映射</h3><p><img src="https://s3.bmp.ovh/imgs/2021/09/7070a34d5cde1559.png"></p>
+<h3 id="处理中文乱码问题"><a href="#处理中文乱码问题" class="headerlink" title="处理中文乱码问题"></a>处理中文乱码问题</h3><p>  // 设置Post方式请求内容的编码<br>  request.setCharacterEncoding(“utf-8”);<br>  // 设置响应的内容类型<br>  response.setContentType(“text/html; charset=UTF-8”);<br>  // 设置响应的编码<br>  response.setCharacterEncoding(“utf-8”);</p>
+  <!-- tomcat\config\server.xml    URIEncoding：用于设置get方式请求数据的编码 -->
+<p>  &lt;Connector port=”8080” protocol=”HTTP/1.1”</p>
+<pre><code>          connectionTimeout=&quot;20000&quot;
+          redirectPort=&quot;8443&quot; URIEncoding=&quot;utf-8&quot;/&gt;
+</code></pre>
+<h3 id="老师的代码"><a href="#老师的代码" class="headerlink" title="老师的代码"></a>老师的代码</h3><p>  package com.servlet;</p>
+<p>  import java.io.IOException;<br>  import java.io.PrintWriter;</p>
+<p>  import javax.servlet.ServletException;<br>  import javax.servlet.http.HttpServlet;<br>  import javax.servlet.http.HttpServletRequest;<br>  import javax.servlet.http.HttpServletResponse;<br>  /*</p>
+<ul>
+<li>1、创建类并继承HttpServlet类</li>
+<li>2、实现处理请求的方法 doGet、doPost、doDelete、doPut  （提交表单的四种方式get post delete  put）</li>
+<li>/<br>public class LoginServlet extends HttpServlet {<br>   public LoginServlet() {<pre><code>   System.out.println(&quot;LoginServlet对象被创建！&quot;);
+</code></pre>
+   }<br>   // 初始化当前Servlet对象的方法（不需要重写）<br>   // 只有在第一次请求该Servlet时，被执行一次<br>   @Override<br>   public void init() throws ServletException {<pre><code>   System.out.println(&quot;init方法被执行了！&quot;);
+   super.init();
+</code></pre>
+   }<br>   // 提供服务的方法（不需要重写）<br>   // 每请求一次会被执行一次<br>   @Override<br>   protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {<pre><code>   System.out.println(&quot;service方法被执行了！&quot;);
+   String method = req.getMethod();
+   System.out.println(&quot;method = &quot; + method);
+</code></pre>
+//        if (“GET”.equals(method)) {<br>//            doGet(req, resp);<br>//        } else if (“POST”.equals(method)) {<br>//            doPost(req, resp);<br>//        }<pre><code>   super.service(req, resp);
+</code></pre>
+   }<br>   // 销毁当前Servlet对象的方法（不需要重写）<br>   // 只有Tomcat服务结束时，被执行一次<br>   @Override<br>   public void destroy() {<pre><code>   System.out.println(&quot;destroy方法被执行了！&quot;);
+   super.destroy();
+</code></pre>
+   }<br>   /*<ul>
+<li>参数一：请求对象，请求对象中保存着客户端的所有信息</li>
+<li>参数二：响应对象，向客户端响应的内容以及一些设置，都在响应对象中</li>
+<li>/<br>@Override<br>protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {<br>   System.out.println(“get请求成功”);   // 解决响应的乱码问题<br>   resp.setCharacterEncoding(“utf-8”);<br>   resp.setContentType(“text/html; charset=UTF-8”);   // 获取客户端提交的表单中的数据<br>   String phone = req.getParameter(“phone”);<br>   String password = req.getParameter(“password”);<br>   System.out.println(“Get获取的手机号：” + phone);<br>   System.out.println(“Get获取的密码：” + password);</li>
+</ul>
+</li>
+</ul>
+<p>  //        byte[] data = phone.getBytes(“ISO-8859-1”);<br>  //        String result = new String(data,”utf-8”);</p>
+<pre><code>      // 获取响应的输出流
+</code></pre>
+<p>  //        resp.getOutputStream();</p>
+<pre><code>      PrintWriter writer = resp.getWriter();
+      writer.write(&quot;登录成功&quot;);
+      // 刷新缓冲区（清空缓冲区）
+      writer.flush();
+      // 关闭流
+      writer.close();
+  &#125;
+  
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+      System.out.println(&quot;post请求成功&quot;);
+      
+      // 解决POST方式请求的乱码（获取请求的数据之前）
+      req.setCharacterEncoding(&quot;UTF-8&quot;);
+      // 解决响应乱码问题(响应的内容被转换成二进制时使用的字符集)
+      resp.setCharacterEncoding(&quot;UTF-8&quot;);
+      // 告诉浏览器，应该以什么字符集解析响应内容
+      resp.setContentType(&quot;text/html;charset=UTF-8&quot;);
+      
+      // 获取客户端提交的表单中的数据
+      String phone = req.getParameter(&quot;phone&quot;);
+      String password = req.getParameter(&quot;password&quot;);
+      System.out.println(&quot;post获取的手机号：&quot; + phone);
+      System.out.println(&quot;post获取的密码：&quot; + password);
+      
+      // 获取响应的输出流
+</code></pre>
+<p>  //        resp.getOutputStream();</p>
+<pre><code>      PrintWriter writer = resp.getWriter();
+      writer.write(&quot;&lt;font color=&#39;green&#39;&gt;登录成功&lt;/font&gt;&quot;);
+      // 刷新缓冲区（清空缓冲区）
+      writer.flush();
+      // 关闭流
+      writer.close();
+  &#125;
+</code></pre>
+<p>  }</p>
+</li>
+</ul>
+<hr>
+<pre><code>package com.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class UserServlet extends HttpServlet &#123;
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+        doPost(req, resp);
+    &#125;
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+        // 处理乱码
+        req.setCharacterEncoding(&quot;utf-8&quot;);
+        resp.setCharacterEncoding(&quot;utf-8&quot;);
+        resp.setContentType(&quot;text/html;charset=utf-8&quot;);
         
+        // 获取当前要执行的操作
+        String operation = req.getParameter(&quot;operation&quot;);
+        switch(operation) &#123;
+        case &quot;login&quot;:
+            // 执行登录操作
+            login(req,resp);
+            break;
+        case &quot;register&quot;:
+            // 执行注册操作
+            register(req,resp);
+            break;
+        case &quot;update&quot;:
+            // 执行更新用户信息
+            update(req,resp);
+            break;
+        case &quot;delete&quot;:
+            // 执行删除用户操作
+            delete(req,resp);
+            break;
+        &#125;
+    &#125;
+    private void delete(HttpServletRequest req, HttpServletResponse resp) &#123;
+        System.out.println(&quot;删除用户&quot;);
+    &#125;
+    private void update(HttpServletRequest req, HttpServletResponse resp) &#123;
+        System.out.println(&quot;更新用户&quot;);
+        
+    &#125;
+    private void register(HttpServletRequest req, HttpServletResponse resp) throws IOException &#123;
+        System.out.println(&quot;注册用户&quot;);
+        // 获取客户端的值
+        String username = req.getParameter(&quot;username&quot;);
+        String password = req.getParameter(&quot;password&quot;);
+        String repassword = req.getParameter(&quot;repassword&quot;);
+
+        PrintWriter writer = resp.getWriter();
+        
+        if (username==null || &quot;&quot;.equals(username)) &#123;
+            writer.write(&quot;用户名不能为空&quot;);
+        &#125;else &#123;
+            writer.write(&quot;您输入的用户名：&quot; + username + &quot; 密码：&quot; + password);
+        &#125;
+        writer.flush();
+        writer.close();
+    &#125;
+    private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException &#123;
+        System.out.println(&quot;登录系统&quot;);
+        // 获取客户端的值
+        String username = req.getParameter(&quot;username&quot;);
+        String password = req.getParameter(&quot;password&quot;);
+        
+        PrintWriter writer = resp.getWriter();
+        writer.write(&quot;您输入的用户名：&quot; + username + &quot; 密码：&quot; + password);
+        writer.flush();
+        writer.close();
+    &#125;
+&#125;
+</code></pre>
+<hr>
+<p>（这个界面就写一个）</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;登录页面&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 
+        action：url
+        method：提交表单的四种方式get（默认值） post delete  put 
+    --&gt;
+    &lt;form action=&quot;user&quot; method=&quot;post&quot;&gt;
+        &lt;!-- 隐藏域 --&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;operation&quot; value=&quot;login&quot;&gt; 
+        手机号：&lt;input name=&quot;phone&quot; type=&quot;text&quot;/&gt;&lt;br/&gt;
+        密 码：&lt;input name=&quot;password&quot; type=&quot;password&quot;/&gt;&lt;br/&gt;
+        &lt;input value=&quot;POST登录&quot; type=&quot;submit&quot;/&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot; xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot; id=&quot;WebApp_ID&quot; version=&quot;4.0&quot;&gt;
+&lt;display-name&gt;day26-servlet01&lt;/display-name&gt;
+
+&lt;!-- 配置Servlet和URL之间的映射关系 --&gt;
+&lt;servlet&gt;
+    &lt;servlet-name&gt;loginServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.servlet.LoginServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;loginServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/login&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+
+&lt;servlet&gt;
+    &lt;servlet-name&gt;userServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.servlet.UserServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;userServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/html/user&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;userServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/user&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+
+&lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.html&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;
+&lt;/welcome-file-list&gt;
+</code></pre>
+
       
       
     
@@ -337,7 +597,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#servlet%E5%92%8Cjsp%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">servlet和jsp笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet"><span class="toc-number">2.1.</span> <span class="toc-text">Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%88%86%E5%B1%82%E5%BC%80%E5%8F%91%EF%BC%88MVC%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">应用程序分层开发（MVC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.2.</span> <span class="toc-text">Servlet简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eclipse%E4%B8%AD%E5%88%9B%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8-%E7%95%A5"><span class="toc-number">2.1.3.</span> <span class="toc-text">Eclipse中创建服务器(略)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eclipse%E5%88%9B%E5%BB%BAWeb%E9%A1%B9%E7%9B%AE%EF%BC%88%E7%95%A5%EF%BC%89"><span class="toc-number">2.1.4.</span> <span class="toc-text">Eclipse创建Web项目（略）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Servlet%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.1.5.</span> <span class="toc-text">使用Servlet基本步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.6.</span> <span class="toc-text">执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%EF%BC%9Ahttp-127-0-0-1-8080-%E9%A1%B9%E7%9B%AE%E5%90%8D-%E9%A1%B5%E9%9D%A2-html"><span class="toc-number">2.1.7.</span> <span class="toc-text">访问：http:&#x2F;&#x2F;127.0.0.1:8080&#x2F;项目名&#x2F;页面.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET%E5%92%8CPOST%E6%96%B9%E5%BC%8F%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.1.8.</span> <span class="toc-text">GET和POST方式请求的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">2.1.9.</span> <span class="toc-text">Servlet的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%E6%98%A0%E5%B0%84"><span class="toc-number">2.1.10.</span> <span class="toc-text">通配符映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.11.</span> <span class="toc-text">处理中文乱码问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%81%E5%B8%88%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">2.1.12.</span> <span class="toc-text">老师的代码</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
