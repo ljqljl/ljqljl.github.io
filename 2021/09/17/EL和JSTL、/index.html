@@ -6,17 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 6 + 7</title>
+  <title>EL和JSTL | 6 + 7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6 + 7 的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="6 + 7">
-<meta property="og:url" content="http://example.com/archives/page/3/index.html">
+  <meta name="description" content="EL和JSTL笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EL和JSTL">
+<meta property="og:url" content="http://example.com/2021/09/17/EL%E5%92%8CJSTL%E3%80%81/index.html">
 <meta property="og:site_name" content="6 + 7">
-<meta property="og:description" content="6 + 7 的博客">
+<meta property="og:description" content="EL和JSTL笔记">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/2282edfaf9da1202.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/321d051b0940b664.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/62e851b97f7d78ba.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/05488f8186855290.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/ddbb0a9efcaf7c82.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/7f472675222d1def.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/71e42b72d591f7c3.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/4c62c86315504db6.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/00e51bf888eca031.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/6c0b34b5e48c2efc.png">
+<meta property="article:published_time" content="2021-09-17T02:44:00.000Z">
+<meta property="article:modified_time" content="2021-09-18T01:59:58.765Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2021/09/2282edfaf9da1202.png">
   
     <link rel="alternative" href="/atom.xml" title="6 + 7" type="application/atom+xml">
   
@@ -154,160 +167,214 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <header class="article-header">
   
   
+    <h1 class="article-title" itemprop="name">
+      EL和JSTL
+    </h1>
+  
+
+  
+  <a href="/2021/09/17/EL%E5%92%8CJSTL%E3%80%81/" class="archive-article-date">
+  	<time datetime="2021-09-17T02:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-17</time>
+</a>
+  
+
+
+  
+    <span class="archive-article-date">
+        阅读量 <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+
+
+</header>
+
+<article id="post-EL和JSTL、" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      EL和JSTL
+    </h1>
+  
+
+        
+        
+        <a href="/2021/09/17/EL%E5%92%8CJSTL%E3%80%81/" class="archive-article-date">
+  	<time datetime="2021-09-17T02:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="EL和JSTL笔记"><a href="#EL和JSTL笔记" class="headerlink" title="EL和JSTL笔记"></a>EL和JSTL笔记</h1><span id="more"></span>
+<h1 id="《《文章很长，目录在右下角》》"><a href="#《《文章很长，目录在右下角》》" class="headerlink" title="《《文章很长，目录在右下角》》"></a>《《文章很长，目录在右下角》》</h1><h1 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>获取数据</li>
+<li>执行运算</li>
+<li>调用Java方法</li>
+<li>降低Java代码与HTML之间的耦合度</li>
+<li>注意：JSP脚本(&lt;% %&gt;)中不能使用EL表达式<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><img src="https://s3.bmp.ovh/imgs/2021/09/2282edfaf9da1202.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/321d051b0940b664.png"><h2 id="关键字empty"><a href="#关键字empty" class="headerlink" title="关键字empty"></a>关键字empty</h2><img src="https://s3.bmp.ovh/imgs/2021/09/62e851b97f7d78ba.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/05488f8186855290.png"><h1 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h1><img src="https://s3.bmp.ovh/imgs/2021/09/ddbb0a9efcaf7c82.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/7f472675222d1def.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/71e42b72d591f7c3.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/4c62c86315504db6.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/00e51bf888eca031.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/6c0b34b5e48c2efc.png"></li>
+</ul>
+
+      
+      
+    
+      <div class="declare" hidden="hidden"></div>
     
     
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃猫粮<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/27/IDEA%20%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E7%BB%8F%E9%AA%8C-1/" class="archive-article-date">
-  	<time datetime="2021-05-27T01:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/27/IDEA%20%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E7%BB%8F%E9%AA%8C-1/">IDEA使用技巧和经验</a>
-    </h1>
-  
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/09/17/EL%E5%92%8CJSTL%E3%80%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/27/javap%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-05-27T01:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/14/servlet%E5%92%8Cjsp%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">servlet和jsp笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/27/javap%E7%9A%84%E4%BD%BF%E7%94%A8/">javap的使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EL%E5%92%8CJSTL%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">EL和JSTL笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EL%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">EL表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97empty"><span class="toc-number">3.3.</span> <span class="toc-text">关键字empty</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSTL"><span class="toc-number">4.</span> <span class="toc-text">JSTL</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/06/Java%20APV%E6%96%87%E6%A1%A3/" class="archive-article-date">
-  	<time datetime="2021-05-06T07:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/06/Java%20APV%E6%96%87%E6%A1%A3/">Java APV</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/29/java%E8%87%AA%E5%AD%A6%E4%BD%9C%E5%93%81/" class="archive-article-date">
-  	<time datetime="2021-04-29T09:37:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/29/java%E8%87%AA%E5%AD%A6%E4%BD%9C%E5%93%81/">Java自学练习及作业</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/27/java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0-0/" class="archive-article-date">
-  	<time datetime="2021-04-27T09:27:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/27/java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0-0/">JavaSE自学笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
   
 
 
@@ -346,8 +413,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
