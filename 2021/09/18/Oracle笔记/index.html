@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 6 + 7</title>
+  <title>Oracle笔记 | 6 + 7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6 + 7 的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="6 + 7">
-<meta property="og:url" content="http://example.com/archives/page/3/index.html">
+  <meta name="description" content="Oracle笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle笔记">
+<meta property="og:url" content="http://example.com/2021/09/18/Oracle%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="6 + 7">
-<meta property="og:description" content="6 + 7 的博客">
+<meta property="og:description" content="Oracle笔记">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/dd39c12d95da0e6c.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/33be449daf7ea743.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/06d90e06a4f0981c.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/09/fd59733559782089.png">
+<meta property="article:published_time" content="2021-09-18T07:47:00.000Z">
+<meta property="article:modified_time" content="2021-09-26T07:41:27.778Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2021/09/dd39c12d95da0e6c.png">
   
     <link rel="alternative" href="/atom.xml" title="6 + 7" type="application/atom+xml">
   
@@ -154,187 +161,466 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <header class="article-header">
   
   
+    <h1 class="article-title" itemprop="name">
+      Oracle笔记
+    </h1>
+  
+
+  
+  <a href="/2021/09/18/Oracle%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-09-18T07:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-18</time>
+</a>
+  
+
+
+  
+    <span class="archive-article-date">
+        阅读量 <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+
+
+</header>
+
+<article id="post-Oracle笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle笔记
+    </h1>
+  
+
+        
+        
+        <a href="/2021/09/18/Oracle%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-09-18T07:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Oracle笔记"><a href="#Oracle笔记" class="headerlink" title="Oracle笔记"></a>Oracle笔记</h1><span id="more"></span>
+<h1 id="《《文章很长，目录在右下角》》"><a href="#《《文章很长，目录在右下角》》" class="headerlink" title="《《文章很长，目录在右下角》》"></a>《《文章很长，目录在右下角》》</h1><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><ul>
+<li>create user  用户名  identified  by  密码  【account  lock | unlock】<h3 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h3></li>
+<li>解锁：alter  user  用户名  account  lock | unlock</li>
+<li>修改密码：alter  user  用户名 identified  by  密码</li>
+<li>删除用户：drop user 用户名 cascade;  – cascade: 表示级联删除<h3 id="常见角色"><a href="#常见角色" class="headerlink" title="常见角色"></a>常见角色</h3></li>
+<li>connect角色:具有权限create  session</li>
+<li>resource角色：创建数据库对象（如：创建数据库表、序列、存储过程等等）</li>
+<li>dba角色：所有的权限<h3 id="给用户授权角色或权限"><a href="#给用户授权角色或权限" class="headerlink" title="给用户授权角色或权限"></a>给用户授权角色或权限</h3></li>
+<li>授权：grant  角色 | 权限  to  用户 | 角色</li>
+<li>回收：revoke  角色  | 权限  from  用户 | 角色<h3 id="查看用户角色"><a href="#查看用户角色" class="headerlink" title="查看用户角色"></a>查看用户角色</h3><img src="https://s3.bmp.ovh/imgs/2021/09/dd39c12d95da0e6c.png"><h2 id="表空间管理"><a href="#表空间管理" class="headerlink" title="表空间管理"></a>表空间管理</h2><h3 id="创建表空间"><a href="#创建表空间" class="headerlink" title="创建表空间"></a>创建表空间</h3></li>
+<li>create  tablespace  表空间名  datafile  ‘文件地址1’  size  值M, ‘文件地址n’  size  值M<h3 id="修改表空间"><a href="#修改表空间" class="headerlink" title="修改表空间"></a>修改表空间</h3></li>
+<li>alter  database  datafile  ‘文件地址’  resize  值M; –修改数据文件的大小</li>
+<li>alter  tablespace  表空间名  add  datafile  ‘文件地址’  size  值M;  –增加数据文件<h3 id="删除表空间"><a href="#删除表空间" class="headerlink" title="删除表空间"></a>删除表空间</h3></li>
+<li>drop  tablespace  表空间名  including  contents  and  datafiles;</li>
+</ul>
+<p>– including  contents  and  datafiles:表示同时删除数据文件</p>
+<h3 id="创建用户时指定默认的表空间"><a href="#创建用户时指定默认的表空间" class="headerlink" title="创建用户时指定默认的表空间"></a>创建用户时指定默认的表空间</h3><ul>
+<li>create  user  用户名 IDENTIFIED  by  密码  account  unlock default  tablespace  表空间名<h3 id="修改用户默认的表空间"><a href="#修改用户默认的表空间" class="headerlink" title="修改用户默认的表空间"></a>修改用户默认的表空间</h3></li>
+<li>alter  user  用户名  default  tablespace  表空间名<h3 id="在指定表空间中创建表"><a href="#在指定表空间中创建表" class="headerlink" title="在指定表空间中创建表"></a>在指定表空间中创建表</h3></li>
+<li>create  table  表名(…)  tablespace  表空间名<h3 id="移动表至指定的表空间"><a href="#移动表至指定的表空间" class="headerlink" title="移动表至指定的表空间"></a>移动表至指定的表空间</h3></li>
+<li>alter  table  表名  move  tablespace  表空间名<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2></li>
+<li>varchar2、nvarchar2、clob 对应mysql中的text</li>
+<li>number、char、date（不会根据时区转换时间）、timestamp（会根据时区转换时间）<h2 id="获取系统时间"><a href="#获取系统时间" class="headerlink" title="获取系统时间"></a>获取系统时间</h2></li>
+<li>select  sysdate,systimestamp,current_timestamp  from  dual;<h2 id="方案scham"><a href="#方案scham" class="headerlink" title="方案scham"></a>方案scham</h2></li>
+<li>mysql中：方案名指的是数据库名</li>
+<li>Oracle中：方案名指的是用户名<h2 id="SQL的分类（掌握）"><a href="#SQL的分类（掌握）" class="headerlink" title="SQL的分类（掌握）"></a>SQL的分类（掌握）</h2><img src="https://s3.bmp.ovh/imgs/2021/09/33be449daf7ea743.png"><h3 id="使用DDL操作数据库对象（掌握）"><a href="#使用DDL操作数据库对象（掌握）" class="headerlink" title="使用DDL操作数据库对象（掌握）"></a>使用DDL操作数据库对象（掌握）</h3></li>
+<li>创建数据库（掌握）<br><img src="https://s3.bmp.ovh/imgs/2021/09/06d90e06a4f0981c.png"><br><img src="https://s3.bmp.ovh/imgs/2021/09/fd59733559782089.png"><h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3></li>
+<li>检查约束</li>
+<li>create  table  表名(列名  数据类型 check(检查条件) );<h3 id="数据表管理"><a href="#数据表管理" class="headerlink" title="数据表管理"></a>数据表管理</h3></li>
+<li>复制表：create  table  表名  as  select  *  from  旧表名  [where  条件];</li>
+<li>修改列的默认值：alter  table  表名  modify  列名  default  值;<h2 id="DML数据管理"><a href="#DML数据管理" class="headerlink" title="DML数据管理"></a>DML数据管理</h2></li>
+<li>新增单条数据<br>insert  into  表名(字段列表)  values(值列表)</li>
+</ul>
+<p>注意：其中关键字into不能省略</p>
+<pre><code>    values不能使用value
+</code></pre>
+<ul>
+<li>批量插入数据</li>
+</ul>
+<p>insert  all  into 表名(字段列表)  values(值列表)</p>
+<p>……</p>
+<p>into 表名(字段列表)  values(值列表) </p>
+<p>select * from dual;</p>
+<hr>
+<p>insert  into  表名(字段列表)</p>
+<p>select  值列表  from  dual</p>
+<p>union  all</p>
+<p>……</p>
+<p>select  值列表  from  dual;</p>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><ul>
+<li>唯一性结果集（去重）</li>
+</ul>
+<p>select  distinct  列名1,….  from  表名 …..</p>
+<ul>
+<li>联合查询（并集）</li>
+</ul>
+<p>select语句1   union  [all]  select语句2;</p>
+<p>union 会去掉结果集中重复的行</p>
+<p>union  all  不会去除结果集中重复的行</p>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>内连接（inner  join）（必须使用on条件）</p>
+<p>必须符合条件的数据（两个表中必须都有对应的数据）才会被查出<br>到结果集中</p>
+<p>外连接（out  join）（必须使用on条件）</p>
+<p>左外连接（left  join）</p>
+<p>以左表为主：左表中存在的数据都会被查询到结果集中，如果右表<br>没有对应的数据，则以空填充</p>
+<p>右外连接（right  join）</p>
+<p>以右表为主：右表中存在的数据都会被查询到结果集中，如果左表<br>没有对应的数据，则以空填充</p>
+<p>全外连接（full  join）</p>
+<p>被连接的两个表中存在的数据都会被查询到结果集中，如果对方的<br>表没有对应的数据，则以空填充</p>
+<p>交叉连接（cross  join）</p>
+<p>求两个表的笛卡尔积</p>
+<h3 id="子查询（嵌套查询）"><a href="#子查询（嵌套查询）" class="headerlink" title="子查询（嵌套查询）"></a>子查询（嵌套查询）</h3><p>–使用子查询作为条件值时，查询条件使用的比较运算符，子查询<br>查出的结果集必须是一行一列</p>
+<p>select * from “users” where id=(select id from<br>“admin”);</p>
+<p>–any:和子查询的结果集中的每一个值进行比较，只要有一个符<br>合条件，则保留该行</p>
+<p>–all:和子查询的结果集中的每一个值进行比较，只要有一个不<br>符合条件，则不保留该行</p>
+<p>select * from “users” where id&gt; all(select id from<br>“admin” );</p>
+<p>–子查询查出的结果集只能有一列</p>
+<p>select * from “users” where id in (select username<br>from “admin”);</p>
+<p>–在子查询中设置条件，对子查询没有行数和列数的要求</p>
+<p>select * from “users” where exists</p>
+<p>(select * from “admin” where “users”.id = “admin”.id)<br>;</p>
+<h2 id="伪列"><a href="#伪列" class="headerlink" title="伪列"></a>伪列</h2><ul>
+<li><p>ROWID：插入数据时产生，存储于表中；数据行所在的物理地址</p>
+</li>
+<li><p>ROWNUM：查询数据时产生，存在于结果集中；结果集中的行号</p>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2></li>
+<li><p>–使用子查询，给伪列ROWNUM取别名</p>
+</li>
+<li><p>select  *  from  (select  ROWNUM  别名,*  from  表名)   where  别名&gt;…..;</p>
+<h2 id="SQL语句执行顺序"><a href="#SQL语句执行顺序" class="headerlink" title="SQL语句执行顺序"></a>SQL语句执行顺序</h2></li>
+<li><p>SQL语句编写的顺序</p>
+</li>
+<li><p>Select … from … where … group by … having … order by …</p>
+</li>
+<li><p>SQL语句执行的顺序</p>
+</li>
+<li><p>FROM -&gt; WHERE -&gt; GROUP BY -&gt; HAVING -&gt; SELECT -&gt; ORDER BY</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2></li>
+<li><p>已经编译后的select语句</p>
+</li>
+<li><p>create  [or  replace]  view  视图名称  as  select语句;</p>
+<h2 id="同义词（了解）"><a href="#同义词（了解）" class="headerlink" title="同义词（了解）"></a>同义词（了解）</h2></li>
+<li><p>create  [or  replace]  [public]  SYNONYM  同义词名  for  数据库对象名</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2></li>
+<li><p>提高查询的效率，但会影响更新（增删改）的效率</p>
+</li>
+<li><p>create  [unique|bitmap]  index  索引名  on  表名(列名)  [rerverse]</p>
+<h2 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h2><pre><code>  生成自增的数据
+  创建序列语法
+  CREATE SEQUENCE 序列名
+  [START WITH 起始值]
+  [INCREMENT BY 步进值]
+  [MAXVALUE 最大值|NOMAXVALUE]
+  [MINVALUE 最小值|NOMINVALUE]
+  [CYCLE|NOCYCLE]
+  [CACHE 个数|NOCACHE]
+
+  create  [or  replace]  sequence  序列名;
+  --刚刚创建的序列对象，不能直接查询currval（伪列）值
+  --必须先查询一次nextval（伪列）之后，才可以查询currval的值
+  select SEQ_USERS.nextval from dual;
+  select SEQ_USERS.currval from dual;
+  --删除序列
+  DROP  SEQUENCE  序列名;
+
+  --通过序列实现自增id
+  insert  into  表名(id,字段列表)  values(序列名.nextval,值列表);
+</code></pre>
+</li>
+</ul>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><pre><code>    --创建触发器
+    --触发时间点：before（操作之前触发）,after(操作之后触发)
+    --触发的操作：insert（新增操作），delete（删除操作），update（更新操作）
+    --触发器的级别：for each row（行级触发器）；不加for each row关键字则为语句级
+    --:new 表示将要被插入的新行
+    --:old 表示将要被删除的旧行
+
+    create  [or  replace]  trigger  before|after  insert|delete|update  on  表名 
+    for  each  row
+    begin
+            功能语句 -- 实现主键自增：select 序列.nextval into :new.id from dual;
+    end;
+</code></pre>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><pre><code>    Oracle自带的函数
+    单行函数
+    字符串函数
+    对字符串进行操作，
+    例如：
+            length(字符串)  -- 获取字符串长度
+            substr(字符串, 起始下标 [, 长度])  -- 截取字符串：起始下标从1开始
+    等等。
+
+    数值函数
+    对数值进行计算或操作，返回一个数字。例如：ABS()、MOD()、ROUND()等等。
+
+    转换函数
+    将一种数据类型转换成另外一种类型：
+    例如：TO_CHAR(日期,&#39;yyyy-mm-dd hh24:mi:ss&#39;)
+            TO_DATE(&#39;2021-06-10 11:11:11&#39;,&#39;yyyy-mm-dd hh24:mi:ss&#39;)
+    TO_NUMBER(&#39;123&#39;)等等。
+
+    日期函数
+    对时间和日期进行操作的函数。
+    例如： 
+    SYSDATE()  -- 获取当前日期
+    ADD_MONTHS(日期, 数值)  -- 给指定日期添加月份
+    等等。
+
+    聚合函数
+    count()、avg()、sum()、max()、min()
+
+    存储过程和函数
+    -- 创建存储过程
+    -- 参数类型：in：输入参数（可省略）  out：输出参数（不可省略） in out：既是输入参数又是输出参数
+    create [or replace] procedure 【schema.】存储过程名【(参数1  [in | &lt;out&gt; | &lt;in out&gt;]  数据类型, …. )】
+    is 或 as
+    -- 变量声明位置
+    变量名  数据类型;
+    begin
+    -- 功能代码
+    end;
+    -- 调用存储过程
+    -- 语法一
+    call 存储过程名【(参数列表)】; 
+    -- 语法二
+    exec 存储过程名【(参数列表)】;
+    -- 语法三
+    【set serveroutput on】
+    begin
+            存储过程名【(参数列表)】;
+    end;
+
+    create [or replace] function 【schema.】函数名(参数1  数据类型, ….) return 返回值类型
+    is
+    begin
+    -- 功能代码
+    end;
+    -- 调用函数
+    call 函数名(参数列表);
+
+
+    -- 创建带输出参数的存储过程
+    create or replace procedure proc_add(num1 in number,num2 number, v_result out number)
+    as
+    begin
+    v_result := num1 + num2;
+    end;
+    
+    -- 调用带输出参数的存储过程
+    declare
+    v_r number;
+    begin
+    proc_add(1,2,v_r);
+    dbms_output.put_line(v_r);
+    end;
+
+
+
+    程序包
+    -- 创建程序包（类似声明接口）
+    create [or replace] package 包名 is
+    procedure 存储过程名1(参数1  数据类型, …. );
+    procedure 存储过程名n(参数1  数据类型, …. ); 
+    function 函数名1(参数1  数据类型, ….) return 返回值类型; 
+    function 函数名n(参数1  数据类型, ….) return 返回值类型;
+    end;
+    -- 创建程序包体（类似创建实现类）
+    create package body 包名 is
+    -- 实现存储过程
+    procedure 存储过程名1(参数1  数据类型, …. )
+    is
+    begin
+    -- 功能代码
+    end;
+
+    procedure 存储过程名n(参数1  数据类型, …. )
+    is
+    begin
+    -- 功能代码
+    end;
+    -- 创建函数
+    function 函数名1(参数1  数据类型, ….) return 返回值类型
+    is
+    begin
+    -- 功能代码
+    end;
+    function 函数名n(参数1  数据类型, ….) return 返回值类型
+    is
+    begin
+    -- 功能代码
+    end;
+    end;
+
+    -- 调用包中的存储过程或程序
+    call 包名.存储过程名1 (参数列表);
+    call 包名.存储过程名n (参数列表);
+    call 包名.函数名1 (参数列表);
+    call 包名.函数名n (参数列表);
+</code></pre>
+<h2 id="PL-SQL编程（略）"><a href="#PL-SQL编程（略）" class="headerlink" title="PL/SQL编程（略）"></a>PL/SQL编程（略）</h2><p>详情见：D:\中软学习篇\J1604A班的笔记\阶段3</p>
+
+      
+      
+    
+      <div class="declare" hidden="hidden"></div>
     
     
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃猫粮<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/27/java%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2021-05-27T02:21:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/27/java%E8%A7%84%E8%8C%83/">Java规范</a>
-    </h1>
-  
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/09/18/Oracle%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/27/IDEA%20%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E7%BB%8F%E9%AA%8C-1/" class="archive-article-date">
-  	<time datetime="2021-05-27T01:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/17/EL%E5%92%8CJSTL%E3%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">EL和JSTL</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/27/IDEA%20%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E7%BB%8F%E9%AA%8C-1/">IDEA使用技巧和经验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Oracle%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">Oracle笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E3%80%8A%E6%96%87%E7%AB%A0%E5%BE%88%E9%95%BF%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E3%80%8B%E3%80%8B"><span class="toc-number">2.</span> <span class="toc-text">《《文章很长，目录在右下角》》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-number">2.1.1.</span> <span class="toc-text">创建用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7"><span class="toc-number">2.1.2.</span> <span class="toc-text">修改用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%A7%92%E8%89%B2"><span class="toc-number">2.1.3.</span> <span class="toc-text">常见角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83%E8%A7%92%E8%89%B2%E6%88%96%E6%9D%83%E9%99%90"><span class="toc-number">2.1.4.</span> <span class="toc-text">给用户授权角色或权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E8%A7%92%E8%89%B2"><span class="toc-number">2.1.5.</span> <span class="toc-text">查看用户角色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">表空间管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">2.2.1.</span> <span class="toc-text">创建表空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">2.2.2.</span> <span class="toc-text">修改表空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">2.2.3.</span> <span class="toc-text">删除表空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E6%97%B6%E6%8C%87%E5%AE%9A%E9%BB%98%E8%AE%A4%E7%9A%84%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">2.2.4.</span> <span class="toc-text">创建用户时指定默认的表空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E9%BB%98%E8%AE%A4%E7%9A%84%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">2.2.5.</span> <span class="toc-text">修改用户默认的表空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E6%8C%87%E5%AE%9A%E8%A1%A8%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">2.2.6.</span> <span class="toc-text">在指定表空间中创建表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E8%A1%A8%E8%87%B3%E6%8C%87%E5%AE%9A%E7%9A%84%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">2.2.7.</span> <span class="toc-text">移动表至指定的表空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4"><span class="toc-number">2.4.</span> <span class="toc-text">获取系统时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88scham"><span class="toc-number">2.5.</span> <span class="toc-text">方案scham</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89"><span class="toc-number">2.6.</span> <span class="toc-text">SQL的分类（掌握）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8DDL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E8%B1%A1%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89"><span class="toc-number">2.6.1.</span> <span class="toc-text">使用DDL操作数据库对象（掌握）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9F"><span class="toc-number">2.6.2.</span> <span class="toc-text">约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%AE%A1%E7%90%86"><span class="toc-number">2.6.3.</span> <span class="toc-text">数据表管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DML%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86"><span class="toc-number">2.7.</span> <span class="toc-text">DML数据管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="toc-number">2.7.1.</span> <span class="toc-text">查询数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.7.2.</span> <span class="toc-text">连接查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2%EF%BC%88%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="toc-number">2.7.3.</span> <span class="toc-text">子查询（嵌套查询）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E5%88%97"><span class="toc-number">2.8.</span> <span class="toc-text">伪列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.9.</span> <span class="toc-text">分页查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">2.10.</span> <span class="toc-text">SQL语句执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE"><span class="toc-number">2.11.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E4%B9%89%E8%AF%8D%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="toc-number">2.12.</span> <span class="toc-text">同义词（了解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">2.13.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%88%97"><span class="toc-number">2.14.</span> <span class="toc-text">序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">2.15.</span> <span class="toc-text">触发器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">2.16.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PL-SQL%E7%BC%96%E7%A8%8B%EF%BC%88%E7%95%A5%EF%BC%89"><span class="toc-number">2.17.</span> <span class="toc-text">PL&#x2F;SQL编程（略）</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/27/javap%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-05-27T01:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/27/javap%E7%9A%84%E4%BD%BF%E7%94%A8/">javap的使用</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/06/Java%20APV%E6%96%87%E6%A1%A3/" class="archive-article-date">
-  	<time datetime="2021-05-06T07:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/06/Java%20APV%E6%96%87%E6%A1%A3/">Java APV</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/29/java%E8%87%AA%E5%AD%A6%E4%BD%9C%E5%93%81/" class="archive-article-date">
-  	<time datetime="2021-04-29T09:37:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/29/java%E8%87%AA%E5%AD%A6%E4%BD%9C%E5%93%81/">Java自学练习及作业</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/27/java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0-0/" class="archive-article-date">
-  	<time datetime="2021-04-27T09:27:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/27/java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0-0/">JavaSE自学笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
   
 
 
@@ -373,8 +659,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
