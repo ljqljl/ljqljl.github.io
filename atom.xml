@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-04T07:07:19.389Z</updated>
+  <updated>2021-11-09T13:48:27.110Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,13 +17,47 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Scala</title>
+    <link href="http://example.com/2021/11/05/scala/"/>
+    <id>http://example.com/2021/11/05/scala/</id>
+    <published>2021-11-05T13:31:00.000Z</published>
+    <updated>2021-11-09T13:48:27.110Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Scala"><a href="#Scala" class="headerlink" title="Scala"></a>Scala</h1><span id="more"></span><h1 id="Scala0"><a href="#Scala0" class="headerlink" title="Scala0"></a>Scala0</h1><p><img src="https://s3.bmp.ovh/imgs/2021/11/41dc2e3ba13cee19.jpg"></p><h1 id="Scala1"><a href="#Scala1" class="headerlink" title="Scala1"></a>Scala1</h1><p><img src="https://s3.bmp.ovh/imgs/2021/11/f34050bf7a62ca74.jpg"></p><h1 id="Scala2"><a href="#Scala2" class="headerlink" title="Scala2"></a>Scala2</h1><p><img src="https://s3.bmp.ovh/imgs/2021/11/972404eea3100cec.jpg"></p><h1 id="Scala3"><a href="#Scala3" class="headerlink" title="Scala3"></a>Scala3</h1><p><img src></p><h1 id="Scala4"><a href="#Scala4" class="headerlink" title="Scala4"></a>Scala4</h1><p><img src></p><h1 id="Scala5"><a href="#Scala5" class="headerlink" title="Scala5"></a>Scala5</h1><p><img src></p><h1 id="Scala6"><a href="#Scala6" class="headerlink" title="Scala6"></a>Scala6</h1><p><img src></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Scala&quot;&gt;&lt;a href=&quot;#Scala&quot; class=&quot;headerlink&quot; title=&quot;Scala&quot;&gt;&lt;/a&gt;Scala&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hive</title>
+    <link href="http://example.com/2021/11/02/Hive/"/>
+    <id>http://example.com/2021/11/02/Hive/</id>
+    <published>2021-11-02T03:41:00.000Z</published>
+    <updated>2021-11-09T13:48:20.954Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h1><span id="more"></span>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Hive&quot;&gt;&lt;a href=&quot;#Hive&quot; class=&quot;headerlink&quot; title=&quot;Hive&quot;&gt;&lt;/a&gt;Hive&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Hadoop</title>
     <link href="http://example.com/2021/10/26/hadoop/"/>
     <id>http://example.com/2021/10/26/hadoop/</id>
     <published>2021-10-26T11:34:00.000Z</published>
-    <updated>2021-11-04T07:07:19.389Z</updated>
+    <updated>2021-11-09T13:55:48.221Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h1><span id="more"></span><h1 id="大数据概论"><a href="#大数据概论" class="headerlink" title="大数据概论"></a>大数据概论</h1><p><img src="https://i.loli.net/2021/11/04/WLtSfnUDN4svF3I.jpg"></p><h1 id="Hadoop-入门"><a href="#Hadoop-入门" class="headerlink" title="Hadoop(入门)"></a>Hadoop(入门)</h1><p><img src="https://i.loli.net/2021/11/04/Xh3W65bwQDrJSyM.jpg"><br><img src="https://i.loli.net/2021/11/04/3O687NJAanIpuj9.jpg"></p><h1 id="Hadoop（HDFS）"><a href="#Hadoop（HDFS）" class="headerlink" title="Hadoop（HDFS）"></a>Hadoop（HDFS）</h1><p><img src="https://i.loli.net/2021/11/04/tYsieAWwSQ31uqC.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h1><span id="more"></span><h1 id="大数据概论"><a href="#大数据概论" class="headerlink" title="大数据概论"></a>大数据概论</h1><p><img src="https://i.loli.net/2021/11/04/WLtSfnUDN4svF3I.jpg"></p><h1 id="Hadoop-入门"><a href="#Hadoop-入门" class="headerlink" title="Hadoop(入门)"></a>Hadoop(入门)</h1><p><img src="https://i.loli.net/2021/11/04/Xh3W65bwQDrJSyM.jpg"><br><img src="https://i.loli.net/2021/11/04/3O687NJAanIpuj9.jpg"></p><h1 id="Hadoop（HDFS）"><a href="#Hadoop（HDFS）" class="headerlink" title="Hadoop（HDFS）"></a>Hadoop（HDFS）</h1><p><img src="https://i.loli.net/2021/11/04/tYsieAWwSQ31uqC.jpg"></p><h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><p><img src="https://s3.bmp.ovh/imgs/2021/11/6106cb1e993211e2.jpg"><br><img src="https://i.loli.net/2021/11/09/ZoyiwWsgx5C6Kkp.jpg"><br><img src></p>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;Hadoop&quot;&gt;&lt;a href=&quot;#Hadoop&quot; class=&quot;headerlink&quot; title=&quot;Hadoop&quot;&gt;&lt;/a&gt;Hadoop&lt;/h1&gt;</summary>
@@ -316,40 +350,6 @@
     
     
     <summary type="html">&lt;h1 id=&quot;linux入门&quot;&gt;&lt;a href=&quot;#linux入门&quot; class=&quot;headerlink&quot; title=&quot;linux入门&quot;&gt;&lt;/a&gt;linux入门&lt;/h1&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>StringBuffer 类常见方法</title>
-    <link href="http://example.com/2021/06/22/StringBuffer%20%E7%B1%BB%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/"/>
-    <id>http://example.com/2021/06/22/StringBuffer%20%E7%B1%BB%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/</id>
-    <published>2021-06-22T08:17:16.000Z</published>
-    <updated>2021-06-22T08:21:29.130Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="StringBuffer-类常见方法"><a href="#StringBuffer-类常见方法" class="headerlink" title="StringBuffer 类常见方法"></a>StringBuffer 类常见方法</h1><span id="more"></span><p><img src="https://i.loli.net/2021/06/22/ewMhVdbDGu7AJkU.png"><br><img src="https://i.loli.net/2021/06/22/usijIvDAZxyXa2W.png"></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;StringBuffer-类常见方法&quot;&gt;&lt;a href=&quot;#StringBuffer-类常见方法&quot; class=&quot;headerlink&quot; title=&quot;StringBuffer 类常见方法&quot;&gt;&lt;/a&gt;StringBuffer 类常见方法&lt;/h1&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>String常用方法</title>
-    <link href="http://example.com/2021/06/22/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
-    <id>http://example.com/2021/06/22/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</id>
-    <published>2021-06-22T07:02:32.000Z</published>
-    <updated>2021-06-22T07:18:54.798Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="String常用方法"><a href="#String常用方法" class="headerlink" title="String常用方法"></a>String常用方法</h1><span id="more"></span><p><img src="https://i.loli.net/2021/06/22/2gLhzsjVBSoOiM5.png"><br><img src="https://i.loli.net/2021/06/22/wNl8B5oUe63tXYK.png"><br><img src="https://i.loli.net/2021/06/22/2sz9FlVcRLOEZbo.png"><br><img src="https://i.loli.net/2021/06/22/qwlI1Gm7zVckPC8.png"><br><img src="https://i.loli.net/2021/06/22/hzCraFUS9ZoLMqj.png"><br><img src="https://i.loli.net/2021/06/22/ahQewN3fS7Tvq4j.png"><br><img src="https://i.loli.net/2021/06/22/xsiTwz7QBPUWRe4.png"></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;String常用方法&quot;&gt;&lt;a href=&quot;#String常用方法&quot; class=&quot;headerlink&quot; title=&quot;String常用方法&quot;&gt;&lt;/a&gt;String常用方法&lt;/h1&gt;</summary>
     
     
     
