@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/12 | 6 + 7</title>
+  <title>SpringBoot系统自学 | 6 + 7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6 + 7 的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="6 + 7">
-<meta property="og:url" content="http://example.com/archives/2021/12/index.html">
+  <meta name="description" content="SpringBoot系统自学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot系统自学">
+<meta property="og:url" content="http://example.com/2021/12/17/springboot%20%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6/index.html">
 <meta property="og:site_name" content="6 + 7">
-<meta property="og:description" content="6 + 7 的博客">
+<meta property="og:description" content="SpringBoot系统自学">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2021/12/17/iNeSE7A2kR8GUPo.png">
+<meta property="article:published_time" content="2021-12-17T06:41:00.000Z">
+<meta property="article:modified_time" content="2021-12-17T08:40:21.383Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2021/12/17/iNeSE7A2kR8GUPo.png">
   
     <link rel="alternative" href="/atom.xml" title="6 + 7" type="application/atom+xml">
   
@@ -154,87 +158,257 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/17/springboot%20%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6/" class="archive-article-date">
+    <h1 class="article-title" itemprop="name">
+      SpringBoot系统自学
+    </h1>
+  
+
+  
+  <a href="/2021/12/17/springboot%20%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6/" class="archive-article-date">
   	<time datetime="2021-12-17T06:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
 </a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/17/springboot%20%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6/">SpringBoot系统自学</a>
+
+
+  
+    <span class="archive-article-date">
+        阅读量 <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+
+
+</header>
+
+<article id="post-springboot 系统自学" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot系统自学
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/09/%E9%9A%8F%E7%AC%9402/" class="archive-article-date">
-  	<time datetime="2021-12-09T09:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-09</time>
+        
+        
+        <a href="/2021/12/17/springboot%20%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6/" class="archive-article-date">
+  	<time datetime="2021-12-17T06:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SpringBoot系统自学"><a href="#SpringBoot系统自学" class="headerlink" title="SpringBoot系统自学"></a>SpringBoot系统自学</h1><span id="more"></span>
+<h1 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h1><h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><ul>
+<li><p>简化spring的</p>
+</li>
+<li><p>要网络的</p>
+</li>
+<li><p>  @RestController<br>  @RequestMapping(“/books”)<br>  public class BookController {</p>
+<pre><code>  @GetMapping
+  public String getById()&#123;
+      System.out.println(&quot;run...&quot;);
+      return &quot;run....&quot;;
+  &#125;
+</code></pre>
+<p>  }</p>
+<p>  Application入口</p>
+<p>  @SpringBootApplication<br>  public class Springboot0101LjqApplication {</p>
+<pre><code>  public static void main(String[] args) &#123;
+      SpringApplication.run(Springboot0101LjqApplication.class, args);
+  &#125;
+</code></pre>
+<p>  }</p>
+</li>
+<li><p><img src="https://s2.loli.net/2021/12/17/iNeSE7A2kR8GUPo.png"></p>
+</li>
+<li><p>基于官网搭建，也可以用阿里云的，一样</p>
+</li>
+<li><p>没网可以手工创建</p>
+</li>
+</ul>
+<ol>
+<li>手工导入坐标（继承+添加）</li>
+<li>手工创建引导类<h3 id="入门案例解析"><a href="#入门案例解析" class="headerlink" title="入门案例解析"></a>入门案例解析</h3></li>
+</ol>
+<ul>
+<li>parent</li>
+</ul>
+<ol>
+<li><p>定义一系列的的坐标版本</p>
+</li>
+<li><p>定义一系列的常用坐标组合</p>
+</li>
+<li><p>直接使用组合</p>
+</li>
+<li><p>基于官网：parent-&gt;dependencies(定义一堆信息)</p>
+<p> 基于阿里云：直接引用dependencies</p>
+</li>
+</ol>
+<ul>
+<li>starter</li>
+</ul>
+<h1 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h1><h1 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h1><h1 id="番外篇"><a href="#番外篇" class="headerlink" title="番外篇"></a>番外篇</h1>
+      
+      
+    
+      <div class="declare" hidden="hidden"></div>
+    
+    
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃猫粮<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/09/%E9%9A%8F%E7%AC%9402/">新找到了一个自学网站（》-《）</a>
-    </h1>
-  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/17/springboot%20%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/12/09/%E9%9A%8F%E7%AC%9402/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">新找到了一个自学网站（》-《）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot系统自学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">快速上手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">入门案例解析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="toc-number">3.</span> <span class="toc-text">应用篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E7%AF%87"><span class="toc-number">4.</span> <span class="toc-text">原理篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%95%AA%E5%A4%96%E7%AF%87"><span class="toc-number">5.</span> <span class="toc-text">番外篇</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -272,8 +446,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
