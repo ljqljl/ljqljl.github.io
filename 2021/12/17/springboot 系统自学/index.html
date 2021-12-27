@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2021/12/17/iNeSE7A2kR8GUPo.png">
 <meta property="article:published_time" content="2021-12-17T06:41:00.000Z">
-<meta property="article:modified_time" content="2021-12-27T01:39:41.018Z">
+<meta property="article:modified_time" content="2021-12-27T08:35:58.460Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2021/12/17/iNeSE7A2kR8GUPo.png">
@@ -479,13 +479,33 @@ public R getPage(@PathVariable Integer currentPage,@PathVariable Integer pageSiz
     return new R(true,empService.getPage(currentPage,pageSize));
 &#125;
 </code></pre>
-<ul>
-<li>前后端协议联调</li>
+<h3 id="前后端协议联调"><a href="#前后端协议联调" class="headerlink" title="前后端协议联调"></a>前后端协议联调</h3><ul>
+<li>显示列表</li>
 </ul>
 <ol>
 <li>单体项目中页面放置在resources/static目录下</li>
 <li>created钩子函数用于初始化页面时发起调用</li>
 <li>页面使用axios发送异步请求获取数据后确认前后端是否联通</li>
+<li>将查询数据返回到页面，利用前端数据双向绑定进行数据展示</li>
+</ol>
+<ul>
+<li>添加</li>
+</ul>
+<ol>
+<li>请求方式使用POST调用后台对应操作</li>
+<li>添加操作结束后动态刷新页面加载数据</li>
+<li>根据操作结果不同，显示对应的信息提示</li>
+<li>弹出添加Div时清除表单数据</li>
+</ol>
+<ul>
+<li>删除</li>
+</ul>
+<ol>
+<li>请求方式使用Delete调用后台对应操作</li>
+<li>删除操作需要传递当前行数据对应的id值到后台</li>
+<li>删除操作结束后动态刷新页面加载数据</li>
+<li>根据操作结果不同，显示对应的提示信息</li>
+<li>删除操作前弹出提示框避免误操作</li>
 </ol>
 <h1 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h1><h1 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h1><h1 id="番外篇"><a href="#番外篇" class="headerlink" title="番外篇"></a>番外篇</h1>
       
@@ -594,6 +614,15 @@ public R getPage(@PathVariable Integer currentPage,@PathVariable Integer pageSiz
   
 <nav id="article-nav">
   
+    <a href="/2021/12/27/%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          服务器网站
+        
+      </div>
+    </a>
+  
   
     <a href="/2021/12/09/%E9%9A%8F%E7%AC%9402/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">新找到了一个自学网站（》-《）</div>
@@ -623,7 +652,7 @@ public R getPage(@PathVariable Integer currentPage,@PathVariable Integer pageSiz
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot系统自学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">快速上手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">入门案例解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.3.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9%E6%95%B0%E6%8D%AE-%EF%BC%88%E8%A6%81%E5%AD%A6%E4%BC%9A%E6%80%8E%E6%A0%B7%E9%80%82%E5%90%88%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%EF%BC%89"><span class="toc-number">2.1.4.</span> <span class="toc-text">整合三方数据 （要学会怎样适合所有内容）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ESpringBoot%E7%9A%84SSMP%E6%95%B4%E5%90%88%E6%A1%88%E4%BE%8B"><span class="toc-number">2.1.5.</span> <span class="toc-text">基于SpringBoot的SSMP整合案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="toc-number">3.</span> <span class="toc-text">应用篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E7%AF%87"><span class="toc-number">4.</span> <span class="toc-text">原理篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%95%AA%E5%A4%96%E7%AF%87"><span class="toc-number">5.</span> <span class="toc-text">番外篇</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot系统自学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">快速上手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">入门案例解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.3.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9%E6%95%B0%E6%8D%AE-%EF%BC%88%E8%A6%81%E5%AD%A6%E4%BC%9A%E6%80%8E%E6%A0%B7%E9%80%82%E5%90%88%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%EF%BC%89"><span class="toc-number">2.1.4.</span> <span class="toc-text">整合三方数据 （要学会怎样适合所有内容）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ESpringBoot%E7%9A%84SSMP%E6%95%B4%E5%90%88%E6%A1%88%E4%BE%8B"><span class="toc-number">2.1.5.</span> <span class="toc-text">基于SpringBoot的SSMP整合案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E8%AE%AE%E8%81%94%E8%B0%83"><span class="toc-number">2.1.6.</span> <span class="toc-text">前后端协议联调</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="toc-number">3.</span> <span class="toc-text">应用篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E7%AF%87"><span class="toc-number">4.</span> <span class="toc-text">原理篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%95%AA%E5%A4%96%E7%AF%87"><span class="toc-number">5.</span> <span class="toc-text">番外篇</span></a></li></ol>
                     </div>
                 </span>
             </div>
