@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2021/12/17/iNeSE7A2kR8GUPo.png">
 <meta property="article:published_time" content="2021-12-17T06:41:00.000Z">
-<meta property="article:modified_time" content="2021-12-20T09:43:44.487Z">
+<meta property="article:modified_time" content="2021-12-27T01:39:41.018Z">
 <meta property="article:author" content="愚人丶不愚">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2021/12/17/iNeSE7A2kR8GUPo.png">
@@ -320,14 +320,173 @@
 <li>整合JUnit</li>
 </ul>
 <ol>
-<li>核心：@SpringBootTest</li>
-<li>自动装配的形式添加要测试的对象</li>
+<li><p>核心：@SpringBootTest</p>
+</li>
+<li><p>自动装配的形式添加要测试的对象、</p>
+</li>
+<li><p>测试类如果不在引导类所在包或者其子包，会报错，可以指定（classes=。。。）</p>
+</li>
 </ol>
 <ul>
 <li>整合MyBatis</li>
-<li>整合MyBatis-Plus</li>
-<li>整合Druid</li>
 </ul>
+<ol>
+<li>重点：</li>
+</ol>
+<p>核心配置：数据库连接相关信息（连什么？连谁？什么权限）</p>
+<p>映射配置：SQL映射（XML/注解）<br>2. 步骤：</p>
+<p>1）选择当前模块所需的技术集</p>
+<p>2）数据库链接信息转换未配置信息</p>
+<p>3）sql映射，添加@Mapper被容器识别到</p>
+<ol start="3">
+<li>mysql 8+的问题，</li>
+</ol>
+<p>时区问题：?serverTimezone=UTC</p>
+<p>驱动类过时：加cj</p>
+<ul>
+<li>整合MyBatis-Plus</li>
+</ul>
+<ol>
+<li>MyBatis-Plus 和 MyBatis的区别</li>
+</ol>
+<p>导入坐标不同</p>
+<p>数据层实现简化</p>
+<ol start="2">
+<li>坐标手工加</li>
+<li>定义数据层接口与映射配置，继承BaseMapper</li>
+</ol>
+<ul>
+<li>整合Druid（略）</li>
+<li>整合任意的第三方技术</li>
+</ul>
+<ol>
+<li>导入对应的starter</li>
+<li>配置对应的设置或采用默认配置<h3 id="基于SpringBoot的SSMP整合案例"><a href="#基于SpringBoot的SSMP整合案例" class="headerlink" title="基于SpringBoot的SSMP整合案例"></a>基于SpringBoot的SSMP整合案例</h3></li>
+</ol>
+<ul>
+<li>lombok：实体类简化</li>
+<li>手工导入starter坐标</li>
+<li>配置数据源与MyBatisPlus对应的配置</li>
+<li>开发Dao接口</li>
+<li>制作测试类的Dao功能是否有效</li>
+<li>开启mp的日志：加配置</li>
+<li>MP分页：</li>
+</ul>
+<ol>
+<li><p>在config包里写个拦截器</p>
+<p> @Configuration</p>
+<p> public class MPConfig {</p>
+<pre><code> @Bean
+ public MybatisPlusInterceptor 
+ mybatisPlusInterceptor()&#123;
+
+     MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+     mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+     return mybatisPlusInterceptor;
+ &#125;
+</code></pre>
+<p> }</p>
+</li>
+<li><pre><code> IPage page = new Page(2, 6);
+ empDao.selectPage(page,null);
+ System.out.println(page.getCurrent());
+ System.out.println(page.getSize());
+ System.out.println(page.getTotal());
+ System.out.println(page.getPages());
+</code></pre>
+</li>
+</ol>
+<ul>
+<li>按条件查询<pre><code>  String name = &quot;K&quot;;
+  LambdaQueryWrapper&lt;Emp&gt; lqw = new LambdaQueryWrapper&lt;&gt;();
+  lqw.like(name != null,Emp::getEname, name);
+  empDao.selectList(lqw);
+</code></pre>
+</li>
+<li>业务层-快速开发</li>
+</ul>
+<ol>
+<li>使用MyBatisPlus提供有业务通用接口（ISerivce&lt;T&gt;）快速开发Service。</li>
+<li>业务层通用实现类（ServiceImpl&lt;M，T&gt;）快速开发Service</li>
+<li>在通用类基础上做功能重载或功能追加</li>
+<li>注意重载时不要覆盖原始操作，避免原始提供的功能丢失</li>
+</ol>
+<ul>
+<li>表现层标准开发</li>
+</ul>
+<ol>
+<li>基于Resful制作表现层接口</li>
+</ol>
+<p>1）新增：POST</p>
+<p>2）删除：DELETE</p>
+<p>3）修改：PUT</p>
+<p>4）查询：GET</p>
+<ol start="2">
+<li>接收参数</li>
+</ol>
+<p>1）实体数据：@RequestBody</p>
+<p>2）路径变量：@PathVariable</p>
+<ul>
+<li>表现层消息一致性处理</li>
+</ul>
+<ol>
+<li><p>设计表现层返回结果的模型类，用于后按与前端进行数据格式统一，也称为“前后端数据协议”</p>
+<p> public class R {</p>
+<pre><code> private Boolean flag;
+ private Object data;
+
+ public R()&#123;&#125;
+
+ public R(Boolean flag)&#123;
+     this.flag = flag;
+ &#125;
+
+ public R(Boolean flag,Object data)&#123;
+     this.flag = flag;
+     this.data = data;
+ &#125;
+</code></pre>
+<p> }</p>
+</li>
+</ol>
+<p>@GetMapping</p>
+<pre><code>public R getAll()&#123;
+    return new R(true,empService.list());
+&#125;
+
+@PostMapping
+public R save(@RequestBody Emp emp)&#123;
+    return new R(empService.save(emp));
+&#125;
+
+@PutMapping
+public R update(@RequestBody Emp emp)&#123;
+    return new R(empService.updateById(emp));
+&#125;
+
+@DeleteMapping(&quot;&#123;id&#125;&quot;)
+public R delete(@PathVariable Integer id)&#123;
+    return new R(empService.removeById(id));
+&#125;
+
+@GetMapping(&quot;&#123;id&#125;&quot;)
+public R getById(@PathVariable Integer id)&#123;
+    return new R(true,empService.getById(id));
+&#125;
+
+@GetMapping(&quot;&#123;currentPage&#125;/&#123;pageSize&#125;&quot;)
+public R getPage(@PathVariable Integer currentPage,@PathVariable Integer pageSize)&#123;
+    return new R(true,empService.getPage(currentPage,pageSize));
+&#125;
+</code></pre>
+<ul>
+<li>前后端协议联调</li>
+</ul>
+<ol>
+<li>单体项目中页面放置在resources/static目录下</li>
+<li>created钩子函数用于初始化页面时发起调用</li>
+<li>页面使用axios发送异步请求获取数据后确认前后端是否联通</li>
+</ol>
 <h1 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h1><h1 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h1><h1 id="番外篇"><a href="#番外篇" class="headerlink" title="番外篇"></a>番外篇</h1>
       
       
@@ -464,7 +623,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot系统自学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">快速上手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">入门案例解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.3.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9%E6%95%B0%E6%8D%AE-%EF%BC%88%E8%A6%81%E5%AD%A6%E4%BC%9A%E6%80%8E%E6%A0%B7%E9%80%82%E5%90%88%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%EF%BC%89"><span class="toc-number">2.1.4.</span> <span class="toc-text">整合三方数据 （要学会怎样适合所有内容）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="toc-number">3.</span> <span class="toc-text">应用篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E7%AF%87"><span class="toc-number">4.</span> <span class="toc-text">原理篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%95%AA%E5%A4%96%E7%AF%87"><span class="toc-number">5.</span> <span class="toc-text">番外篇</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot系统自学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">快速上手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">入门案例解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.3.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9%E6%95%B0%E6%8D%AE-%EF%BC%88%E8%A6%81%E5%AD%A6%E4%BC%9A%E6%80%8E%E6%A0%B7%E9%80%82%E5%90%88%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%EF%BC%89"><span class="toc-number">2.1.4.</span> <span class="toc-text">整合三方数据 （要学会怎样适合所有内容）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ESpringBoot%E7%9A%84SSMP%E6%95%B4%E5%90%88%E6%A1%88%E4%BE%8B"><span class="toc-number">2.1.5.</span> <span class="toc-text">基于SpringBoot的SSMP整合案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="toc-number">3.</span> <span class="toc-text">应用篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E7%AF%87"><span class="toc-number">4.</span> <span class="toc-text">原理篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%95%AA%E5%A4%96%E7%AF%87"><span class="toc-number">5.</span> <span class="toc-text">番外篇</span></a></li></ol>
                     </div>
                 </span>
             </div>
