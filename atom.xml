@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-12-30T09:40:41.751Z</updated>
+  <updated>2021-12-31T06:37:01.997Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,16 +21,12 @@
     <link href="http://example.com/2021/12/30/spring%E5%A4%8D%E4%B9%A0/"/>
     <id>http://example.com/2021/12/30/spring%E5%A4%8D%E4%B9%A0/</id>
     <published>2021-12-30T08:19:00.000Z</published>
-    <updated>2021-12-30T09:40:41.751Z</updated>
+    <updated>2021-12-31T06:37:01.997Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="spring复习"><a href="#spring复习" class="headerlink" title="spring复习"></a>spring复习</h1><!--点击此处查看更多--><h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul><li>spring，开源免费</li><li>轻量级，非入侵式</li><li>控制反转（IOC）， 面向切面编程（AOP）</li><li>支持事务的处理，对框架整合的支持<h1 id="ioc理论推导"><a href="#ioc理论推导" class="headerlink" title="ioc理论推导"></a>ioc理论推导</h1></li><li>使用set接口实现持久层链接服务层，已经发生了革命性的变化！</li><li>之前，程序是主动创建，控制权在程序员手里！</li><li>使用set注入后，程序不在具有主动性，而是变成被动接受的对象！</li><li>这种思想，从本质上解决了问题，我们程序员不用再去管理对象创建了。系统耦合性大大降低~，可以更加专注在业务的实现上！这是IOC的原型！</li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="spring复习"><a href="#spring复习" class="headerlink" title="spring复习"></a>spring复习</h1><span id="more"></span><h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul><li>spring，开源免费</li><li>轻量级，非入侵式</li><li>控制反转（IOC）， 面向切面编程（AOP）</li><li>支持事务的处理，对框架整合的支持<h1 id="ioc理论推导"><a href="#ioc理论推导" class="headerlink" title="ioc理论推导"></a>ioc理论推导</h1></li><li>使用set接口实现持久层链接服务层，已经发生了革命性的变化！</li><li>之前，程序是主动创建，控制权在程序员手里！</li><li>使用set注入后，程序不在具有主动性，而是变成被动接受的对象！</li><li>这种思想，从本质上解决了问题，我们程序员不用再去管理对象创建了。系统耦合性大大降低~，可以更加专注在业务的实现上！这是IOC的原型！</li><li>控制反转是一种思想，di是控制反转的一种实现</li><li>解耦，ioc容器出现了</li><li>控制反转是一种通过描述（xml或注解）并通过第三方去生产或获取特定对象的方式。在spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection，DI）（需要用set）</li><li>spring控制反转的过程（bean），用的时候直接在容器中拿就好了<br><img src="https://s2.loli.net/2021/12/31/rAYOJUb3CR2FGxi.png"></li><li>到现在，彻底不用去程序中修改，要实现不同的操作，需要在xml配置文件中进行修改，对象由Spring来创建，管理，装配！（IOC）</li><li>value:具体的值，基本数据类型、ref：引用类型，可引用其他的bean</li><li>ApplicationContext context = new ClassPathXmlApplicationContext（”beans.xml”）；//获取ApplicationContext ：拿到容器</li><li>容器在手，天下我有，需要什么，就直接get什么（context.getBean(“”)）<h1 id="IOC创建对象的方式"><a href="#IOC创建对象的方式" class="headerlink" title="IOC创建对象的方式"></a>IOC创建对象的方式</h1></li><li>使用无参构造创建对象，默认！</li><li>假设我们要使用有参构造器创建对象</li></ul><ol><li>按下标赋值<br>&lt;constructor-arg index=”0” value=”哈哈哈”&gt;</li><li>按类型（不推荐）</li><li>直接通过参数名<br>&lt;constructor-arg name=”name” value=”哈哈哈”&gt;</li></ol><ul><li>在配置文件加载的时候，容器就被初始化了<h1 id="spring的配置"><a href="#spring的配置" class="headerlink" title="spring的配置"></a>spring的配置</h1><h2 id="别名（没用，name也可以）"><a href="#别名（没用，name也可以）" class="headerlink" title="别名（没用，name也可以）"></a>别名（没用，name也可以）</h2></li><li>&lt;alias name=”user” alias=”userNew”/&gt;//可以使用别名取到这个对象<h2 id="Bean的配置"><a href="#Bean的配置" class="headerlink" title="Bean的配置"></a>Bean的配置</h2></li><li>id：唯一标识</li><li>class：bean对象对应的全限定名</li><li>name:别名<h2 id="import"><a href="#import" class="headerlink" title="import"></a>import</h2></li><li>一般用于团队开发使用，它可以将多个配置文件，导入合并为一个</li><li>&lt;import resource=”beans.xml”&gt;<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h2 id="构造器注入（前面说了）"><a href="#构造器注入（前面说了）" class="headerlink" title="构造器注入（前面说了）"></a>构造器注入（前面说了）</h2><h2 id="set方式注入（重点）"><a href="#set方式注入（重点）" class="headerlink" title="set方式注入（重点）"></a>set方式注入（重点）</h2></li><li>set注入</li></ul><ol><li>依赖：bean对象的创建依赖于容器！</li><li>注入：bean对象中所有属性，有容器来注入！<h2 id="拓展方式注入"><a href="#拓展方式注入" class="headerlink" title="拓展方式注入"></a>拓展方式注入</h2></li></ol><ul><li><p>普通注入 value</p></li><li><p>Bean 注入（引用）（ref）</p></li><li><p>数组注入</p><pre><code>  &lt;property name=&quot;card&quot;&gt;      &lt;array&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;      &lt;/array&gt;  &lt;/property&gt;    </code></pre></li><li><p>list</p><pre><code>  &lt;property name=&quot;card&quot;&gt;      &lt;list&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;      &lt;/list&gt;  &lt;/property&gt; </code></pre></li><li><p>map</p><pre><code>  &lt;property name=&quot;card&quot;&gt;      &lt;map&gt;          &lt;entry key=&quot;&quot; value=&quot;&quot;&gt;&lt;/entry&gt;          ...          ...      &lt;/map&gt;  &lt;/property&gt;</code></pre></li><li><p>set</p><pre><code>  &lt;property name=&quot;card&quot;&gt;      &lt;list&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;          &lt;value&gt;红楼梦&lt;/value&gt;      &lt;/list&gt;  &lt;/property&gt; </code></pre></li><li><p>null</p><pre><code>  &lt;property name=&quot;&quot;&gt;      &lt;null&gt;  &lt;/propertry&gt;</code></pre></li><li><p>properties</p><pre><code>  &lt;property name=&quot;&quot;&gt;      &lt;props&gt;          &lt;prop key=&quot;&quot;&gt;...&lt;/prop&gt;          ...      &lt;/props&gt;  &lt;/property&gt;</code></pre></li><li></li></ul>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h1 id=&quot;spring复习&quot;&gt;&lt;a href=&quot;#spring复习&quot; class=&quot;headerlink&quot; title=&quot;spring复习&quot;&gt;&lt;/a&gt;spring复习&lt;/h1&gt;&lt;!--点击此处查看更多--&gt;
-&lt;h1 id=&quot;优点&quot;&gt;&lt;a href=&quot;#优点&quot; class=&quot;</summary>
-      
+    <summary type="html">&lt;h1 id=&quot;spring复习&quot;&gt;&lt;a href=&quot;#spring复习&quot; class=&quot;headerlink&quot; title=&quot;spring复习&quot;&gt;&lt;/a&gt;spring复习&lt;/h1&gt;</summary>
     
     
     
@@ -42,16 +38,12 @@
     <link href="http://example.com/2021/12/30/springcloud%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6%E7%AF%87/"/>
     <id>http://example.com/2021/12/30/springcloud%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%AD%A6%E7%AF%87/</id>
     <published>2021-12-30T06:41:00.000Z</published>
-    <updated>2021-12-30T08:19:10.507Z</updated>
+    <updated>2021-12-31T06:37:01.091Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="springcloud系统自学篇"><a href="#springcloud系统自学篇" class="headerlink" title="springcloud系统自学篇"></a>springcloud系统自学篇</h1><!--点击此处查看更多--><h1 id="微服务技术栈"><a href="#微服务技术栈" class="headerlink" title="微服务技术栈"></a>微服务技术栈</h1><p><img src="https://s2.loli.net/2021/12/30/8HnrIUw2AclmfWb.png"><br><img src="https://s2.loli.net/2021/12/30/mdpXciNatzTOBuQ.png"></p><h1 id="实用篇"><a href="#实用篇" class="headerlink" title="实用篇"></a>实用篇</h1><h2 id="认识微服务"><a href="#认识微服务" class="headerlink" title="认识微服务"></a>认识微服务</h2><h2 id="分布式服务架构案例"><a href="#分布式服务架构案例" class="headerlink" title="分布式服务架构案例"></a>分布式服务架构案例</h2><h2 id="eureka注册中心"><a href="#eureka注册中心" class="headerlink" title="eureka注册中心"></a>eureka注册中心</h2><h2 id="Ribbon负载均衡原理"><a href="#Ribbon负载均衡原理" class="headerlink" title="Ribbon负载均衡原理"></a>Ribbon负载均衡原理</h2><h2 id="nacos注册中心"><a href="#nacos注册中心" class="headerlink" title="nacos注册中心"></a>nacos注册中心</h2><h1 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h1><h1 id="面试篇"><a href="#面试篇" class="headerlink" title="面试篇"></a>面试篇</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="springcloud系统自学篇"><a href="#springcloud系统自学篇" class="headerlink" title="springcloud系统自学篇"></a>springcloud系统自学篇</h1><span id="more"></span><h1 id="微服务技术栈"><a href="#微服务技术栈" class="headerlink" title="微服务技术栈"></a>微服务技术栈</h1><p><img src="https://s2.loli.net/2021/12/30/8HnrIUw2AclmfWb.png"><br><img src="https://s2.loli.net/2021/12/30/mdpXciNatzTOBuQ.png"></p><h1 id="实用篇"><a href="#实用篇" class="headerlink" title="实用篇"></a>实用篇</h1><h2 id="认识微服务"><a href="#认识微服务" class="headerlink" title="认识微服务"></a>认识微服务</h2><h2 id="分布式服务架构案例"><a href="#分布式服务架构案例" class="headerlink" title="分布式服务架构案例"></a>分布式服务架构案例</h2><h2 id="eureka注册中心"><a href="#eureka注册中心" class="headerlink" title="eureka注册中心"></a>eureka注册中心</h2><h2 id="Ribbon负载均衡原理"><a href="#Ribbon负载均衡原理" class="headerlink" title="Ribbon负载均衡原理"></a>Ribbon负载均衡原理</h2><h2 id="nacos注册中心"><a href="#nacos注册中心" class="headerlink" title="nacos注册中心"></a>nacos注册中心</h2><h1 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h1><h1 id="面试篇"><a href="#面试篇" class="headerlink" title="面试篇"></a>面试篇</h1>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h1 id=&quot;springcloud系统自学篇&quot;&gt;&lt;a href=&quot;#springcloud系统自学篇&quot; class=&quot;headerlink&quot; title=&quot;springcloud系统自学篇&quot;&gt;&lt;/a&gt;springcloud系统自学篇&lt;/h1&gt;&lt;!--点击此处查看更多--&gt;
-&lt;</summary>
-      
+    <summary type="html">&lt;h1 id=&quot;springcloud系统自学篇&quot;&gt;&lt;a href=&quot;#springcloud系统自学篇&quot; class=&quot;headerlink&quot; title=&quot;springcloud系统自学篇&quot;&gt;&lt;/a&gt;springcloud系统自学篇&lt;/h1&gt;</summary>
     
     
     
@@ -63,7 +55,7 @@
     <link href="http://example.com/2021/12/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E7%BC%93%E6%85%A2%E5%AD%A6%E4%B9%A0%E7%AF%87/"/>
     <id>http://example.com/2021/12/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E7%BC%93%E6%85%A2%E5%AD%A6%E4%B9%A0%E7%AF%87/</id>
     <published>2021-12-30T06:11:00.000Z</published>
-    <updated>2021-12-30T06:12:18.412Z</updated>
+    <updated>2021-12-31T06:36:59.515Z</updated>
     
     <content type="html"><![CDATA[<h1 id="数据结构和算法缓慢学习篇"><a href="#数据结构和算法缓慢学习篇" class="headerlink" title="数据结构和算法缓慢学习篇"></a>数据结构和算法缓慢学习篇</h1><span id="more"></span>]]></content>
     
